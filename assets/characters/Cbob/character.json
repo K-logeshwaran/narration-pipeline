@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "CBBob",
+  "aliases": ["deadpan_doug", "bob"],
+  "canvas": [1000, 1000],
+  "anchor": [500, 920],
+  "trim": {
+    "enabled": true,
+    "margin_px": 40
+  },
+  "pip": {
+    "scale": 0.42,
+    "position": "bottom_right",
+    "margin_x": 40,
+    "margin_y": 30
+  },
+  "motion": {
+    "enabled": true,
+    "bounce_px": 6.0,
+    "sway_deg": 1.0,
+    "speed": 1.0,
+    "bounce_period_s": 2.4,
+    "sway_period_s": 4.1
+  },
+  "blink": {
+    "enabled": true,
+    "min_gap_s": 2.5,
+    "max_gap_s": 5.0,
+    "duration_s": 0.14,
+    "seed": 7
+  },
+  "layer_order": ["base", "props", "eyes", "brows", "mouth"],
+  "mouths": {
+    "shapes": {
+      "A": "mouth_A.png",
+      "B": "mouth_B.png",
+      "C": "mouth_C.png",
+      "D": "mouth_D.png",
+      "E": "mouth_E.png",
+      "F": "mouth_F.png",
+      "G": "mouth_G.png",
+      "H": "mouth_H.png",
+      "X": "mouth_X.png"
+    },
+    "fallbacks": { "G": "B", "H": "C" }
+  },
+  "poses": {
+    "default": {
+      "base": "base.png",
+      "eyes_open": "eyes_open.png",
+      "eyes_closed": "eyes_closed.png",
+      "brows": null,
+      "props": null,
+      "blink": true
+    }
+  },
+  "emotion_to_pose": {
+    "deadpan": "default",
+    "flat": "default",
+    "fake_excitement": "default",
+    "smug": "default",
+    "panicked": "default",
+    "dramatic": "default",
+    "whisper": "default",
+    "fake_fancy": "default"
+  }
+}
