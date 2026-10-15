@@ -7,6 +7,7 @@ A backend is anything with:
 
 A backend MAY also implement:
     synth_timed(text, speed) -> (audio, tokens | None)
+    close() -> None
 where tokens are [(text, start_s, end_s), ...] in the RAW audio, used for
 word-level timing. Returning None for tokens is fine: the pipeline then
 aligns the words on the audio itself.
@@ -16,6 +17,8 @@ local model, a cloud voice) is one new class, not a rewrite.
 """
 from __future__ import annotations
 
+import gc
+import sys
 from typing import Any, Dict, List, Optional, Protocol, Tuple
 
 import numpy as np
@@ -58,6 +61,15 @@ class KokoroBackend:
                                    "elsewhere).") from e
             self._pipeline = KPipeline(lang_code=self.lang)
         return self._pipeline
+
+    def close(self) -> None:
+        """Release PyTorch/Kokoro weights from RAM before spawning video renderers."""
+        if self._pipeline is not None:
+            self._pipeline = None
+            gc.collect()
+            torch_mod = sys.modules.get("torch")
+            if torch_mod is not None and hasattr(torch_mod, "cuda") and torch_mod.cuda.is_available():
+                torch_mod.cuda.empty_cache()
 
     def synth(self, text: str, speed: float) -> np.ndarray:
         return self.synth_timed(text, speed)[0]
