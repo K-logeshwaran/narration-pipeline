@@ -7,10 +7,11 @@
     python main.py narrate script/nnn.md              # segment WAVs + narration.json + timeline.json
     python main.py narrate projects/nnn/project.json  # same, from an existing project.json
     python main.py regenerate script/nnn.md scene03_seg04 [scene05 ...]
-    python main.py mix projects/nnn --assets assets        # full_mix.wav: narration + SFX
+    python main.py lipsync projects/nnn               # Rhubarb mouth cues + blinks -> lipsync.json
+    python main.py mix projects/nnn --assets assets   # full_mix.wav: narration + SFX
 
-Useful flags:  --backend fake (dry run without Kokoro)   --force   --no-polish   --no-export
-               --assets DIR   --strict   --config FILE   -o DIR
+Useful flags:  --backend fake (dry run without Kokoro)   --rhubarb fake   --force   --no-polish
+               --no-export   --assets DIR   --strict   --config FILE   -o DIR
 
 Exit code is 1 on errors (or warnings with --strict), else 0.
 """
@@ -24,7 +25,7 @@ from typing import Any, Dict, Optional, Tuple
 
 from parser import load_channel_config, parse_file, render_report, validate
 
-COMMANDS = {"parse", "validate", "narrate", "regenerate", "build", "mix"}
+COMMANDS = {"parse", "validate", "narrate", "regenerate", "lipsync", "build", "mix"}
 
 
 def _project_dir(script: str, out: Optional[str]) -> Path:
@@ -108,6 +109,33 @@ def cmd_regenerate(args) -> int:
     return _narrate(args, only=args.ids)          # naming ids forces just those; the rest use the cache
 
 
+def cmd_lipsync(args) -> int:
+    from narration import RhubarbError, lipsync_project
+
+    cfg = load_channel_config(args.config)
+    p = Path(args.script)
+    if p.suffix.lower() == ".md":
+        project_dir = _project_dir(args.script, args.out)
+    elif p.suffix.lower() == ".json":
+        project_dir = Path(args.out) if args.out else p.parent
+    else:
+        project_dir = Path(args.out) if args.out else p
+
+    rhubarb_backend = args.rhubarb or ("fake" if args.backend == "fake" else "rhubarb")
+    try:
+        res = lipsync_project(project_dir, cfg, backend=rhubarb_backend, force=args.force)
+    except RhubarbError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    except ValueError as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 1
+    for w in res.warnings:
+        print(f"WARNING: {w}")
+    print(f"Wrote {res.out_path}")
+    return 0
+
+
 def cmd_build(args) -> int:
     code = _narrate(args)
     if code == 0:
@@ -154,18 +182,20 @@ def main(argv=None) -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     table = (("parse", cmd_parse), ("validate", cmd_validate), ("narrate", cmd_narrate),
-             ("regenerate", cmd_regenerate), ("build", cmd_build), ("mix", cmd_mix))
+             ("regenerate", cmd_regenerate), ("lipsync", cmd_lipsync),
+             ("build", cmd_build), ("mix", cmd_mix))
     for name, fn in table:
         sp = sub.add_parser(name)
-        sp.add_argument("script", help=("project folder or project.json" if name == "mix"
+        sp.add_argument("script", help=("project folder or project.json" if name in ("mix", "lipsync")
                                         else "script .md (or project.json for narrate)"))
         if name == "regenerate":
             sp.add_argument("ids", nargs="+", help="segment ids (scene03_seg04) or scene ids (scene03)")
         sp.add_argument("--config", help="channel config JSON (default: config/channel_main.json)")
         sp.add_argument("--assets", help="assets folder to check referenced files against")
         sp.add_argument("--strict", action="store_true", help="treat warnings as failures (validate)")
-        sp.add_argument("--force", action="store_true", help="parse: write despite errors; narrate: ignore caches")
+        sp.add_argument("--force", action="store_true", help="parse: write despite errors; narrate/lipsync: ignore caches")
         sp.add_argument("--backend", choices=["kokoro", "fake"], help="TTS backend (default from config)")
+        sp.add_argument("--rhubarb", choices=["rhubarb", "fake"], help="Rhubarb backend (default: rhubarb)")
         sp.add_argument("--no-polish", action="store_true", help="skip the per-segment ffmpeg chain")
         sp.add_argument("--no-export", action="store_true", help="skip the full_narration.wav export")
         sp.add_argument("-o", "--out", help="project folder (default: projects/<script name>)")

@@ -19,6 +19,7 @@ segment WAV, which is exactly what the timeline places).
 """
 from __future__ import annotations
 
+import re
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
@@ -32,6 +33,47 @@ DEFAULTS = {"rel_threshold": 0.2, "abs_threshold": 0.01,
 
 def _norm(s: str) -> str:
     return "".join(c for c in s.lower() if c.isalnum())
+
+
+def phonetic_targets(words: Sequence[str],
+                     pronunciations: Optional[Dict[str, str]] = None) -> List[str]:
+    """Map display words to their normalized phonetic character targets after
+    applying pronunciations (including hyphenated respellings, single-to-multi-word
+    expansions like 'smashburger = smash BUR-ger', and multi-word phrases like
+    'patty melt = PAT-ee melt')."""
+    if not pronunciations:
+        return [_norm(w) for w in words]
+
+    spoken = list(words)
+    ordered_keys = sorted(pronunciations, key=len, reverse=True)
+
+    # 1. Handle multi-word pronunciation keys where word counts match (e.g. "patty melt" -> "PAT-ee melt")
+    multi_keys = [k for k in ordered_keys if " " in k.strip()]
+    for k in multi_keys:
+        k_norms = [_norm(part) for part in k.split() if _norm(part)]
+        v_parts = pronunciations[k].split()
+        m = len(k_norms)
+        if m < 2 or len(v_parts) != m:
+            continue
+        i = 0
+        while i <= len(spoken) - m:
+            if [_norm(spoken[i + j]) for j in range(m)] == k_norms:
+                for j in range(m):
+                    spoken[i + j] = v_parts[j]
+                i += m
+            else:
+                i += 1
+
+    # 2. Apply single-word / regex substitutions per word (same boundary rule as parser.py)
+    out: List[str] = []
+    for w in spoken:
+        replaced = w
+        for k in ordered_keys:
+            if " " in k.strip():
+                continue
+            replaced = re.sub(r"(?<![\w])" + re.escape(k) + r"(?![\w])", pronunciations[k], replaced)
+        out.append(_norm(replaced))
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -88,16 +130,18 @@ def speech_islands(audio: np.ndarray, sr: int, wcfg: Dict[str, Any]) -> List[Spa
 # ---------------------------------------------------------------------------
 
 def spans_from_tokens(words: Sequence[str], tokens: Sequence[Token],
-                      trim_offset_s: float, duration: float) -> Optional[List[Span]]:
+                      trim_offset_s: float, duration: float,
+                      pronunciations: Optional[Dict[str, str]] = None) -> Optional[List[Span]]:
     """Group backend tokens into the segment's words by matching their
-    normalized characters. Returns None when the token stream does not line up
-    with the words (caller falls back to audio alignment)."""
+    normalized characters (accounting for pronunciation respellings). Returns
+    None when the token stream does not line up with the words (caller falls
+    back to audio alignment)."""
     if not words or not tokens:
         return None
+    targets = phonetic_targets(words, pronunciations)
     spans: List[Span] = []
     ti = 0
-    for word in words:
-        target = _norm(word)
+    for target in targets:
         if not target:
             return None
         acc = ""
@@ -128,7 +172,8 @@ def spans_from_tokens(words: Sequence[str], tokens: Sequence[Token],
 def word_spans(words: Sequence[str], audio: np.ndarray, sr: int,
                wcfg: Optional[Dict[str, Any]] = None,
                tokens: Optional[Sequence[Token]] = None,
-               trim_offset_s: float = 0.0) -> Tuple[List[Span], str]:
+               trim_offset_s: float = 0.0,
+               pronunciations: Optional[Dict[str, str]] = None) -> Tuple[List[Span], str]:
     """Returns (spans, method) with method in {"tokens", "aligned", "estimated"}.
     spans[i] is the (start, end) of words[i] in segment-local seconds."""
     words = list(words)
@@ -137,7 +182,8 @@ def word_spans(words: Sequence[str], audio: np.ndarray, sr: int,
         return [], "estimated"
 
     if tokens:
-        spans = spans_from_tokens(words, tokens, trim_offset_s, duration)
+        spans = spans_from_tokens(words, tokens, trim_offset_s, duration,
+                                  pronunciations=pronunciations)
         if spans is not None:
             return spans, "tokens"
 

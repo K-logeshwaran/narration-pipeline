@@ -35,7 +35,7 @@ import numpy as np
 from . import audio as A
 from .align import word_spans
 from .captions import write_ass
-from .emotions import UnknownEmotion, resolve_profile, segment_speed, available
+from .emotions import UnknownEmotion, available, resolve_profile, segment_speed
 from .errors import AudioToolError, NarrationError, Problem
 from .kokoro import TTSBackend
 from .sfx import resolve_sfx_events
@@ -159,15 +159,19 @@ def _write_tokens(raw_path: Path, tokens: Optional[List[Tuple[str, float, float]
 
 def _word_info(seg: Dict[str, Any], proc_path: Path, raw_path: Path, cfg: Dict[str, Any],
                tokens: Optional[List[Tuple[str, float, float]]],
-               trim_offset: Optional[float], force: bool) -> Dict[str, Any]:
+               trim_offset: Optional[float], force: bool,
+               pronunciations: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     """Word spans for one segment, cached in cache/proc/<proc key>.words.json so
     a fully cached run costs nothing. Tokens need the trim offset; when it is
     unknown (processed audio came from cache) it is recomputed from the raw WAV."""
     side = proc_path.with_suffix(".words.json")
+    words_key = _hash({"words": seg["words"], "tts_text": seg["tts_text"],
+                       "pron": pronunciations or {}})
     if not force and side.exists():
         try:
             data = json.loads(side.read_text("utf-8"))
-            return {"spans": [tuple(s) for s in data["spans"]], "method": data["method"]}
+            if data.get("words_key", words_key) == words_key:
+                return {"spans": [tuple(s) for s in data["spans"]], "method": data["method"]}
         except (ValueError, KeyError, TypeError):
             pass                                        # corrupt sidecar: recompute
 
@@ -182,8 +186,10 @@ def _word_info(seg: Dict[str, Any], proc_path: Path, raw_path: Path, cfg: Dict[s
             tokens = None                               # cannot place tokens without the offset
     audio, sr = read_wav(proc_path)
     spans, method = word_spans(seg["words"], audio, sr, cfg.get("word_timing"),
-                               tokens=tokens, trim_offset_s=trim_offset or 0.0)
-    info = {"spans": [[round(s, 4), round(e, 4)] for s, e in spans], "method": method}
+                               tokens=tokens, trim_offset_s=trim_offset or 0.0,
+                               pronunciations=pronunciations)
+    info = {"words_key": words_key, "spans": [[round(s, 4), round(e, 4)] for s, e in spans],
+            "method": method}
     tmp = side.with_name(side.name + ".tmp")
     tmp.write_text(json.dumps(info, ensure_ascii=False), encoding="utf-8")
     os.replace(tmp, side)
@@ -191,7 +197,8 @@ def _word_info(seg: Dict[str, Any], proc_path: Path, raw_path: Path, cfg: Dict[s
 
 
 def _segment(sc: Dict[str, Any], seg: Dict[str, Any], cfg: Dict[str, Any], backend: TTSBackend,
-             dirs: Dict[str, Path], polish_on: bool, force: bool) -> Dict[str, Any]:
+             dirs: Dict[str, Path], polish_on: bool, force: bool,
+             pronunciations: Optional[Dict[str, str]] = None) -> Dict[str, Any]:
     tts, acfg = cfg["tts"], cfg["audio"]
     sr = int(tts["sample_rate"])
     profile = resolve_profile(seg["emotion"], seg["modifier"], cfg)
@@ -242,7 +249,8 @@ def _segment(sc: Dict[str, Any], seg: Dict[str, Any], cfg: Dict[str, Any], backe
                                           detail="Check trim_threshold in the channel config.")])
         write_wav(proc_path, out, sr)
 
-    winfo = _word_info(seg, proc_path, raw_path, cfg, tokens, trim_offset, force)
+    winfo = _word_info(seg, proc_path, raw_path, cfg, tokens, trim_offset, force,
+                       pronunciations=pronunciations)
     return {"status": status, "speed": speed, "volume": volume, "pitch": pitch,
             "raw_key": raw_key, "proc_key": proc_key, "proc_path": proc_path,
             "duration": wav_duration(proc_path),
@@ -315,6 +323,7 @@ def narrate_project(project: Dict[str, Any], project_dir: Path, cfg: Dict[str, A
         except (ValueError, KeyError):
             prev_keys = {}
 
+    pronunciations = project.get("meta", {}).get("pronunciations") or {}
     flat = [(sc, seg) for sc in project["scenes"] for seg in sc["segments"]]
     stats: Counter = Counter()
     durations: Dict[str, float] = {}
@@ -325,7 +334,8 @@ def narrate_project(project: Dict[str, Any], project_dir: Path, cfg: Dict[str, A
         f"(polish {'on' if polish_on else 'off'}) ...")
     for i, (sc, seg) in enumerate(flat, 1):
         forced = force or bool(only_set and (seg["id"] in only_set or sc["id"] in only_set))
-        info = _segment(sc, seg, cfg, backend, dirs, polish_on, forced)
+        info = _segment(sc, seg, cfg, backend, dirs, polish_on, forced,
+                        pronunciations=pronunciations)
         stats[info["status"]] += 1
         durations[seg["id"]] = info["duration"]
         infos[seg["id"]] = info

@@ -96,6 +96,22 @@
     "split_pattern": "\\n+"
   },
 
+  "rhubarb": {
+    "_note": "Lip-sync stage (main.py lipsync). Uses known segment text (-d) with pocketSphinx for English and falls back to phonetic if pocketSphinx fails.",
+    "bin": "~/.local/opt/rhubarb/rhubarb",
+    "recognizer": "pocketSphinx",
+    "fallback_recognizer": "phonetic",
+    "max_workers": 3,
+    "timeout_s": 60,
+    "blink": {
+      "enabled": true,
+      "min_gap_s": 2.5,
+      "max_gap_s": 5.0,
+      "duration_s": 0.14,
+      "seed": 7
+    }
+  },
+
   "audio": {
     "_note": "Values from the tested narrate.py. noise_floor_amp stays 0 (room tone made the polished output hiss). loudnorm is NOT run per segment; it runs once on the full narration export.",
     "trim_threshold": 0.003,
