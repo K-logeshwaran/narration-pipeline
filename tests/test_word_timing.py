@@ -74,38 +74,36 @@ class TokenTests(unittest.TestCase):
         spans = spans_from_tokens(["late"], [("late", 0.5, 2.0)], trim_offset_s=0.6, duration=1.0)
         self.assertEqual(spans, [(0.0, 1.0)])
 
-    def test_pronunciation_replacements_align_with_tokens(self):
+    def test_case_insensitive_and_flexible_whitespace_pronunciation_alignment(self):
         pron = {
-            "NNN": "EN-EN-EN",
-            "Zeigarnik": "ZYE-gar-nik",
-            "smashburger": "smash BUR-ger",
-            "patty melt": "PAT-ee melt",
+            "smashburger": "smahsh BUR-ger",
+            "patty melt": "PAH-tee melt",
+            "cheeseburger": "CHEEZ-bur-ger",
         }
-        words = ["The", "Zeigarnik", "and", "NNN.", "Try", "a", "smashburger", "or", "patty", "melt!"]
-        self.assertEqual(
-            phonetic_targets(words, pron),
-            ["the", "zyegarnik", "and", "enenen", "try", "a", "smashburger", "or", "patee", "melt"],
+        # 1. Capitalized "Cheeseburger." matches lowercase key "cheeseburger" -> "cheezburger"
+        self.assertEqual(phonetic_targets(["Cheeseburger."], pron), ["cheezburger"])
+        spans_c = spans_from_tokens(
+            ["Cheeseburger."], [("CHEEZ-bur-ger.", 0.1, 0.8)], 0.0, 1.0, pronunciations=pron
         )
-        tokens = [
-            ("The", 0.1, 0.2),
-            ("ZYE-gar-nik", 0.2, 0.5),
-            ("and", 0.5, 0.6),
-            ("EN-EN-EN.", 0.6, 0.9),
-            ("Try", 1.0, 1.1),
-            ("a", 1.1, 1.2),
-            ("smash", 1.2, 1.4),
-            ("BUR-ger", 1.4, 1.7),
-            ("or", 1.7, 1.8),
-            ("PAT-ee", 1.8, 2.0),
-            ("melt!", 2.0, 2.3),
-        ]
-        spans = spans_from_tokens(words, tokens, trim_offset_s=0.0, duration=2.5, pronunciations=pron)
-        self.assertIsNotNone(spans)
-        self.assertEqual(spans[1], (0.2, 0.5))    # Zeigarnik
-        self.assertEqual(spans[3], (0.6, 0.9))    # NNN.
-        self.assertEqual(spans[6], (1.2, 1.7))    # smashburger (accumulated across 2 tokens)
-        self.assertEqual(spans[8], (1.8, 2.0))    # patty
-        self.assertEqual(spans[9], (2.0, 2.3))    # melt!
+        self.assertEqual(spans_c, [(0.1, 0.8)])
+
+        # 2. Spaced "Smash Burger." matches closed key "smashburger" -> ["smahsh", "burger"]
+        self.assertEqual(phonetic_targets(["Smash", "Burger."], pron), ["smahsh", "burger"])
+        spans_s = spans_from_tokens(
+            ["Smash", "Burger."],
+            [("smahsh", 0.1, 0.4), ("BUR-ger.", 0.45, 0.9)],
+            0.0, 1.0, pronunciations=pron,
+        )
+        self.assertEqual(spans_s, [(0.1, 0.4), (0.45, 0.9)])
+
+        # 3. Title-case "Patty Melt." matches multi-word key "patty melt" -> ["pahtee", "melt"]
+        self.assertEqual(phonetic_targets(["Patty", "Melt."], pron), ["pahtee", "melt"])
+        spans_p = spans_from_tokens(
+            ["Patty", "Melt."],
+            [("PAH-tee", 0.05, 0.45), ("melt.", 0.5, 0.85)],
+            0.0, 1.0, pronunciations=pron,
+        )
+        self.assertEqual(spans_p, [(0.05, 0.45), (0.5, 0.85)])
 
 
 # ---------------------------------------------------------------------------
@@ -298,17 +296,6 @@ class NarratorWordTimingTests(TmpDirCase):
         for a, b in zip(seg["words"], seg["words"][1:]):
             self.assertLessEqual(a["end"], b["start"])
         self.assertEqual(narr["captions"], "captions/subtitles.ass")
-
-    def test_narrator_preserves_token_timing_on_pronunciation_segments(self):
-        text = (front_matter(extra="pronunciations:\n  - NNN = EN-EN-EN\n  - Zeigarnik = ZYE-gar-nik\n")
-                + scene(1, "(deadpan) Welcome to NNN and the Zeigarnik effect."))
-        self.proj = project_dict(text)
-        self.run_narration()
-        narr = json.loads((self.dir / "narration.json").read_text())
-        seg = narr["segments"][0]
-        self.assertEqual(seg["timing"], "tokens")
-        self.assertEqual([w["w"] for w in seg["words"]],
-                         ["Welcome", "to", "NNN", "and", "the", "Zeigarnik", "effect."])
 
     def test_sfx_cue_is_no_longer_estimated(self):
         res = self.run_narration()

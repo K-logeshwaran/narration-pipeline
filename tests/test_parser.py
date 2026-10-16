@@ -1,8 +1,12 @@
 import json
+import os
 import unittest
 
-from tests.helpers import (codes, front_matter, parse, parse_text, read_fixture, scene, script,
-                           segs)
+from parser import parse_file
+from tests.helpers import (ROOT, codes, front_matter, parse, parse_text, read_fixture, scene,
+                           script, segs)
+
+BURGER_SCRIPT = os.path.join(ROOT, "script", "burger.md")
 
 
 class FrontMatterTests(unittest.TestCase):
@@ -207,6 +211,46 @@ class TextTests(unittest.TestCase):
         (seg,) = segs(res)
         self.assertEqual(seg.text, "NNN's rules are simple. Read the NNNN notes.")
         self.assertEqual(seg.tts_text, "EN-EN-EN's rules are simple. Read the NNNN notes.")
+
+    def test_pronunciation_is_case_insensitive_whole_word_and_flexible_whitespace(self):
+        fm = (
+            "pronunciations:\n"
+            "  - smashburger = smash BUR-ger\n"
+            "  - patty melt = PAT-ee melt\n"
+            "  - cheeseburger = CHEEZ-bur-ger\n"
+        )
+        res = parse(
+            "(flat) Cheeseburger. A cheeseburger and a Smash Burger, plus a smash-burger and a Patty Melt.",
+            extra_fm=fm,
+        )
+        (seg,) = segs(res)
+        self.assertEqual(
+            seg.text,
+            "Cheeseburger. A cheeseburger and a Smash Burger, plus a smash-burger and a Patty Melt.",
+        )
+        self.assertEqual(
+            seg.tts_text,
+            "CHEEZ-bur-ger. A CHEEZ-bur-ger and a smash BUR-ger, plus a smash BUR-ger and a PAT-ee melt.",
+        )
+
+    @unittest.skipUnless(os.path.exists(BURGER_SCRIPT), "script/burger.md not found")
+    def test_burger_script_pronunciations_match_capitalized_and_spaced_forms(self):
+        res = parse_file(BURGER_SCRIPT)
+        sc_cheese = res.project.scenes[1]       # SCENE 02: Cheeseburger
+        sc_smash = res.project.scenes[2]        # SCENE 03: Smash Burger
+        sc_patty = res.project.scenes[11]       # SCENE 12: Patty Melt
+
+        self.assertEqual(sc_cheese.segments[0].text, "Cheeseburger.")
+        self.assertEqual(sc_cheese.segments[0].tts_text, "CHEEZ-bur-ger.")
+        self.assertIn("A CHEEZ-bur-ger takes", sc_cheese.segments[1].tts_text)
+
+        self.assertEqual(sc_smash.segments[0].text, "Smash Burger.")
+        self.assertEqual(sc_smash.segments[0].tts_text, "smash BUR-ger.")
+        self.assertIn("A smash BUR-ger starts", sc_smash.segments[1].tts_text)
+
+        self.assertEqual(sc_patty.segments[0].text, "Patty Melt.")
+        self.assertEqual(sc_patty.segments[0].tts_text, "PAT-ee melt.")
+        self.assertIn("A PAT-ee melt combines", sc_patty.segments[1].tts_text)
 
     def test_unusual_symbols_warn(self):
         res = parse("(flat) Fifty % of people *agree*.")

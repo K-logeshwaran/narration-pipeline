@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from .config import camera_classes, emotion_names, layout_names, sfx_bed, sfx_point
+from .parser import _apply_pronunciations
 from .schema import (CODES_ASSETS, CODES_EMOTION, CODES_FRONT, CODES_LINES, CODES_NAMES,
                      CODES_SCENES, Diagnostic, ParseResult, Project, Scene, Segment)
 
@@ -305,6 +306,15 @@ def _lint(project: Project, cfg: Dict[str, Any]) -> List[Diagnostic]:
                                               f"(reaction image={sig[0]}, lead pause={sig[1]}, tail pause={sig[2]}).")
 
     # front-matter notes
+    if project.pronunciations:
+        used_pron: Dict[str, int] = {}
+        for sc in project.scenes:
+            for seg in sc.segments:
+                _apply_pronunciations(seg.text, project.pronunciations, used_pron)
+        for word, respell in project.pronunciations.items():
+            if used_pron.get(word, 0) == 0:
+                _warn(out, "W_PRONUNCIATION_UNUSED",
+                      f'Pronunciation "{word} = {respell}" never matched any spoken text.')
     if project.sfx_requests:
         names = ", ".join(r["name"] for r in project.sfx_requests)
         _warn(out, "W_SFX_REQUESTS", f"{len(project.sfx_requests)} new sounds to source before rendering: {names}")

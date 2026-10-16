@@ -2,8 +2,10 @@ import os
 import tempfile
 import unittest
 
-from parser import render_report, validate
-from tests.helpers import CFG, check, codes, front_matter, parse_text, scene, script
+from parser import parse_file, render_report, validate
+from tests.helpers import CFG, ROOT, check, codes, front_matter, parse_text, scene, script
+
+BURGER_SCRIPT = os.path.join(ROOT, "script", "burger.md")
 
 
 def errors_for(narration, extra_fm=""):
@@ -126,6 +128,25 @@ class LintTests(unittest.TestCase):
     def test_sensitivity_none_is_quiet(self):
         c = self.lint_codes(script("(flat) Hello there.", "sensitivity:\n  - none\n"))
         self.assertNotIn("W_SENSITIVITY", c)
+
+    def test_unused_pronunciation_emits_warning_and_used_does_not(self):
+        fm = (
+            "pronunciations:\n"
+            "  - smashburger = smash BUR-ger\n"
+            "  - Worcestershire = WUSS-ter-sher\n"
+        )
+        warns = warnings_for(script("(flat) A Smash Burger is great.", fm))
+        unused = [d for d in warns if d.code == "W_PRONUNCIATION_UNUSED"]
+        self.assertEqual(len(unused), 1)
+        self.assertIn("Worcestershire", unused[0].message)
+        self.assertNotIn("smashburger", unused[0].message)
+
+    @unittest.skipUnless(os.path.exists(BURGER_SCRIPT), "script/burger.md not found")
+    def test_burger_script_has_no_unused_pronunciations(self):
+        res = parse_file(BURGER_SCRIPT)
+        diags = validate(res.project, CFG)
+        unused = [d for d in diags if d.code == "W_PRONUNCIATION_UNUSED"]
+        self.assertEqual(unused, [])
 
 
 class AssetTests(unittest.TestCase):

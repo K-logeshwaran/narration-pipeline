@@ -552,10 +552,46 @@ def _process_run(run: str, ctx: _Ctx, line: int) -> Tuple[str, List[Cue], List[T
     return text, cues, words
 
 
-def _apply_pronunciations(text: str, pron: Dict[str, str]) -> str:
+def _pronunciation_regex(word: str) -> Optional[re.Pattern[str]]:
+    """Build a case-insensitive, whole-word regex for a pronunciation key,
+    allowing flexible whitespace/hyphens between words or compound parts
+    (e.g. 'smashburger' matches 'Smash Burger', 'patty melt' matches 'Patty Melt')."""
+    clean = word.strip()
+    if not clean:
+        return None
+    parts = [p for p in re.split(r"[\s\-]+", clean) if p]
+    if not parts:
+        return None
+    if len(parts) > 1:
+        body = r"[\s\-]*".join(re.escape(p) for p in parts)
+    else:
+        tok = parts[0]
+        alts = [re.escape(tok)]
+        if len(tok) >= 6 and tok.isalpha():
+            for i in range(3, len(tok) - 2):
+                alts.append(re.escape(tok[:i]) + r"[\s\-]+" + re.escape(tok[i:]))
+        body = "|".join(alts)
+    return re.compile(r"(?<![\w])(?:" + body + r")(?![\w])", re.IGNORECASE)
+
+
+def _apply_pronunciations(text: str, pron: Dict[str, str],
+                          used_counts: Optional[Dict[str, int]] = None) -> str:
+    if not pron:
+        return text
     out = text
-    for word in sorted(pron, key=len, reverse=True):
-        out = re.sub(r"(?<![\w])" + re.escape(word) + r"(?![\w])", pron[word], out)
+    placeholders: List[Tuple[str, str]] = []
+    for idx, word in enumerate(sorted(pron, key=lambda k: len(k.strip()), reverse=True)):
+        pat = _pronunciation_regex(word)
+        if pat is None:
+            continue
+        token = f"\x00PRON{idx}\x00"
+        out, n = pat.subn(token, out)
+        if n > 0:
+            placeholders.append((token, pron[word]))
+            if used_counts is not None:
+                used_counts[word] = used_counts.get(word, 0) + n
+    for token, repl in placeholders:
+        out = out.replace(token, repl)
     return out
 
 
