@@ -1,4 +1,4 @@
-"""Markdown script parser (script spec v1.1, PART G).
+"""Markdown script parser (script spec v1.1 + layered v3).
 
 Turns a script file into a Project (see schema.py) plus a list of diagnostics.
 This module handles STRUCTURE and SYNTAX only. Vocabulary checks (is this an
@@ -16,7 +16,14 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from .config import canonical_character, load_channel_config, pause_tags
+from .config import (
+    canonical_channel,
+    canonical_character,
+    load_channel_config,
+    peek_script_front_matter,
+    pause_tags,
+    resolve_layered_config,
+)
 from .schema import Cue, Diagnostic, ParseResult, Project, Scene, Segment
 
 # ---------------------------------------------------------------------------
@@ -27,7 +34,7 @@ SCENE_RE = re.compile(r"^##\s+SCENE\s+(\d+)\s*:\s*(\S.*)$")
 HEADING2_RE = re.compile(r"^##\s")
 HEADING_ANY_RE = re.compile(r"^#{1,6}\s")
 NARRATION_RE = re.compile(r"^###\s+narration\s*$", re.I)
-FIELD_RE = re.compile(r"^(image|prompt|music|layout)\s*:\s*(.*)$")
+FIELD_RE = re.compile(r"^(image|prompt|music|layout|search)\s*:\s*(.*)$")
 EMOTION_RE = re.compile(r"^\(([^()]*)\)\s*(.*)$")
 PAUSE_RE = re.compile(r"\[\s*pause\s*(?::\s*([^\]]*?)\s*)?\]", re.I)
 CUE_RE = re.compile(r"\{([^{}]*)\}")
@@ -39,8 +46,9 @@ IMAGE_STEM_RE = re.compile(r"^s(\d{2})_[a-z0-9_]+$")
 
 CUE_TYPES = ("sfx", "bed", "text", "img", "cam")
 LIST_KEYS = ("titles_alt", "sensitivity", "pronunciations", "sfx_requests", "claims")
-REQUIRED_KEYS = ("title", "channel", "character", "target_minutes")
+BASE_REQUIRED_KEYS = ("title", "channel", "target_minutes")
 ALLOWED_PUNCT = set(".,!?;:'\"-\u2014\u2013\u2026\u2018\u2019\u201c\u201d")
+_PLURAL_SKIP_SUFFIXES = ("s", "x", "z", "ch", "sh")
 
 
 # ---------------------------------------------------------------------------
@@ -77,9 +85,18 @@ def parse_file(path: str, cfg: Optional[Dict[str, Any]] = None) -> ParseResult:
     return parse_text(text, source_name=p.name, cfg=cfg)
 
 
+def _auto_cfg_for_text(text: str) -> Dict[str, Any]:
+    raw_ch, raw_pl = peek_script_front_matter(text)
+    if raw_ch and canonical_channel(raw_ch) == "explainer":
+        return resolve_layered_config(channel="explainer", playlist=raw_pl)
+    if raw_pl:
+        return resolve_layered_config(channel=raw_ch, playlist=raw_pl)
+    return load_channel_config()
+
+
 def parse_text(text: str, source_name: str = "<string>",
                cfg: Optional[Dict[str, Any]] = None) -> ParseResult:
-    cfg = cfg or load_channel_config()
+    cfg = cfg or _auto_cfg_for_text(text)
     diags: List[Diagnostic] = []
     ctx = _Ctx(diags)
 
@@ -88,6 +105,9 @@ def parse_text(text: str, source_name: str = "<string>",
     meta, scene_start = _parse_front_matter(lines, ctx, cfg)
     raw_scenes = _collect_scenes(lines, scene_start, ctx)
     scenes = _build_scenes(raw_scenes, meta["pronunciations"], cfg, ctx)
+
+    if cfg.get("_playlist_voice_override") and "_playlist_voice_override" not in meta["extra"]:
+        meta["extra"]["_playlist_voice_override"] = cfg["_playlist_voice_override"]
 
     project = Project(
         title=meta["title"], channel=meta["channel"], character=meta["character"],
@@ -99,11 +119,13 @@ def parse_text(text: str, source_name: str = "<string>",
             "resolution": cfg["render"]["resolution"],
             "pauses": cfg["pauses"],
             "line_gap_s": cfg["line_gap_s"],
+            "title_gap_s": cfg.get("title_gap_s"),
             "words_per_minute": cfg["words_per_minute"],
         },
         source={"name": source_name,
                 "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest()},
         scenes=scenes,
+        playlist=meta["playlist"],
     )
     return ParseResult(project, diags)
 
@@ -168,9 +190,9 @@ def _parse_front_matter(lines: List[str], ctx: _Ctx,
 
 
 def _empty_meta() -> Dict[str, Any]:
-    return {"title": "", "channel": "", "character": "", "target_minutes": 0,
-            "titles_alt": [], "sensitivity": [], "pronunciations": {},
-            "sfx_requests": [], "claims": [], "extra": {}}
+    return {"title": "", "channel": "", "character": "", "playlist": "",
+            "target_minutes": 0, "titles_alt": [], "sensitivity": [],
+            "pronunciations": {}, "sfx_requests": [], "claims": [], "extra": {}}
 
 
 def _read_kv_block(block: List[str], first_line: int, ctx: _Ctx) -> Dict[str, Dict[str, Any]]:
@@ -211,8 +233,11 @@ def _read_kv_block(block: List[str], first_line: int, ctx: _Ctx) -> Dict[str, Di
 def _normalize_meta(raw: Dict[str, Dict[str, Any]], ctx: _Ctx, fm_line: int,
                     cfg: Dict[str, Any]) -> Dict[str, Any]:
     meta = _empty_meta()
+    req_keys = list(BASE_REQUIRED_KEYS)
+    if cfg.get("require_character", False):
+        req_keys.append("character")
 
-    for key in REQUIRED_KEYS:
+    for key in req_keys:
         entry = raw.get(key)
         if entry is None or entry["value"] in ("", []):
             ctx.error("E_FRONT_KEY", f'Front matter is missing required key "{key}"', line=fm_line)
@@ -229,7 +254,13 @@ def _normalize_meta(raw: Dict[str, Dict[str, Any]], ctx: _Ctx, fm_line: int,
 
     meta["title"] = scalar("title")
     meta["channel"] = scalar("channel")
-    meta["character"] = canonical_character(scalar("character"), cfg)
+    meta["playlist"] = scalar("playlist")
+    raw_char = scalar("character")
+    if raw_char:
+        meta["character"] = canonical_character(raw_char, cfg)
+    else:
+        default_char = str(cfg.get("default_character", cfg.get("character", "")))
+        meta["character"] = canonical_character(default_char, cfg) if default_char else ""
 
     tm = scalar("target_minutes")
     if tm != "":
@@ -272,7 +303,7 @@ def _normalize_meta(raw: Dict[str, Dict[str, Any]], ctx: _Ctx, fm_line: int,
         hedge = parts[2].strip() if len(parts) > 2 else ""
         meta["claims"].append({"claim": claim, "source": source, "hedge": hedge})
 
-    known = set(REQUIRED_KEYS) | set(LIST_KEYS)
+    known = set(BASE_REQUIRED_KEYS) | {"character", "playlist"} | set(LIST_KEYS)
     for k, e in raw.items():
         if k not in known:
             v = e["value"]
@@ -362,6 +393,9 @@ def _build_scenes(raw_scenes: List[Dict[str, Any]], pron: Dict[str, str],
     scenes: List[Scene] = []
     prev_music = "none"
     default_layout = str(cfg.get("default_layout", "bob_pip"))
+    require_image = bool(cfg.get("require_image", True))
+    require_prompt = bool(cfg.get("require_prompt", True))
+    require_search = bool(cfg.get("require_search", False))
     expected = 1
 
     if not raw_scenes:
@@ -384,8 +418,11 @@ def _build_scenes(raw_scenes: List[Dict[str, Any]], pron: Dict[str, str],
         fields = raw["fields"]
         image = fields.get("image", ("", raw["line"]))[0]
         prompt = fields.get("prompt", ("", raw["line"]))[0]
+        search = fields.get("search", ("", raw["line"]))[0]
+
         if not image:
-            ctx.error("E_SCENE_FIELD", 'Scene is missing the required "image:" field', line=raw["line"])
+            if require_image:
+                ctx.error("E_SCENE_FIELD", 'Scene is missing the required "image:" field', line=raw["line"])
         else:
             m = IMAGE_STEM_RE.match(image)
             if not m:
@@ -394,8 +431,12 @@ def _build_scenes(raw_scenes: List[Dict[str, Any]], pron: Dict[str, str],
             elif int(m.group(1)) != num:
                 ctx.warn("W_IMAGE_FORMAT", f'image "{image}" does not match scene number {num:02d}',
                          line=fields["image"][1])
-        if not prompt:
+
+        if not prompt and require_prompt:
             ctx.error("E_SCENE_FIELD", 'Scene is missing the required "prompt:" field', line=raw["line"])
+
+        if not search and require_search:
+            ctx.error("E_SCENE_FIELD", 'Scene is missing the required "search:" field', line=raw["line"])
 
         if "music" in fields and fields["music"][0]:
             music, music_explicit = fields["music"][0], True
@@ -422,7 +463,7 @@ def _build_scenes(raw_scenes: List[Dict[str, Any]], pron: Dict[str, str],
             id=scene_id, number=num, title=raw["title"], line=raw["line"], image=image, prompt=prompt,
             music=music, music_explicit=music_explicit,
             word_count=sum(s.word_count for s in segments), segments=segments,
-            layout=layout, layout_explicit=layout_explicit,
+            layout=layout, layout_explicit=layout_explicit, search=search,
         ))
     ctx.scene = None
     return scenes
@@ -552,10 +593,17 @@ def _process_run(run: str, ctx: _Ctx, line: int) -> Tuple[str, List[Cue], List[T
     return text, cues, words
 
 
+def _allows_plural_s(parts: List[str]) -> bool:
+    joined = "".join(parts).lower()
+    if len(joined) < 4 or not joined.isalpha():
+        return False
+    return not joined.endswith(_PLURAL_SKIP_SUFFIXES)
+
+
 def _pronunciation_regex(word: str) -> Optional[re.Pattern[str]]:
     """Build a case-insensitive, whole-word regex for a pronunciation key,
     allowing flexible whitespace/hyphens between words or compound parts
-    (e.g. 'smashburger' matches 'Smash Burger', 'patty melt' matches 'Patty Melt')."""
+    and an optional plural 's' on eligible stems."""
     clean = word.strip()
     if not clean:
         return None
@@ -571,7 +619,8 @@ def _pronunciation_regex(word: str) -> Optional[re.Pattern[str]]:
             for i in range(3, len(tok) - 2):
                 alts.append(re.escape(tok[:i]) + r"[\s\-]+" + re.escape(tok[i:]))
         body = "|".join(alts)
-    return re.compile(r"(?<![\w])(?:" + body + r")(?![\w])", re.IGNORECASE)
+    plural_pat = r"(?P<plural>s)?" if _allows_plural_s(parts) else ""
+    return re.compile(r"(?<![\w])(?:" + body + r")" + plural_pat + r"(?![\w])", re.IGNORECASE)
 
 
 def _apply_pronunciations(text: str, pron: Dict[str, str],
@@ -584,10 +633,18 @@ def _apply_pronunciations(text: str, pron: Dict[str, str],
         pat = _pronunciation_regex(word)
         if pat is None:
             continue
-        token = f"\x00PRON{idx}\x00"
-        out, n = pat.subn(token, out)
+        base_token = f"\x00PRON{idx}_B\x00"
+        plural_token = f"\x00PRON{idx}_S\x00"
+
+        def _repl(m: re.Match[str]) -> str:
+            if m.groupdict().get("plural"):
+                return plural_token
+            return base_token
+
+        out, n = pat.subn(_repl, out)
         if n > 0:
-            placeholders.append((token, pron[word]))
+            placeholders.append((plural_token, pron[word] + "s"))
+            placeholders.append((base_token, pron[word]))
             if used_counts is not None:
                 used_counts[word] = used_counts.get(word, 0) + n
     for token, repl in placeholders:
@@ -599,6 +656,9 @@ def _parse_narration(scene_id: str, narr_lines: List[Tuple[int, str]], pron: Dic
                      cfg: Dict[str, Any], ctx: _Ctx) -> List[Segment]:
     pauses = cfg["pauses"]
     valid_tags = pause_tags(cfg)
+    default_emotion = cfg.get("default_emotion")
+    require_explicit_first = bool(cfg.get("require_explicit_first_emotion", default_emotion is None))
+
     segments: List[Segment] = []
     carried: List[Cue] = []
     last_kind: Optional[str] = None            # "text" | "pause" | None
@@ -623,10 +683,14 @@ def _parse_narration(scene_id: str, narr_lines: List[Tuple[int, str]], pron: Dic
             cur_modifier = names[1] if len(names) == 2 else None
             explicit = True
             body = m.group(2)
-        elif cur_emotion is None and not emotion_missing_reported:
-            ctx.error("E_EMOTION_MISSING",
-                      "The first narration line of a scene needs an explicit (emotion) tag", line=line_no)
-            emotion_missing_reported = True
+        elif cur_emotion is None:
+            if not require_explicit_first and default_emotion:
+                cur_emotion = _norm_emotion(str(default_emotion))
+                cur_modifier = None
+            elif not emotion_missing_reported:
+                ctx.error("E_EMOTION_MISSING",
+                          "The first narration line of a scene needs an explicit (emotion) tag", line=line_no)
+                emotion_missing_reported = True
 
         # ---- tokenize the line body into text runs and pause tags
         tokens: List[Tuple[str, Any]] = []
@@ -720,12 +784,18 @@ def _parse_narration(scene_id: str, narr_lines: List[Tuple[int, str]], pron: Dic
             ctx.warn("W_CUES_ORPHAN", "Cues found but the scene has no spoken words")
 
     # ---- resolve the silence between consecutive segments (no pause stacking)
-    line_gap = cfg["line_gap_s"]
+    line_gap = float(cfg["line_gap_s"])
+    title_gap = cfg.get("title_gap_s")
     for i, seg in enumerate(segments):
         if seg.pause_after is not None:
             seg.gap_after_s = seg.pause_after
         elif i + 1 < len(segments):
-            seg.gap_after_s = 0.0 if segments[i + 1].pause_before is not None else line_gap
+            if segments[i + 1].pause_before is not None:
+                seg.gap_after_s = 0.0
+            elif i == 0 and title_gap is not None:
+                seg.gap_after_s = float(title_gap)
+            else:
+                seg.gap_after_s = line_gap
         else:
             seg.gap_after_s = 0.0
     return segments

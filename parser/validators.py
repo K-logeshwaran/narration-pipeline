@@ -160,11 +160,12 @@ def _check_assets(project: Project, cfg: Dict[str, Any], assets_dir: str) -> Lis
     react_dir = root / cfg["assets"]["reaction_images"]
     scene_dir = root / cfg["assets"]["scene_images"]
     kits_sub = cfg["assets"].get("character_kits", "characters")
-    kit_manifest = root / kits_sub / project.character / "character.json"
-    if kit_manifest.exists():
-        from render.kit import validate_kit
-        _, kit_diags = validate_kit(kit_manifest, allowed_emotions=emotion_names(cfg))
-        out.extend(kit_diags)
+    if project.character:
+        kit_manifest = root / kits_sub / project.character / "character.json"
+        if kit_manifest.exists():
+            from render.kit import validate_kit
+            _, kit_diags = validate_kit(kit_manifest, allowed_emotions=emotion_names(cfg))
+            out.extend(kit_diags)
 
     seen = set()
     for scene in project.scenes:
@@ -196,15 +197,35 @@ def _lint(project: Project, cfg: Dict[str, Any]) -> List[Diagnostic]:
     lint = cfg["lint"]
     wpm = cfg["words_per_minute"]
     cams = camera_classes(cfg)
-    generic = set(cfg["sfx"]["generic"])
+    generic = set((cfg.get("sfx") or {}).get("generic") or ())
     total_words = sum(s.word_count for s in project.scenes)
+
+    # playlist voice override check
+    voice_override = cfg.get("_playlist_voice_override") or project.extra.get("_playlist_voice_override")
+    if isinstance(voice_override, dict):
+        _warn(
+            out,
+            "W_PLAYLIST_VOICE_OVERRIDE",
+            f'Playlist "{voice_override.get("playlist")}" overrides channel voice '
+            f'"{voice_override.get("from_voice")}" with "{voice_override.get("to_voice")}".',
+        )
+
+    # expected scene count check (warning only, never blocks the build)
+    expected_scenes = lint.get("expected_scenes")
+    if expected_scenes is not None and project.scenes and len(project.scenes) != int(expected_scenes):
+        _warn(
+            out,
+            "W_SCENE_COUNT",
+            f'Script has {len(project.scenes)} scenes (expected {int(expected_scenes)} '
+            f'for channel "{project.channel}").',
+        )
 
     # word count vs target
     try:
         target = float(project.target_minutes) * wpm
     except (TypeError, ValueError):
         target = 0
-    if target and total_words:
+    if target and total_words and lint.get("target_tolerance") is not None:
         diff = (total_words - target) / target
         if abs(diff) > lint["target_tolerance"]:
             _warn(out, "W_WORDCOUNT", f"{total_words} spoken words vs target ~{int(target)} "
@@ -213,7 +234,7 @@ def _lint(project: Project, cfg: Dict[str, Any]) -> List[Diagnostic]:
     # pause budget
     tags = [t for sc in project.scenes for sg in sc.segments
             for t in (sg.pause_before_tag, sg.pause_after_tag) if t]
-    if total_words:
+    if total_words and lint.get("words_per_pause"):
         if not tags:
             _warn(out, "W_PAUSE_DENSITY", "No pauses at all. Deadpan comedy needs timing.")
         else:
@@ -222,39 +243,58 @@ def _lint(project: Project, cfg: Dict[str, Any]) -> List[Diagnostic]:
             if not lo <= wpp <= hi:
                 _warn(out, "W_PAUSE_DENSITY",
                       f"One pause per {wpp:.0f} words (target roughly {lo}-{hi}; {len(tags)} pauses total).")
+    if total_words and lint.get("require_all_pause_names", True):
         missing = [n for n in PAUSE_NAMES if n not in set(tags)]
         if missing and tags:
             _warn(out, "W_PAUSE_NAMES", f"Pause names never used: {', '.join(missing)}.")
 
     # sfx budget
     all_sfx = [(sc, sg, c) for sc in project.scenes for sg in sc.segments for c in sg.cues if c.type == "sfx"]
-    if all_sfx and total_words:
+    if all_sfx and total_words and lint.get("words_per_sfx_min"):
         wps = total_words / len(all_sfx)
         if wps < lint["words_per_sfx_min"]:
             _warn(out, "W_SFX_DENSITY",
                   f"{len(all_sfx)} SFX in {total_words} words (one per {wps:.0f}; limit one per "
                   f"{lint['words_per_sfx_min']}).")
     video_counts: Counter = Counter(c.name for _, _, c in all_sfx)
-    for name, n in sorted(video_counts.items()):
-        if n > lint["same_sfx_per_video_max"]:
-            _warn(out, "W_SFX_REPEAT", f'"{name}" is used {n} times in the video '
-                                       f'(max {lint["same_sfx_per_video_max"]}).')
+    if lint.get("same_sfx_per_video_max") is not None:
+        for name, n in sorted(video_counts.items()):
+            if n > lint["same_sfx_per_video_max"]:
+                _warn(out, "W_SFX_REPEAT", f'"{name}" is used {n} times in the video '
+                                           f'(max {lint["same_sfx_per_video_max"]}).')
     for sc in project.scenes:
         counts = Counter(c.name for s in sc.segments for c in s.cues if c.type == "sfx")
         g = sum(n for name, n in counts.items() if name in generic)
-        if g > lint["generic_per_scene_max"]:
+        if lint.get("generic_per_scene_max") is not None and g > lint["generic_per_scene_max"]:
             _warn(out, "W_SFX_GENERIC", f"{g} generic sounds (ding/whoosh/pop) in one scene "
                                         f"(max {lint['generic_per_scene_max']}).", scene=sc)
-        for name, n in sorted(counts.items()):
-            if n > lint["same_sfx_per_scene_max"]:
-                _warn(out, "W_SFX_REPEAT", f'"{name}" used {n} times in one scene '
-                                           f'(max {lint["same_sfx_per_scene_max"]}).', scene=sc)
+        if lint.get("same_sfx_per_scene_max") is not None:
+            for name, n in sorted(counts.items()):
+                if n > lint["same_sfx_per_scene_max"]:
+                    _warn(out, "W_SFX_REPEAT", f'"{name}" used {n} times in one scene '
+                                               f'(max {lint["same_sfx_per_scene_max"]}).', scene=sc)
 
     # per-scene checks
     openers: Counter = Counter()
+    search_range = (cfg.get("limits") or {}).get("search_words_range")
     for sc in project.scenes:
         pos = _positions(sc)
         total = sc.word_count
+
+        if sc.search:
+            parts = [p.strip() for p in sc.search.split("|")]
+            if len(parts) != 2 or not all(parts):
+                _warn(out, "W_SEARCH_FORMAT",
+                      f'search field in {sc.id} should look like: search: <main term> | <backup term>',
+                      scene=sc)
+            elif search_range:
+                lo_w, hi_w = int(search_range[0]), int(search_range[1])
+                for term in parts:
+                    wc = len(term.split())
+                    if not (lo_w <= wc <= hi_w):
+                        _warn(out, "W_SEARCH_FORMAT",
+                              f'search term "{term}" has {wc} words (expected {lo_w}-{hi_w} words).',
+                              scene=sc)
 
         if lint.get("max_scene_words") and total > lint["max_scene_words"]:
             _warn(out, "W_SCENE_LENGTH", f"Scene has {total} spoken words (about {total / wpm * 60:.0f}s "
@@ -266,33 +306,36 @@ def _lint(project: Project, cfg: Dict[str, Any]) -> List[Diagnostic]:
                   scene=sc)
 
         # visual cue gaps
-        marks = sorted({start + c.word_index for seg, start in pos for c in seg.cues
-                        if c.type in ("img", "cam", "text")})
-        edges = [0] + marks + [total]
-        for a, b in zip(edges, edges[1:]):
-            if b - a > lint["visual_gap_words"]:
-                seg = next((s for s, st in reversed(pos) if st <= a), None)
-                _warn(out, "W_VISUAL_GAP",
-                      f"{b - a} spoken words without a visual cue (words {a + 1}-{b}).", seg=seg, scene=sc)
+        if lint.get("visual_gap_words") is not None:
+            marks = sorted({start + c.word_index for seg, start in pos for c in seg.cues
+                            if c.type in ("img", "cam", "text")})
+            edges = [0] + marks + [total]
+            for a, b in zip(edges, edges[1:]):
+                if b - a > lint["visual_gap_words"]:
+                    seg = next((s for s, st in reversed(pos) if st <= a), None)
+                    _warn(out, "W_VISUAL_GAP",
+                          f"{b - a} spoken words without a visual cue (words {a + 1}-{b}).", seg=seg, scene=sc)
 
         # base camera spacing + opener
         base_marks = sorted(start + c.word_index for seg, start in pos for c in seg.cues
                             if c.type == "cam" and cams.get(c.name) == "base")
-        for a, b in zip(base_marks, base_marks[1:]):
-            if b - a < lint["base_cam_min_gap_words"]:
-                _warn(out, "W_CAM_CLOSE", f"Two base camera moves only {b - a} words apart "
-                                          f"(want {lint['base_cam_min_gap_words']}+).", scene=sc)
+        if lint.get("base_cam_min_gap_words") is not None:
+            for a, b in zip(base_marks, base_marks[1:]):
+                if b - a < lint["base_cam_min_gap_words"]:
+                    _warn(out, "W_CAM_CLOSE", f"Two base camera moves only {b - a} words apart "
+                                              f"(want {lint['base_cam_min_gap_words']}+).", scene=sc)
         first = next((c for seg, st in pos for c in seg.cues
                       if c.type == "cam" and cams.get(c.name) == "base" and st + c.word_index == 0), None)
         if first:
             openers[first.name] += 1
 
-    for name, n in sorted(openers.items()):
-        if n > lint["same_opener_max_scenes"]:
-            _warn(out, "W_CAM_OPENER", f'{n} scenes open with "{name}" (max {lint["same_opener_max_scenes"]}).')
+    if lint.get("same_opener_max_scenes") is not None:
+        for name, n in sorted(openers.items()):
+            if n > lint["same_opener_max_scenes"]:
+                _warn(out, "W_CAM_OPENER", f'{n} scenes open with "{name}" (max {lint["same_opener_max_scenes"]}).')
 
     # ending variety
-    if len(project.scenes) >= 4:
+    if lint.get("ending_repeat_fraction") is not None and len(project.scenes) >= 4:
         sigs = []
         for sc in project.scenes:
             last = sc.segments[-1] if sc.segments else None

@@ -1,8 +1,16 @@
 import json
 import os
+import tempfile
 import unittest
 
-from parser import parse_file
+import main
+from parser import (
+    canonical_channel,
+    load_config_for_script,
+    parse_file,
+    resolve_layered_config,
+    validate,
+)
 from tests.helpers import (ROOT, codes, front_matter, parse, parse_text, read_fixture, scene,
                            script, segs)
 
@@ -46,6 +54,12 @@ class FrontMatterTests(unittest.TestCase):
     def test_missing_required_key(self):
         text = "---\nchannel: main\ncharacter: d\ntarget_minutes: 1\n---\n" + scene(1, "(flat) Hi there.")
         self.assertIn("E_FRONT_KEY", codes(parse_text(text).diagnostics, "error"))
+
+    def test_cbbob_character_defaults_to_cbbob_when_omitted(self):
+        text = "---\ntitle: T\nchannel: cbbob\ntarget_minutes: 1\n---\n" + scene(1, "(flat) Hi there.")
+        res = parse_text(text)
+        self.assertEqual(res.errors, [])
+        self.assertEqual(res.project.character, "CBBob")
 
     def test_bad_target_minutes(self):
         text = "---\ntitle: T\nchannel: m\ncharacter: d\ntarget_minutes: soon\n---\n" + scene(1, "(flat) Hi there.")
@@ -233,9 +247,27 @@ class TextTests(unittest.TestCase):
             "CHEEZ-bur-ger. A CHEEZ-bur-ger and a smash BUR-ger, plus a smash BUR-ger and a PAT-ee melt.",
         )
 
+    def test_pronunciation_handles_plural_and_possessive_forms(self):
+        fm = (
+            "pronunciations:\n"
+            "  - smashburger = smash BUR-ger\n"
+            "  - patty melt = PAT-ee melt\n"
+            "  - cheeseburger = CHEEZ-bur-ger\n"
+        )
+        res = parse(
+            "(flat) Unlike thicker burgers, smash burgers and cheeseburgers beat Patty Melts. Smash Burger's crust wins.",
+            extra_fm=fm,
+        )
+        (seg,) = segs(res)
+        self.assertEqual(
+            seg.tts_text,
+            "Unlike thicker burgers, smash BUR-gers and CHEEZ-bur-gers beat PAT-ee melts. smash BUR-ger's crust wins.",
+        )
+
     @unittest.skipUnless(os.path.exists(BURGER_SCRIPT), "script/burger.md not found")
-    def test_burger_script_pronunciations_match_capitalized_and_spaced_forms(self):
+    def test_burger_script_pronunciations_match_capitalized_spaced_and_plural_forms(self):
         res = parse_file(BURGER_SCRIPT)
+        self.assertEqual(res.errors, [])
         sc_cheese = res.project.scenes[1]       # SCENE 02: Cheeseburger
         sc_smash = res.project.scenes[2]        # SCENE 03: Smash Burger
         sc_patty = res.project.scenes[11]       # SCENE 12: Patty Melt
@@ -247,6 +279,8 @@ class TextTests(unittest.TestCase):
         self.assertEqual(sc_smash.segments[0].text, "Smash Burger.")
         self.assertEqual(sc_smash.segments[0].tts_text, "smash BUR-ger.")
         self.assertIn("A smash BUR-ger starts", sc_smash.segments[1].tts_text)
+        # Line 30 of burger.md has plural "smash burgers"
+        self.assertIn("smash BUR-gers cook quickly", sc_smash.segments[3].tts_text)
 
         self.assertEqual(sc_patty.segments[0].text, "Patty Melt.")
         self.assertEqual(sc_patty.segments[0].tts_text, "PAT-ee melt.")
@@ -260,6 +294,50 @@ class TextTests(unittest.TestCase):
         (seg,) = segs(parse("(flat) Well - that was, um, fine."))
         self.assertEqual(seg.word_count, len(seg.words))
         self.assertNotIn("-", seg.words)          # a lone dash is not a spoken word
+
+
+class ExplainerAndLayeredConfigTests(unittest.TestCase):
+    def test_channel_aliases_resolve_cleanly(self):
+        for alias in ("main", "cbbob", "CBBob", "deadpan_doug", "bob"):
+            self.assertEqual(canonical_channel(alias), "cbbob")
+        for alias in ("explainer", "list_explainer"):
+            self.assertEqual(canonical_channel(alias), "explainer")
+
+    def test_layered_config_override_hierarchy_and_playlist_voice_warning(self):
+        cfg = resolve_layered_config(channel="explainer", playlist="food_explained")
+        self.assertEqual(cfg["channel"], "explainer")
+        self.assertEqual(cfg["title_gap_s"], 0.50)             # overridden by food_explained.json
+        self.assertEqual(cfg["lint"]["expected_scenes"], 18)   # overridden by food_explained.json
+        self.assertEqual(cfg["tts"]["sample_rate"], 24000)     # from engines/kokoro.json
+
+    @unittest.skipUnless(os.path.exists(BURGER_SCRIPT), "script/burger.md not found")
+    def test_burger_md_parses_validates_and_narrates_end_to_end(self):
+        cfg = load_config_for_script(BURGER_SCRIPT)
+        res = parse_file(BURGER_SCRIPT, cfg)
+        self.assertEqual(res.errors, [])
+        self.assertEqual(len(res.project.scenes), 18)
+
+        # Verify default_emotion, title_gap_s, and search field on Scene 01
+        sc1 = res.project.scenes[0]
+        self.assertEqual(sc1.search, "classic hamburger white background | traditional beef burger sesame bun")
+        self.assertEqual(sc1.segments[0].emotion, "calm")
+        self.assertEqual(sc1.segments[0].gap_after_s, 0.45)    # title_gap_s
+        self.assertEqual(sc1.segments[1].gap_after_s, 0.22)    # line_gap_s
+
+        # Verify W_SCENE_COUNT is a warning only (18 vs expected 12)
+        diags = validate(res.project, cfg)
+        errs = [d for d in diags if d.level == "error"]
+        warns = [d for d in diags if d.level == "warning"]
+        self.assertEqual(errs, [])
+        self.assertEqual([d.code for d in warns], ["W_SCENE_COUNT", "W_WORDCOUNT"])
+
+
+        # End-to-end CLI narrate with fake backend
+        with tempfile.TemporaryDirectory() as tmp:
+            code = main.main(["narrate", BURGER_SCRIPT, "--backend", "fake", "--no-polish", "--no-export", "-o", tmp])
+            self.assertEqual(code, 0)
+            self.assertTrue(os.path.exists(os.path.join(tmp, "narration.json")))
+            self.assertTrue(os.path.exists(os.path.join(tmp, "timeline.json")))
 
 
 class SceneStructureTests(unittest.TestCase):

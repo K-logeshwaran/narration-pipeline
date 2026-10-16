@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-"""Video pipeline CLI.
+"""Video & Narration pipeline CLI.
 
     python main.py script/nnn.md --assets assets       # full end-to-end build -> renders/nnn.mp4
     python main.py parse script/nnn.md                 # write projects/<name>/project.json
     python main.py validate script/nnn.md              # human-readable validation report
     python main.py narrate script/nnn.md               # segment WAVs + narration.json + timeline.json
+    python main.py narrate script/burger.md            # auto-detects explainer channel config
     python main.py regenerate script/nnn.md scene03_seg04 [scene05 ...]
     python main.py lipsync projects/nnn                # Rhubarb mouth cues + blinks -> lipsync.json
     python main.py mix projects/nnn --assets assets    # full_mix.wav: narration + SFX
     python main.py render projects/nnn --assets assets # per-scene MP4s + final assembled MP4
 
 Useful flags:  --backend fake (dry run without Kokoro)   --rhubarb fake   --character ID
-               --scenes 1,3-4   --force   --no-polish   --no-export   --assets DIR
-               --strict   --config FILE   -o DIR
+               --playlist ID   --voice ID   --scenes 1,3-4   --force   --no-polish
+               --no-export   --assets DIR   --strict   --config FILE   -o DIR
 
 Exit code is 1 on errors (or warnings with --strict), else 0.
 """
@@ -24,7 +25,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 
-from parser import load_channel_config, parse_file, render_report, validate
+from parser import load_config_for_script, parse_file, render_report, validate
 
 COMMANDS = {"parse", "validate", "narrate", "regenerate", "lipsync", "mix", "render", "build"}
 
@@ -44,8 +45,18 @@ def _resolve_existing_project_dir(arg: str, out: Optional[str]) -> Path:
     return p
 
 
+def _resolve_cfg(args, target_path: Optional[str] = None) -> Dict[str, Any]:
+    return load_config_for_script(
+        target_path or args.script,
+        config_path=getattr(args, "config", None),
+        playlist=getattr(args, "playlist", None),
+        backend=getattr(args, "backend", None),
+        voice=getattr(args, "voice", None),
+    )
+
+
 def _check(args) -> Tuple[Dict[str, Any], Any, Any, bool]:
-    cfg = load_channel_config(args.config)
+    cfg = _resolve_cfg(args)
     result = parse_file(args.script, cfg)
     extra = validate(result.project, cfg, getattr(args, "assets", None))
     has_errors = bool(result.errors) or any(d.level == "error" for d in extra)
@@ -79,13 +90,13 @@ def cmd_parse(args) -> int:
 def _narrate(args, only=None, force=False) -> int:
     from narration import AudioToolError, NarrationError, get_backend, load_project, narrate_project
 
-    cfg = load_channel_config(args.config)
     if args.script.lower().endswith(".json"):                       # from an existing project.json
         project_path = Path(args.script)
         project_dir = Path(args.out) if args.out else project_path.parent
         project = load_project(project_path)
+        cfg = _resolve_cfg(args, str(project_path))
     else:                                                           # from the script: parse first
-        _, result, extra, has_errors = _check(args)
+        cfg, result, extra, has_errors = _check(args)
         if has_errors:
             print(render_report(Path(args.script).name, result, extra, cfg, bool(args.assets)))
             print("\nFix the errors above before narrating.")
@@ -128,8 +139,8 @@ def cmd_regenerate(args) -> int:
 def cmd_lipsync(args) -> int:
     from narration import RhubarbError, lipsync_project
 
-    cfg = load_channel_config(args.config)
     project_dir = _resolve_existing_project_dir(args.script, args.out)
+    cfg = _resolve_cfg(args, str(project_dir))
     rhubarb_backend = args.rhubarb or ("fake" if args.backend == "fake" else "rhubarb")
     try:
         res = lipsync_project(project_dir, cfg, backend=rhubarb_backend, force=args.force)
@@ -149,8 +160,8 @@ def cmd_mix(args) -> int:
     from narration import AudioToolError
     from narration.mix import mix_sfx
 
-    cfg = load_channel_config(args.config)
     project_dir = _resolve_existing_project_dir(args.script, args.out)
+    cfg = _resolve_cfg(args, str(project_dir))
     timeline_path = project_dir / "timeline.json"
     narration_path = project_dir / "audio" / "full_narration.wav"
     missing = [str(x) for x in (timeline_path, narration_path) if not x.exists()]
@@ -180,8 +191,8 @@ def cmd_render(args) -> int:
     from render.kit import KitError
     from render.scene import render_project_scenes
 
-    cfg = load_channel_config(args.config)
     project_dir = _resolve_existing_project_dir(args.script, args.out)
+    cfg = _resolve_cfg(args, str(project_dir))
     assets_dir = Path(args.assets) if args.assets else Path("assets")
     try:
         sc_res = render_project_scenes(
@@ -211,7 +222,7 @@ def cmd_render(args) -> int:
 def cmd_build(args) -> int:
     from render.stage_runner import check_memory_preflight, run_stage_subprocess
 
-    cfg = load_channel_config(args.config)
+    cfg = _resolve_cfg(args)
     check_memory_preflight()
 
     tts_backend = args.backend or cfg["tts"]["backend"]
@@ -227,14 +238,18 @@ def cmd_build(args) -> int:
         return code
 
     assets_dir = Path(assets_arg) if assets_arg else Path("assets")
-    # When running with real Kokoro TTS, isolate heavy stages in subprocesses so the ~1.4 GiB
-    # PyTorch heap is reclaimed by the OS kernel before Rhubarb and FFmpeg run.
+    # When running with real Kokoro TTS, isolate heavy stages in subprocesses so memory is
+    # returned to the OS when the subprocess exits before Rhubarb and FFmpeg run.
     if tts_backend == "kokoro":
         py = sys.executable
         main_py = str(Path(__file__).resolve())
         common = ["-o", str(project_dir), "--assets", str(assets_dir)]
         if args.config:
             common.extend(["--config", args.config])
+        if getattr(args, "playlist", None):
+            common.extend(["--playlist", args.playlist])
+        if getattr(args, "voice", None):
+            common.extend(["--voice", args.voice])
         if args.force:
             common.append("--force")
 
@@ -322,7 +337,9 @@ def main(argv=None) -> int:
         )
         if name == "regenerate":
             sp.add_argument("ids", nargs="+", help="segment ids (scene03_seg04) or scene ids (scene03)")
-        sp.add_argument("--config", help="channel config JSON (default: config/channel_main.json)")
+        sp.add_argument("--config", help="channel config JSON (default: auto-detected from script channel)")
+        sp.add_argument("--playlist", help="optional playlist profile name or JSON path")
+        sp.add_argument("--voice", help="override TTS voice id")
         sp.add_argument("--assets", help="assets folder to check referenced files against")
         sp.add_argument("--strict", action="store_true", help="treat warnings as failures (validate)")
         sp.add_argument("--force", action="store_true", help="parse: write despite errors; narrate/lipsync/render: ignore caches")

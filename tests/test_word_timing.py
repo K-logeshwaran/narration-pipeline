@@ -80,14 +80,12 @@ class TokenTests(unittest.TestCase):
             "patty melt": "PAH-tee melt",
             "cheeseburger": "CHEEZ-bur-ger",
         }
-        # 1. Capitalized "Cheeseburger." matches lowercase key "cheeseburger" -> "cheezburger"
         self.assertEqual(phonetic_targets(["Cheeseburger."], pron), ["cheezburger"])
         spans_c = spans_from_tokens(
             ["Cheeseburger."], [("CHEEZ-bur-ger.", 0.1, 0.8)], 0.0, 1.0, pronunciations=pron
         )
         self.assertEqual(spans_c, [(0.1, 0.8)])
 
-        # 2. Spaced "Smash Burger." matches closed key "smashburger" -> ["smahsh", "burger"]
         self.assertEqual(phonetic_targets(["Smash", "Burger."], pron), ["smahsh", "burger"])
         spans_s = spans_from_tokens(
             ["Smash", "Burger."],
@@ -96,7 +94,6 @@ class TokenTests(unittest.TestCase):
         )
         self.assertEqual(spans_s, [(0.1, 0.4), (0.45, 0.9)])
 
-        # 3. Title-case "Patty Melt." matches multi-word key "patty melt" -> ["pahtee", "melt"]
         self.assertEqual(phonetic_targets(["Patty", "Melt."], pron), ["pahtee", "melt"])
         spans_p = spans_from_tokens(
             ["Patty", "Melt."],
@@ -104,6 +101,32 @@ class TokenTests(unittest.TestCase):
             0.0, 1.0, pronunciations=pron,
         )
         self.assertEqual(spans_p, [(0.05, 0.45), (0.5, 0.85)])
+
+    def test_plural_and_possessive_pronunciation_alignment(self):
+        pron = {
+            "smashburger": "smahsh BUR-ger",
+            "patty melt": "PAH-tee melt",
+            "cheeseburger": "CHEEZ-bur-ger",
+        }
+        self.assertEqual(phonetic_targets(["cheeseburgers"], pron), ["cheezburgers"])
+        self.assertEqual(phonetic_targets(["Cheeseburger's"], pron), ["cheezburgers"])
+        self.assertEqual(phonetic_targets(["smash", "burgers"], pron), ["smahsh", "burgers"])
+        self.assertEqual(phonetic_targets(["Smash", "Burger's"], pron), ["smahsh", "burgers"])
+        self.assertEqual(phonetic_targets(["patty", "melts"], pron), ["pahtee", "melts"])
+
+        spans_pl = spans_from_tokens(
+            ["smash", "burgers,"],
+            [("smahsh", 0.1, 0.35), ("BUR-gers,", 0.4, 0.85)],
+            0.0, 1.0, pronunciations=pron,
+        )
+        self.assertEqual(spans_pl, [(0.1, 0.35), (0.4, 0.85)])
+
+        spans_poss = spans_from_tokens(
+            ["Cheeseburger's", "cheese"],
+            [("CHEEZ-bur-ger's", 0.05, 0.5), ("cheese", 0.55, 0.9)],
+            0.0, 1.0, pronunciations=pron,
+        )
+        self.assertEqual(spans_poss, [(0.05, 0.5), (0.55, 0.9)])
 
 
 # ---------------------------------------------------------------------------
@@ -162,7 +185,18 @@ class TimelineWordTests(unittest.TestCase):
         tl, _ = self.build(text, [1.5], wt)
         cue = next(e for e in tl["events"] if e["type"] == "cue")
         self.assertTrue(cue["estimated"])
-        self.assertAlmostEqual(cue["start"], 1.0, places=3)      # still word-based, just flagged
+        self.assertAlmostEqual(cue["start"], 1.0, places=3)
+#         text = script("(flat) One two {sfx:pop} three.")
+#         wt = {"scene01_seg01": {"spans": [(0.0, 0.5), (0.5, 1.0), (1.0, 1.5)], "method": "estimated"}}
+#         tl, _ = self.build(text, [1.5], wt)
+#         cue = next(e for e in tl["events"] if e["type"] == "cue")
+# #        print("CFG KEYS:", sorted(proj.get("config", proj).keys()) if isinstance(proj, dict) else type(proj))
+#  #       tl, _ = build_timeline(proj, [1.5], wt)
+#         cue = next(e for e in tl["events"] if e["type"] == "cue")
+#         self.assertTrue(cue["estimated"])
+#         self.assertAlmostEqual(cue["start"], 1.0, places=3)
+
+
 
     def test_no_word_times_keeps_old_estimate(self):
         tl, _ = self.build(script("(flat) One two {sfx:pop} three four."), [4.0])

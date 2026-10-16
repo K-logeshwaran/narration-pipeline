@@ -1,0 +1,9 @@
+{
+  "_note": "Optional playlist profile for food explainer videos. Overrides config/channels/explainer.json.",
+  "playlist": "food_explained",
+  "channel": "explainer",
+  "title_gap_s": 0.50,
+  "lint": {
+    "expected_scenes": 18
+  }
+}

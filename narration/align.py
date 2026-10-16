@@ -31,15 +31,24 @@ DEFAULTS = {"rel_threshold": 0.2, "abs_threshold": 0.01,
             "min_island_s": 0.03, "merge_gap_s": 0.05}
 
 _POSSESSIVE_RE = re.compile(r"(['\u2019]s)([^\w]*)$", re.IGNORECASE)
+_PLURAL_SKIP_SUFFIXES = ("s", "x", "z", "ch", "sh")
 
 
 def _norm(s: str) -> str:
     return "".join(c for c in s.lower() if c.isalnum())
 
 
+def _allows_plural_s(parts: Sequence[str]) -> bool:
+    joined = "".join(parts).lower()
+    if len(joined) < 4 or not joined.isalpha():
+        return False
+    return not joined.endswith(_PLURAL_SKIP_SUFFIXES)
+
+
 def _pronunciation_regex(word: str) -> Optional[re.Pattern[str]]:
     """Build a case-insensitive, whole-word regex for a pronunciation key,
-    allowing flexible whitespace/hyphens between words or compound parts."""
+    allowing flexible whitespace/hyphens between words or compound parts
+    and an optional plural 's' on eligible stems."""
     clean = word.strip()
     if not clean:
         return None
@@ -55,7 +64,8 @@ def _pronunciation_regex(word: str) -> Optional[re.Pattern[str]]:
             for i in range(3, len(tok) - 2):
                 alts.append(re.escape(tok[:i]) + r"[\s\-]+" + re.escape(tok[i:]))
         body = "|".join(alts)
-    return re.compile(r"(?<![\w])(?:" + body + r")(?![\w])", re.IGNORECASE)
+    plural_pat = r"(?P<plural>s)?" if _allows_plural_s(parts) else ""
+    return re.compile(r"(?<![\w])(?:" + body + r")" + plural_pat + r"(?![\w])", re.IGNORECASE)
 
 
 def _distribute_respelling(respelling: str, count: int,
@@ -93,12 +103,20 @@ def _distribute_respelling(respelling: str, count: int,
     return None
 
 
-def _stem_and_possessive(word: str) -> Tuple[str, bool]:
-    """Return (normalized_stem, has_possessive_s) for a display word."""
+def _match_last_word_suffix(word: str, target_stem: str,
+                            allow_plural: bool) -> Optional[str]:
+    """Check if `word` matches `target_stem` exactly, with possessive `'s`,
+    or with plural `s`. Returns the trailing 's' suffix ('s' or ''), or None."""
     if _POSSESSIVE_RE.search(word):
         stripped = _POSSESSIVE_RE.sub("", word)
-        return _norm(stripped), True
-    return _norm(word), False
+        if _norm(stripped) == target_stem:
+            return "s"
+    norm_w = _norm(word)
+    if norm_w == target_stem:
+        return ""
+    if allow_plural and norm_w == target_stem + "s":
+        return "s"
+    return None
 
 
 def _apply_single_word_pronunciations(word: str, ordered_keys: Sequence[str],
@@ -109,10 +127,18 @@ def _apply_single_word_pronunciations(word: str, ordered_keys: Sequence[str],
         pat = _pronunciation_regex(k)
         if pat is None:
             continue
-        token = f"\x00PRON{idx}\x00"
-        out, n = pat.subn(token, out)
+        base_token = f"\x00PRON{idx}_B\x00"
+        plural_token = f"\x00PRON{idx}_S\x00"
+
+        def _repl(m: re.Match[str]) -> str:
+            if m.groupdict().get("plural"):
+                return plural_token
+            return base_token
+
+        out, n = pat.subn(_repl, out)
         if n > 0:
-            placeholders.append((token, pronunciations[k]))
+            placeholders.append((plural_token, pronunciations[k] + "s"))
+            placeholders.append((base_token, pronunciations[k]))
     for token, repl in placeholders:
         out = out.replace(token, repl)
     return out
@@ -121,9 +147,10 @@ def _apply_single_word_pronunciations(word: str, ordered_keys: Sequence[str],
 def phonetic_targets(words: Sequence[str],
                      pronunciations: Optional[Dict[str, str]] = None) -> List[str]:
     """Map display words to their normalized phonetic character targets after
-    applying pronunciations (including case-insensitive matches, hyphenated
-    respellings, single-to-multi-word expansions like 'smashburger = smash BUR-ger'
-    matching 'Smash Burger', and multi-word phrases like 'patty melt = PAT-ee melt')."""
+    applying pronunciations (including case-insensitive matches, plural/possessive
+    forms, hyphenated respellings, single-to-multi-word expansions like
+    'smashburger = smash BUR-ger' matching 'Smash Burger' or 'smash burgers',
+    and multi-word phrases like 'patty melt = PAT-ee melt')."""
     if not pronunciations:
         return [_norm(w) for w in words]
 
@@ -132,12 +159,13 @@ def phonetic_targets(words: Sequence[str],
     ordered_keys = sorted(pronunciations, key=lambda k: len(k.strip()), reverse=True)
 
     # 1. Match multi-word sequences in `spoken` against multi-word keys (e.g. "patty melt")
-    #    or closed compound keys (e.g. "smashburger" matching ["Smash", "Burger."]).
+    #    or closed compound keys (e.g. "smashburger" matching ["Smash", "Burger."] or ["smash", "burgers"]).
     for k in ordered_keys:
         k_parts = [_norm(p) for p in re.split(r"[\s\-]+", k.strip()) if _norm(p)]
         if not k_parts:
             continue
         k_joined = "".join(k_parts)
+        allow_plural = _allows_plural_s(k_parts)
 
         if len(k_parts) >= 2:
             m = len(k_parts)
@@ -145,32 +173,38 @@ def phonetic_targets(words: Sequence[str],
             while i <= len(spoken) - m:
                 if not any(replaced_mask[i : i + m]):
                     head_norms = [_norm(spoken[i + j]) for j in range(m - 1)]
-                    last_stem, has_poss = _stem_and_possessive(spoken[i + m - 1])
-                    if head_norms + [last_stem] == k_parts:
-                        dist = _distribute_respelling(pronunciations[k], m, spoken[i : i + m])
-                        if dist is not None:
-                            for j in range(m):
-                                val = dist[j] + ("s" if (j == m - 1 and has_poss) else "")
-                                spoken[i + j] = val
-                                replaced_mask[i + j] = True
-                            i += m
-                            continue
+                    if head_norms == k_parts[:-1]:
+                        suffix = _match_last_word_suffix(
+                            spoken[i + m - 1], k_parts[-1], allow_plural
+                        )
+                        if suffix is not None:
+                            dist = _distribute_respelling(pronunciations[k], m, spoken[i : i + m])
+                            if dist is not None:
+                                for j in range(m):
+                                    val = dist[j] + (suffix if j == m - 1 else "")
+                                    spoken[i + j] = val
+                                    replaced_mask[i + j] = True
+                                i += m
+                                continue
                 i += 1
         elif len(k_joined) >= 6 and k_joined.isalpha():
             i = 0
             while i <= len(spoken) - 2:
                 if not replaced_mask[i] and not replaced_mask[i + 1]:
                     w0 = _norm(spoken[i])
-                    w1, has_poss = _stem_and_possessive(spoken[i + 1])
-                    if len(w0) >= 3 and len(w1) >= 3 and (w0 + w1) == k_joined:
-                        dist = _distribute_respelling(pronunciations[k], 2, spoken[i : i + 2])
-                        if dist is not None:
-                            spoken[i] = dist[0]
-                            spoken[i + 1] = dist[1] + ("s" if has_poss else "")
-                            replaced_mask[i] = True
-                            replaced_mask[i + 1] = True
-                            i += 2
-                            continue
+                    if len(w0) >= 3 and k_joined.startswith(w0):
+                        rem = k_joined[len(w0):]
+                        if len(rem) >= 3:
+                            suffix = _match_last_word_suffix(spoken[i + 1], rem, allow_plural)
+                            if suffix is not None:
+                                dist = _distribute_respelling(pronunciations[k], 2, spoken[i : i + 2])
+                                if dist is not None:
+                                    spoken[i] = dist[0]
+                                    spoken[i + 1] = dist[1] + suffix
+                                    replaced_mask[i] = True
+                                    replaced_mask[i + 1] = True
+                                    i += 2
+                                    continue
                 i += 1
 
     # 2. Apply single-word / regex substitutions per remaining word

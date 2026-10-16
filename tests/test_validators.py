@@ -1,9 +1,18 @@
+import json
 import os
 import tempfile
 import unittest
+from pathlib import Path
 
-from parser import parse_file, render_report, validate
-from tests.helpers import CFG, ROOT, check, codes, front_matter, parse_text, scene, script
+from parser import (
+    load_config_for_script,
+    parse_file,
+     parse_text,
+    render_report,
+    resolve_layered_config,
+    validate,
+)
+from tests.helpers import CFG, ROOT, check, codes, front_matter, scene, script
 
 BURGER_SCRIPT = os.path.join(ROOT, "script", "burger.md")
 
@@ -142,11 +151,34 @@ class LintTests(unittest.TestCase):
         self.assertNotIn("smashburger", unused[0].message)
 
     @unittest.skipUnless(os.path.exists(BURGER_SCRIPT), "script/burger.md not found")
-    def test_burger_script_has_no_unused_pronunciations(self):
-        res = parse_file(BURGER_SCRIPT)
-        diags = validate(res.project, CFG)
+    def test_burger_script_has_no_unused_pronunciations_and_warns_scene_count(self):
+        cfg = load_config_for_script(BURGER_SCRIPT)
+        res = parse_file(BURGER_SCRIPT, cfg)
+        diags = validate(res.project, cfg)
         unused = [d for d in diags if d.code == "W_PRONUNCIATION_UNUSED"]
         self.assertEqual(unused, [])
+        sc_warns = [d for d in diags if d.code == "W_SCENE_COUNT"]
+        self.assertEqual(len(sc_warns), 1)
+        self.assertIn("18 scenes (expected 12", sc_warns[0].message)
+
+    def test_playlist_voice_override_emits_lint_warning(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            pl_path = Path(tmp) / "custom_voice_pl.json"
+            pl_path.write_text(
+                json.dumps({"playlist": "custom_voice_pl", "tts": {"voice": "af_heart"}}),
+                encoding="utf-8",
+            )
+            cfg = resolve_layered_config(channel="explainer", playlist=str(pl_path))
+            explainer_md = (
+                "---\ntitle: Every Type of Test Explained\nchannel: explainer\ntarget_minutes: 1\n---\n\n"
+                "## SCENE 01: Item One\nsearch: item one photo | item one close up\n\n"
+                "### Narration\nItem One.\nThis is the first item explanation.\n"
+            )
+            res = parse_text(explainer_md, cfg=cfg)
+            diags = validate(res.project, cfg)
+            v_warns = [d for d in diags if d.code == "W_PLAYLIST_VOICE_OVERRIDE"]
+            self.assertEqual(len(v_warns), 1)
+            self.assertIn("af_heart", v_warns[0].message)
 
 
 class AssetTests(unittest.TestCase):

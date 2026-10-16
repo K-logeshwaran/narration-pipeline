@@ -114,6 +114,7 @@ class Scene:
     segments: List[Segment] = field(default_factory=list)
     layout: str = "bob_pip"
     layout_explicit: bool = False
+    search: str = ""
 
 
 @dataclass
@@ -131,18 +132,31 @@ class Project:
     settings: Dict[str, Any]
     source: Dict[str, str]
     scenes: List[Scene] = field(default_factory=list)
+    playlist: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
+        proj_dict: Dict[str, Any] = {
+            "title": self.title,
+            "channel": self.channel,
+            "character": self.character,
+            "target_minutes": self.target_minutes,
+            "fps": self.settings.get("fps"),
+            "resolution": self.settings.get("resolution"),
+        }
+        if self.playlist:
+            proj_dict["playlist"] = self.playlist
+
+        settings_dict: Dict[str, Any] = {
+            "pauses": self.settings.get("pauses"),
+            "line_gap_s": self.settings.get("line_gap_s"),
+            "words_per_minute": self.settings.get("words_per_minute"),
+        }
+        if self.settings.get("title_gap_s") is not None:
+            settings_dict["title_gap_s"] = self.settings.get("title_gap_s")
+
         return {
             "schema_version": SCHEMA_VERSION,
-            "project": {
-                "title": self.title,
-                "channel": self.channel,
-                "character": self.character,
-                "target_minutes": self.target_minutes,
-                "fps": self.settings.get("fps"),
-                "resolution": self.settings.get("resolution"),
-            },
+            "project": proj_dict,
             "meta": {
                 "titles_alt": self.titles_alt,
                 "sensitivity": self.sensitivity,
@@ -151,11 +165,7 @@ class Project:
                 "claims": self.claims,
                 "extra": self.extra,
             },
-            "settings": {
-                "pauses": self.settings.get("pauses"),
-                "line_gap_s": self.settings.get("line_gap_s"),
-                "words_per_minute": self.settings.get("words_per_minute"),
-            },
+            "settings": settings_dict,
             "source": self.source,
             "scenes": [asdict(s) for s in self.scenes],
         }

@@ -1,0 +1,26 @@
+{
+  "_note": "Chatterbox Nano (110M) engine config for Phase 2 bake-off. NOTE: Resemble AI's Chatterbox models embed the PerTh imperceptible neural watermark in generated audio by default.",
+  "engine": "chatterbox_nano",
+  "license": {
+    "name": "MIT",
+    "commercial_allowed": true,
+    "source": "https://huggingface.co/ResembleAI/chatterbox-nano | https://github.com/resemble-ai/chatterbox/blob/master/LICENSE",
+    "verified": true,
+    "watermark_note": "Includes Resemble AI PerTh imperceptible neural watermark by default."
+  },
+  "tts": {
+    "backend": "chatterbox_nano",
+    "voice": "default",
+    "lang": "en",
+    "sample_rate": 24000,
+    "base_speed": 1.0,
+    "speed_scale": 1.0,
+    "speed_jitter_pct": 0.0,
+    "modifier_weight": 0.3,
+    "apply_pitch": false,
+    "retry_strategy": {
+      "type": "sampling",
+      "seeds": [42, 101, 202, 303]
+    }
+  }
+}

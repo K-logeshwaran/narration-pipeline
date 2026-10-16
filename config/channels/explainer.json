@@ -1,0 +1,112 @@
+{
+  "_note": "List-style Explainer channel profile (EXPLAINER_SCRIPT_SPEC_v2). Calm narrator, search terms per scene, configurable scene-count lint warning.",
+  "engine": "kokoro",
+  "channel": "explainer",
+  "channel_aliases": ["explainer", "list_explainer"],
+  "character": "",
+  "default_character": "",
+  "require_character": false,
+  "require_image": false,
+  "require_prompt": false,
+  "require_search": true,
+  "default_emotion": "calm",
+  "require_explicit_first_emotion": false,
+  "character_aliases": {},
+  "layouts": ["full_scene", "bob_pip", "bob_full"],
+  "default_layout": "full_scene",
+  "render": { "fps": 30, "resolution": [1920, 1080] },
+  "words_per_minute": 140,
+
+  "pauses": { "short": 0.25, "default": 0.40, "beat": 0.50, "long": 0.80 },
+  "line_gap_s": 0.22,
+  "title_gap_s": 0.45,
+
+  "emotions": {
+    "calm":    { "speed": 0.90, "pitch": 0,  "volume": 1.00 },
+    "warm":    { "speed": 0.92, "pitch": 0,  "volume": 1.02 },
+    "serious": { "speed": 0.86, "pitch": -1, "volume": 1.00 }
+  },
+
+  "reaction_images": [],
+  "sfx": {
+    "point": [],
+    "bed": [],
+    "generic": []
+  },
+  "text_styles": ["slam", "pop", "jitter", "shrink", "fade"],
+  "camera": {
+    "base": {
+      "zoom_in":   { "duration_s": 6.0, "scale": 1.10 },
+      "zoom_out":  { "duration_s": 6.0, "scale": 1.10 },
+      "pan_left":  { "duration_s": 6.0, "distance": 0.06 },
+      "pan_right": { "duration_s": 6.0, "distance": 0.06 },
+      "hold":      { "duration_s": 6.0 }
+    },
+    "transient": {
+      "punch_in": { "duration_s": 0.35, "scale": 1.12 },
+      "shake":    { "duration_s": 1.0,  "amplitude_px": 8 }
+    },
+    "instant": { "cut": {} }
+  },
+
+  "limits": {
+    "max_line_words": 30,
+    "max_overlay_words": 3,
+    "max_img_per_scene": 0,
+    "search_words_range": [2, 8]
+  },
+
+  "lint": {
+    "expected_scenes": 12,
+    "target_tolerance": 0.15,
+    "words_per_pause": null,
+    "require_all_pause_names": false,
+    "words_per_sfx_min": null,
+    "generic_per_scene_max": 0,
+    "same_sfx_per_scene_max": 0,
+    "same_sfx_per_video_max": 0,
+    "visual_gap_words": null,
+    "base_cam_min_gap_words": null,
+    "same_opener_max_scenes": null,
+    "ending_repeat_fraction": null,
+    "max_scene_words": 180
+  },
+
+  "timeline": {
+    "scene_gap_s": 0.6
+  },
+
+  "captions": {
+    "enabled": true,
+    "karaoke": true,
+    "font": "Arial",
+    "size": 64,
+    "bold": true,
+    "max_words_per_line": 8,
+    "tail_pad_s": 0.10,
+    "primary_colour": "&H00FFFFFF",
+    "secondary_colour": "&H0000D7FF",
+    "outline_colour": "&H00000000",
+    "back_colour": "&H64000000",
+    "outline": 3,
+    "shadow": 1,
+    "alignment": 2,
+    "margin_l": 40,
+    "margin_r": 40,
+    "margin_v": 60
+  },
+
+  "mix": {
+    "point_gain": 1.0,
+    "bed_gain": 0.35,
+    "bed_fade_s": 0.25,
+    "out_name": "full_mix.wav"
+  },
+
+  "assets": {
+    "sfx": "sfx",
+    "reaction_images": "characters",
+    "character_kits": "characters",
+    "scene_images": "scenes"
+  }
+}
