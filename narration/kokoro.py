@@ -18,10 +18,13 @@ local model, a cloud voice) is one new class, not a rewrite.
 from __future__ import annotations
 
 import gc
+import importlib.util
 import sys
 from typing import Any, Dict, List, Optional, Protocol, Tuple
 
 import numpy as np
+
+SPACY_MODEL_NAME = "en_core_web_sm"
 
 
 class TTSBackend(Protocol):
@@ -29,6 +32,29 @@ class TTSBackend(Protocol):
     sample_rate: int
 
     def synth(self, text: str, speed: float) -> np.ndarray: ...
+
+
+def ensure_spacy_model_installed(model_name: str = SPACY_MODEL_NAME) -> None:
+    """Verify the spaCy model required by Kokoro/misaki is installed locally and
+    disable spacy.cli.download so runtime auto-downloads can never happen."""
+    if importlib.util.find_spec(model_name) is None:
+        raise RuntimeError(
+            f"Required spaCy model '{model_name}' is not installed. "
+            f"Runtime auto-download is disabled to prevent memory spikes and network hangs. "
+            f"Install it once via: pip install -r requirements.txt"
+        )
+    try:
+        import spacy.cli  # type: ignore
+
+        def _blocked_download(model: str, *args: Any, **kwargs: Any) -> None:
+            raise RuntimeError(
+                f"Blocked runtime auto-download of spaCy model '{model}'. "
+                f"Install it explicitly via: pip install -r requirements.txt"
+            )
+
+        spacy.cli.download = _blocked_download
+    except ImportError:
+        pass
 
 
 class KokoroBackend:
@@ -53,6 +79,7 @@ class KokoroBackend:
 
     def _get_pipeline(self):
         if self._pipeline is None:
+            ensure_spacy_model_installed(SPACY_MODEL_NAME)
             try:
                 from kokoro import KPipeline
             except ImportError as e:               # pragma: no cover - needs the real package
@@ -63,7 +90,8 @@ class KokoroBackend:
         return self._pipeline
 
     def close(self) -> None:
-        """Release PyTorch/Kokoro weights from RAM before spawning video renderers."""
+        """Release PyTorch/Kokoro references in-process (note: full OS page
+        reclamation requires running narration in a subprocess)."""
         if self._pipeline is not None:
             self._pipeline = None
             gc.collect()
@@ -80,9 +108,6 @@ class KokoroBackend:
         relative to each yielded chunk). Older versions yield plain
         (graphemes, phonemes, audio) triples and tokens come back None - the
         pipeline then falls back to audio alignment.
-
-        NOTE: written against the documented Result API but not yet verified
-        with a real Kokoro install; the None fallback keeps it safe either way.
         """
         pipeline = self._get_pipeline()
         parts: List[np.ndarray] = []

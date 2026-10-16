@@ -393,7 +393,8 @@ def narrate_project(project: Dict[str, Any], project_dir: Path, cfg: Dict[str, A
         log("Exporting full narration ...")
         export_path = _export_full(spans, dirs["audio"], timeline["duration"], cfg, log, warnings)
 
-    expected = {f"{seg['id']}.wav" for _, seg in flat} | {FULL_EXPORT_NAME}
+    mix_out_name = (cfg.get("mix") or {}).get("out_name", "full_mix.wav")
+    expected = {f"{seg['id']}.wav" for _, seg in flat} | {FULL_EXPORT_NAME, mix_out_name}
     orphans = sorted(p.name for p in dirs["audio"].glob("*.wav") if p.name not in expected)
     if orphans:
         warnings.append(f"{len(orphans)} audio files no longer belong to the script "

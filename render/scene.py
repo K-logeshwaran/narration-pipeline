@@ -2,11 +2,12 @@
 """Per-scene FFmpeg video compositor and renderer.
 
 Each scene is rendered independently to `cache/scenes/<scene_hash>.mp4`
-(video-only, exact frame count `-frames:v (end_frame - start_frame)`, burned
-scene-local ASS captions) and copied to `renders/scenes/<scene_id>.mp4`.
+(video-only, exact frame count `-frames:v (end_frame - start_frame)`, active
+camera zoom/pan, burned scene-local ASS captions) and copied to
+`renders/scenes/<scene_id>.mp4`.
 
 Usage as a standalone CLI:
-    python -m render.scene projects/example_v11 --assets assets --scenes 1 --character atlas
+    python3 -m render.scene projects/example_v11 --assets assets --scenes 1 --character atlas
 """
 from __future__ import annotations
 
@@ -15,22 +16,16 @@ from dataclasses import dataclass, field
 import json
 import os
 from pathlib import Path
-import re
 import shutil
 import subprocess
 import sys
 import tempfile
 import time
-from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Set, Tuple
+from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Tuple
 
 from narration.captions import DEFAULTS as CAPTION_DEFAULTS, build_dialogues, render_ass
 from narration.errors import AudioToolError
 from parser.config import load_channel_config
-
-if False:
-    from parser.prompt_sheet_select import parse_scene_selection
-else:
-    parse_scene_selection = None
 
 from .character import (
     build_char_filter_branch,
@@ -38,6 +33,7 @@ from .character import (
     prepare_scene_character_concat,
 )
 from .kit import CharacterKit, KitError
+from .stage_runner import check_memory_preflight, compute_scene_workers
 from .timeline_v2 import find_image_file, upgrade_project_timeline
 
 
@@ -133,31 +129,106 @@ def build_scene_ass(scene_id: str, scene_start: float, scene_end: float,
     return render_ass(title, clamped, cfg)
 
 
-def _build_background_filter(input_idx: Optional[int], resolution: Tuple[int, int],
-                             fps: int, out_label: str = "bg") -> str:
-    """Build the scene background filter chain (16:9 Lanczos crop + mild unsharp,
-    or 9:16 Shorts center-crop + white vertical pad)."""
+def _camera_zoompan_exprs(camera_track: Sequence[Dict[str, Any]],
+                          scene_start: float,
+                          fps: int) -> Tuple[str, str, str]:
+    """Build (z_expr, x_expr, y_expr) for FFmpeg's `zoompan` filter from `camera_track`.
+
+    In `zoompan`, `on` is the 0-based output frame index, so scene-relative time
+    in seconds is `(on/{fps}.0)`.
+    """
+    t_var = f"(on/{float(fps):.1f})"
+    block = camera_track[0] if camera_track else {}
+    base_moves = block.get("base_moves") or []
+    transients = block.get("transients") or []
+
+    z_terms: List[str] = ["1.0"]
+    pan_terms: List[str] = []
+
+    for bm in base_moves:
+        move = str(bm.get("move", "hold"))
+        ra = max(float(bm.get("start", scene_start)) - scene_start, 0.0)
+        rb = max(float(bm.get("end", scene_start)) - scene_start, ra + 0.05)
+        dur = max(rb - ra, 0.05)
+        scale = float(bm.get("scale") or 1.10)
+        u = f"clip(({t_var}-{ra:.3f})/{dur:.3f},0,1)"
+        win = f"between({t_var},{ra:.3f},{rb:.3f})"
+
+        if move == "zoom_in" and abs(scale - 1.0) > 1e-3:
+            z_terms.append(f"({scale - 1.0:.4f}*{u}*{win})")
+        elif move == "zoom_out" and abs(scale - 1.0) > 1e-3:
+            z_terms.append(f"({scale - 1.0:.4f}*(1-{u})*{win})")
+        elif move == "pan_left":
+            z_terms.append(f"(0.08*{win})")
+            pan_terms.append(f"((0.5-{u})*{win})")
+        elif move == "pan_right":
+            z_terms.append(f"(0.08*{win})")
+            pan_terms.append(f"(({u}-0.5)*{win})")
+
+    shake_x_terms: List[str] = []
+    for tr in transients:
+        move = str(tr.get("move", ""))
+        ra = max(float(tr.get("start", scene_start)) - scene_start, 0.0)
+        rb = max(float(tr.get("end", scene_start)) - scene_start, ra + 0.05)
+        win = f"between({t_var},{ra:.3f},{rb:.3f})"
+        if move == "punch_in":
+            scale = float(tr.get("scale") or 1.12)
+            z_terms.append(f"({scale - 1.0:.4f}*{win})")
+        elif move == "shake":
+            amp = int(tr.get("amplitude_px") or 8)
+            shake_x_terms.append(f"({amp}*sin(2*PI*12*{t_var})*{win})")
+
+    z_expr = "+".join(z_terms)
+    x_base = "(iw-iw/zoom)/2"
+    if pan_terms:
+        x_base = f"(iw-iw/zoom)*clip(0.5+{'+'.join(pan_terms)},0,1)"
+    if shake_x_terms:
+        x_expr = f"clip({x_base}+{'+'.join(shake_x_terms)},0,iw-iw/zoom)"
+    else:
+        x_expr = x_base
+    y_expr = "(ih-ih/zoom)/2"
+    return z_expr, x_expr, y_expr
+
+
+def _build_background_filter(input_idx: Optional[int],
+                             resolution: Tuple[int, int],
+                             fps: int,
+                             n_frames: int,
+                             scene_start: float,
+                             camera_track: Sequence[Dict[str, Any]],
+                             out_label: str = "bg") -> str:
+    """Build the scene background filter chain with active camera zoom/pan (`zoompan`).
+
+    Because the background input is a single frame (no `-loop 1`), `scale`, `crop`,
+    and `unsharp` execute only ONCE on that single frame before `zoompan` generates
+    the `n_frames` animated camera stream.
+    """
     vw, vh = resolution
     if input_idx is None:
         return f"color=c=white:s={vw}x{vh}:r={fps},format=yuv420p[{out_label}]"
 
+    z_expr, x_expr, y_expr = _camera_zoompan_exprs(camera_track, scene_start, fps)
+
     if vw >= vh:
-        # 16:9 Long-form: Lanczos scale + center-crop + mild unsharp luma pass
+        # 16:9 Long-form: Lanczos scale + center-crop + mild unsharp + camera zoompan
         return (
-            f"[{input_idx}:v]fps={fps},"
+            f"[{input_idx}:v]"
             f"scale={vw}:{vh}:force_original_aspect_ratio=increase:flags=lanczos,"
             f"crop={vw}:{vh},"
-            f"unsharp=3:3:0.3:3:3:0.0,format=yuv420p[{out_label}]"
+            f"unsharp=3:3:0.3:3:3:0.0,"
+            f"zoompan=z='{z_expr}':x='{x_expr}':y='{y_expr}':d={n_frames}:s={vw}x{vh}:fps={fps},"
+            f"format=yuv420p[{out_label}]"
         )
     else:
-        # 9:16 Shorts: crop center 9:11.4 area, Lanczos scale to width, pad top/bottom on white
+        # 9:16 Shorts: crop center 9:11.4 area, Lanczos scale, zoompan, pad top/bottom on white
         box_h = min(vh, int(round(vw * 1.263)) // 2 * 2)
         return (
-            f"[{input_idx}:v]fps={fps},"
+            f"[{input_idx}:v]"
             f"crop='min(iw,ih*0.79)':'ih':(iw-ow)/2:0,"
             f"scale={vw}:{box_h}:force_original_aspect_ratio=increase:flags=lanczos,"
             f"crop={vw}:{box_h},"
             f"unsharp=3:3:0.3:3:3:0.0,"
+            f"zoompan=z='{z_expr}':x='{x_expr}':y='{y_expr}':d={n_frames}:s={vw}x{box_h}:fps={fps},"
             f"pad={vw}:{vh}:(ow-iw)/2:(oh-ih)/2:color=white,format=yuv420p[{out_label}]"
         )
 
@@ -239,7 +310,7 @@ def render_scene(scene_plan: Dict[str, Any],
         inputs: List[str] = ["-f", "concat", "-safe", "0", "-i", str(concat_txt)]
         next_idx = 1
 
-        # 2. Scene background image (if present on disk)
+        # 2. Scene background image (single frame input -> zoompan generates n_frames)
         bg_idx: Optional[int] = None
         img_rel = scene_plan.get("image_file") or ""
         img_path = (Path(assets_dir) / img_rel) if img_rel else None
@@ -248,7 +319,7 @@ def render_scene(scene_plan: Dict[str, Any],
             img_path = find_image_file(Path(assets_dir) / scene_sub, scene_plan.get("image", ""))
         if img_path is not None and img_path.is_file():
             bg_idx = next_idx
-            inputs.extend(["-loop", "1", "-i", str(img_path)])
+            inputs.extend(["-i", str(img_path)])
             next_idx += 1
         else:
             if scene_plan.get("image"):
@@ -278,7 +349,13 @@ def render_scene(scene_plan: Dict[str, Any],
 
         # 4. Assemble FFmpeg filter_complex graph
         chain: List[str] = []
-        chain.append(_build_background_filter(bg_idx, resolution, fps, out_label="bg0"))
+        chain.append(
+            _build_background_filter(
+                bg_idx, resolution, fps, n_frames, sc_start,
+                scene_plan.get("camera_track") or [],
+                out_label="bg0",
+            )
+        )
         cur_v = "bg0"
 
         # Overlay static reaction cutaways on the background
@@ -317,7 +394,7 @@ def render_scene(scene_plan: Dict[str, Any],
             if pip_src and pip_en:
                 pip_box = next(
                     (s["pip_box"] for s in layout_spans if s.get("pip_box")),
-                    [vw - 540, vh - 530, 500, 500],
+                    [40, (vh - 454) // 2, 454, 454],
                 )
                 px, py, pw, ph = [int(v) for v in pip_box]
                 chain.append(f"[{pip_src}]scale={pw}:{ph}:flags=lanczos[char_pip]")
@@ -388,12 +465,19 @@ def render_project_scenes(project_dir: Path,
                           character_override: Optional[str] = None,
                           force: bool = False,
                           log: Callable[[str], None] = print) -> SceneRenderResult:
-    """Compile timeline v1.2 and render all (or selected) scenes in `project_dir`."""
+    """Compile timeline v1.2 and render all (or selected) scenes sequentially."""
     project_dir = Path(project_dir)
     assets_dir = Path(assets_dir)
     narr_path = project_dir / "narration.json"
     if not narr_path.exists():
         raise ValueError(f"missing {narr_path} - run `narrate` first.")
+
+    warnings: List[str] = []
+    mem_warn = check_memory_preflight(log=log)
+    if mem_warn:
+        warnings.append(mem_warn)
+
+    workers = compute_scene_workers(hard_max=1)
 
     tl_v2, kit = upgrade_project_timeline(
         project_dir, cfg, assets_dir, character_override=character_override
@@ -404,12 +488,12 @@ def render_project_scenes(project_dir: Path,
 
     selected = [s for s in all_scenes if wanted_ids is None or s["id"] in wanted_ids]
     stats = {"rendered": 0, "cache": 0}
-    warnings: List[str] = []
     out_paths: List[Path] = []
     t0 = time.time()
 
     log(f"Rendering {len(selected)} scene(s) with character kit '{kit.id}' "
-        f"({cfg['render']['resolution'][0]}x{cfg['render']['resolution'][1]} @ {cfg['render']['fps']}fps) ...")
+        f"({cfg['render']['resolution'][0]}x{cfg['render']['resolution'][1]} @ {cfg['render']['fps']}fps, "
+        f"workers={workers}) ...")
 
     for i, sc_plan in enumerate(selected, 1):
         t_sc = time.time()

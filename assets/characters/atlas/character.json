@@ -10,7 +10,7 @@
   },
   "pip": {
     "scale": 0.42,
-    "position": "bottom_right",
+    "position": "mid_left",
     "margin_x": 40,
     "margin_y": 30
   },

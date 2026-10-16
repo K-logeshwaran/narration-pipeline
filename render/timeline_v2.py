@@ -17,7 +17,7 @@ from parser.config import camera_classes, canonical_character
 from .kit import CharacterKit, load_kit, resolve_character_kit
 
 TIMELINE_V2_VERSION = "1.2"
-SCENE_HASH_VERSION = "s1"
+SCENE_HASH_VERSION = "s2"
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp")
 
 
@@ -54,7 +54,8 @@ def find_image_file(folder: Path, stem: str) -> Optional[Path]:
 
 
 def _compute_pip_box(resolution: Tuple[int, int], kit: CharacterKit) -> List[int]:
-    """Compute [x, y, w, h] in pixels for Bob's PiP overlay on the target canvas."""
+    """Compute [x, y, w, h] in pixels for the character PiP overlay on the target canvas.
+    Supports positions: top_left, mid_left, bottom_left, top_right, mid_right, bottom_right, center."""
     vw, vh = resolution
     trim_w = max(2, kit.trim_box[2] - kit.trim_box[0])
     trim_h = max(2, kit.trim_box[3] - kit.trim_box[1])
@@ -64,17 +65,19 @@ def _compute_pip_box(resolution: Tuple[int, int], kit: CharacterKit) -> List[int
 
     mx = int(kit.pip.get("margin_x", 40))
     my = int(kit.pip.get("margin_y", 30))
-    pos = str(kit.pip.get("position", "bottom_right")).lower()
+    pos = str(kit.pip.get("position", "mid_left")).lower()
 
     if "left" in pos:
         x = mx
-    elif "center" in pos:
-        x = (vw - target_w) // 2
-    else:
+    elif "right" in pos:
         x = max(0, vw - target_w - mx)
+    else:
+        x = max(0, (vw - target_w) // 2)
 
     if "top" in pos:
         y = my
+    elif "mid" in pos or "center" in pos:
+        y = max(0, (vh - target_h) // 2)
     else:
         y = max(0, vh - target_h - my)
 
@@ -93,14 +96,13 @@ def _resolve_scene_overlays_and_layouts(
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     """Resolve `{img:}` and `{text:}` cues into timed overlays and layout_spans.
 
-    - `{img:name}` (where `name != 'scene'`): defaults to 2.5s or closes early on `{img:scene}`.
-      If `name` is a rigged pose in `kit.poses` (and not just 'default'), it switches
-      `layout_spans` to `bob_full`. Otherwise it emits a static full-frame cutaway
-      overlay and switches `layout_spans` to `full_scene` during that window so the
-      corner PiP does not cover the cutaway.
-    - `{text:WORDS|style}`: defaults to 1.2s.
+    - `{img:name}`: if `name` is a rigged pose in `kit.poses` (and not 'default'),
+      switches `layout_spans` to `bob_full`. Otherwise emits a background cutaway
+      overlay; the speaking PiP mascot remains visible unless `hide_pip_on_cutaway`
+      is explicitly set in config.
     """
     react_sub = cfg.get("assets", {}).get("reaction_images", "characters")
+    hide_pip_on_cutaway = bool(cfg.get("hide_pip_on_cutaway", False))
     pip_box = _compute_pip_box(resolution, kit)
 
     cues = [e for e in sc_events if e.get("type") == "cue" and e.get("cue_type") in ("img", "text")]
@@ -127,7 +129,6 @@ def _resolve_scene_overlays_and_layouts(
                 continue
             dur = float(ev.get("duration_s") or 2.5)
             end = min(start + dur, sc_end)
-            # Check for an early `{img:scene}` return cue
             for later in cues[idx + 1:]:
                 if later["cue_type"] == "img":
                     later_start = float(later["start"])
@@ -163,9 +164,9 @@ def _resolve_scene_overlays_and_layouts(
                 if file_sha is not None:
                     ov["sha256"] = file_sha
                 overlays.append(ov)
-                mode_overrides.append((start, end, "full_scene"))
+                if hide_pip_on_cutaway and exists is not False:
+                    mode_overrides.append((start, end, "full_scene"))
 
-    # Build contiguous layout_spans across [sc_start, sc_end]
     edges = {sc_start, sc_end}
     for a, b, _ in mode_overrides:
         edges.add(min(max(a, sc_start), sc_end))
@@ -317,7 +318,6 @@ def build_timeline_v2(project: Dict[str, Any],
         proj_sc = proj_scenes_by_id.get(sc_id, {})
         ls_sc = ls_scenes_by_id.get(sc_id, {})
 
-        raw_start = float(sc_v1["start"])
         raw_end = float(sc_v1["end"])
         start_frame = 0 if idx == 0 else scenes_v2[-1]["end_frame"]
         end_frame = max(start_frame + 1, int(round(raw_end * fps)))
@@ -368,7 +368,6 @@ def build_timeline_v2(project: Dict[str, Any],
             "mouth_cues": mouth_cues,
         }
 
-        # Segments belonging to this scene for caption hashing
         sc_seg_texts = [
             (s.get("id"), s.get("text"), s.get("words"))
             for s in proj_sc.get("segments", [])

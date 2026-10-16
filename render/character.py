@@ -90,7 +90,7 @@ def ensure_composite_png(kit: CharacterKit, pose_name: str, eyes_closed: bool,
     return out_path
 
 
-def _CanonicalMouth(kit: CharacterKit, raw_shape: str, pose_name: str) -> str:
+def _canonical_mouth(kit: CharacterKit, raw_shape: str, pose_name: str) -> str:
     """Return the canonical shape key that resolves to an existing mouth file."""
     pose = kit.poses.get(pose_name) or kit.poses["default"]
     s = raw_shape.strip().upper() if raw_shape else "X"
@@ -192,7 +192,7 @@ def build_char_timeline(scene_start_frame: int, scene_end_frame: int, fps: int,
         pose_name = pose_at(fa)
         pose_spec = kit.poses.get(pose_name) or kit.poses["default"]
         closed = bool(blink_at(fa) and pose_spec.blink)
-        mouth_shape = _CanonicalMouth(kit, mouth_at(fa), pose_name)
+        mouth_shape = _canonical_mouth(kit, mouth_at(fa), pose_name)
         if (raw_spans
                 and raw_spans[-1][2] == pose_name
                 and raw_spans[-1][3] == mouth_shape
@@ -219,12 +219,18 @@ def build_char_timeline(scene_start_frame: int, scene_end_frame: int, fps: int,
 def prepare_scene_character_concat(spans: Sequence[CharFrameSpan], kit: CharacterKit,
                                    char_cache_dir: Path, concat_file_path: Path) -> Path:
     """Ensure all composite PNGs exist for `spans` and write the FFmpeg concat
-    demuxer script to `concat_file_path`."""
+    demuxer script to `concat_file_path`.
+
+    Pads the final span by +0.5s so the character concat stream never reaches
+    EOF before the scene's `-frames:v n_frames` count completes.
+    """
     lines: List[str] = []
-    for sp in spans:
+    n = len(spans)
+    for idx, sp in enumerate(spans):
         png_path = ensure_composite_png(kit, sp.pose, sp.eyes_closed, sp.mouth, char_cache_dir)
+        dur = sp.duration_s + (0.5 if idx == n - 1 else 0.0)
         lines.append(f"file '{png_path.resolve().as_posix()}'")
-        lines.append(f"duration {sp.duration_s:.6f}")
+        lines.append(f"duration {dur:.6f}")
     if lines:
         lines.append(lines[-2])  # FFmpeg concat demuxer last-frame quirk
     concat_file_path.parent.mkdir(parents=True, exist_ok=True)
