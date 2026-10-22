@@ -1,4 +1,4 @@
-"""ASS (SubStation Alpha) captions built from narration.json segments.
+r"""ASS (SubStation Alpha) and SRT captions built from narration.json segments.
 
 One Dialogue event per caption line. Lines are split at sentence punctuation
 and chunked to at most captions.max_words_per_line words. With karaoke enabled
@@ -34,6 +34,15 @@ def ass_time(s: float) -> str:
     m, cs = divmod(cs, 6000)
     sec, c = divmod(cs, 100)
     return f"{h}:{m:02d}:{sec:02d}.{c:02d}"
+
+
+def srt_time(s: float) -> str:
+    """SRT timestamp hh:mm:ss,mmm (milliseconds, truncated not rounded)."""
+    ms = max(int(s * 1000), 0)
+    h, ms = divmod(ms, 3600000)
+    m, ms = divmod(ms, 60000)
+    sec, milli = divmod(ms, 1000)
+    return f"{h:02d}:{m:02d}:{sec:02d},{milli:03d}"
 
 
 def _chunks(words: Sequence[str], max_words: int) -> List[Tuple[int, int]]:
@@ -133,6 +142,14 @@ def render_ass(title: str, dialogues: Sequence[Dict[str, Any]], cfg: Dict[str, A
     return "\n".join(lines) + "\n"
 
 
+def render_srt(dialogues: Sequence[Dict[str, Any]]) -> str:
+    """Render standard SubRip (.srt) text from plain-text dialogue entries."""
+    blocks: List[str] = []
+    for idx, d in enumerate(dialogues, 1):
+        blocks.append(f"{idx}\n{srt_time(d['start'])} --> {srt_time(d['end'])}\n{d['text']}")
+    return ("\n\n".join(blocks) + "\n") if blocks else ""
+
+
 def write_ass(project: Dict[str, Any], segments: Sequence[Dict[str, Any]],
               cfg: Dict[str, Any], path: Path) -> Path:
     ccfg = {**DEFAULTS, **(cfg.get("captions") or {})}
@@ -140,4 +157,12 @@ def write_ass(project: Dict[str, Any], segments: Sequence[Dict[str, Any]],
     path.parent.mkdir(parents=True, exist_ok=True)
     title = project.get("project", {}).get("title") or "Captions"
     path.write_text(render_ass(title, build_dialogues(segments, ccfg), cfg), encoding="utf-8")
+    return path
+
+
+def write_srt(segments: Sequence[Dict[str, Any]], cfg: Dict[str, Any], path: Path) -> Path:
+    ccfg = {**DEFAULTS, **(cfg.get("captions") or {}), "karaoke": False}
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(render_srt(build_dialogues(segments, ccfg)), encoding="utf-8")
     return path

@@ -124,12 +124,8 @@ def resolve_layered_config(
     eng_cfg = _load_engine_layer(engine_name)
 
     merged = _deep_merge(eng_cfg, ch_cfg)
-    if engine and engine != ch_cfg.get("engine"):
-        eng_override = _load_engine_layer(engine)
-        if "tts" in eng_override:
-            merged["tts"] = _deep_merge(merged.get("tts") or {}, eng_override["tts"])
-        merged["tts"]["backend"] = engine
-
+    if engine:
+        merged.setdefault("tts", {})["backend"] = engine
     base_voice = (merged.get("tts") or {}).get("voice")
 
     if playlist:

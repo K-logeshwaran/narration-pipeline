@@ -1,0 +1,193 @@
+[Script Info]
+Title: Why You Stay Up Late When You're Exhausted (Tomorrow Bob Is Furious)
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+PlayResX: 1920
+PlayResY: 1080
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Arial,64,&H00FFFFFF,&H0000D7FF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,3,1,2,40,40,60,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.06,0:00:02.28,Caption,,0,0,0,,{\k9}In {\k9}the {\k33}next {\k25}eight {\k45}minutes, {\k20}I'll {\k62}explain {\k20}why
+Dialogue: 0,0:00:02.28,0:00:04.58,Caption,,0,0,0,,{\k16}you {\k31}stay {\k21}up {\k14}when {\k17}you're {\k85}exhausted, {\k14}and {\k31}hand
+Dialogue: 0,0:00:04.58,0:00:06.43,Caption,,0,0,0,,{\k19}you {\k34}three {\k50}fixes {\k15}for {\k68}tonight.
+Dialogue: 0,0:00:06.75,0:00:08.17,Caption,,0,0,0,,{\k20}But {\k49}first, {\k10}a {\k64}question.
+Dialogue: 0,0:00:08.17,0:00:09.15,Caption,,0,0,0,,{\k21}You're {\k76}tired.
+Dialogue: 0,0:00:09.16,0:00:10.57,Caption,,0,0,0,,{\k16}You {\k20}know {\k21}you're {\k84}tired.
+Dialogue: 0,0:00:10.58,0:00:13.18,Caption,,0,0,0,,{\k23}So {\k26}why {\k25}does {\k48}eleven {\k59}PM {\k44}feel {\k23}like {\k14}the
+Dialogue: 0,0:00:13.18,0:00:14.68,Caption,,0,0,0,,{\k34}best {\k26}part {\k9}of {\k18}your {\k64}day?
+Dialogue: 0,0:00:14.84,0:00:15.79,Caption,,0,0,0,,{\k26}Here's {\k12}the {\k56}secret.
+Dialogue: 0,0:00:15.79,0:00:17.36,Caption,,0,0,0,,{\k12}It {\k24}isn't {\k14}that {\k15}you {\k29}hate {\k63}sleep.
+Dialogue: 0,0:00:17.49,0:00:19.47,Caption,,0,0,0,,{\k11}You've {\k19}been {\k45}borrowing {\k18}from {\k43}tomorrow {\k63}Bob.
+Dialogue: 0,0:00:19.65,0:00:22.20,Caption,,0,0,0,,{\k25}He's {\k14}the {\k29}guy {\k16}you {\k40}hand {\k34}every {\k49}problem {\k49}to.
+Dialogue: 0,0:00:22.35,0:00:25.30,Caption,,0,0,0,,{\k64}Groggy, {\k59}grumpy, {\k12}and {\k32}never {\k32}once {\k95}consulted.
+Dialogue: 0,0:00:25.68,0:00:26.96,Caption,,0,0,0,,{\k15}He {\k15}is {\k24}not {\k8}a {\k66}fan.
+Dialogue: 0,0:00:27.14,0:00:29.29,Caption,,0,0,0,,{\k36}First, {\k21}this {\k24}has {\k16}an {\k50}actual {\k68}name.
+Dialogue: 0,0:00:29.29,0:00:31.53,Caption,,0,0,0,,{\k16}And {\k20}it's {\k26}less {\k62}dramatic {\k17}than {\k20}you'd {\k61}hope.
+Dialogue: 0,0:00:32.06,0:00:34.98,Caption,,0,0,0,,{\k24}It's {\k39}called {\k75}bedtime {\k155}procrastination.
+Dialogue: 0,0:00:35.02,0:00:37.81,Caption,,0,0,0,,{\k69}Researchers {\k52}define {\k16}it {\k16}as {\k38}going {\k15}to {\k34}bed {\k39}later
+Dialogue: 0,0:00:37.81,0:00:40.56,Caption,,0,0,0,,{\k15}than {\k15}you {\k31}meant {\k41}to, {\k23}with {\k34}no {\k71}outside {\k45}reason
+Dialogue: 0,0:00:40.56,0:00:41.57,Caption,,0,0,0,,{\k54}forcing {\k48}you.
+Dialogue: 0,0:00:41.77,0:00:44.28,Caption,,0,0,0,,{\k52}Kroese {\k14}and {\k62}colleagues {\k26}wrote {\k33}about {\k15}it {\k17}in {\k31}two
+Dialogue: 0,0:00:44.28,0:00:45.84,Caption,,0,0,0,,{\k52}thousand {\k104}fourteen.
+Dialogue: 0,0:00:45.88,0:00:48.86,Caption,,0,0,0,,{\k21}The {\k29}"no {\k66}outside {\k45}reason" {\k39}part {\k16}is {\k15}the {\k66}key.
+Dialogue: 0,0:00:49.05,0:00:49.91,Caption,,0,0,0,,{\k24}No {\k62}deadline.
+Dialogue: 0,0:00:49.91,0:00:50.73,Caption,,0,0,0,,{\k20}No {\k61}newborn.
+Dialogue: 0,0:00:50.73,0:00:51.74,Caption,,0,0,0,,{\k18}No {\k27}night {\k56}shift.
+Dialogue: 0,0:00:51.74,0:00:54.00,Caption,,0,0,0,,{\k30}Just {\k34}you, {\k14}a {\k48}phone, {\k10}and {\k6}a {\k29}very {\k56}flexible
+Dialogue: 0,0:00:54.00,0:00:55.83,Caption,,0,0,0,,{\k47}idea {\k23}of {\k23}"ten {\k23}more {\k67}minutes."
+Dialogue: 0,0:00:56.13,0:00:57.71,Caption,,0,0,0,,{\k33}That's {\k20}what {\k28}makes {\k16}it {\k61}odd.
+Dialogue: 0,0:00:57.73,0:01:00.01,Caption,,0,0,0,,{\k42}Nothing {\k18}is {\k45}actually {\k48}stopping {\k15}you {\k20}from {\k27}going {\k12}to
+Dialogue: 0,0:01:00.01,0:01:00.61,Caption,,0,0,0,,{\k60}bed.
+Dialogue: 0,0:01:00.77,0:01:02.43,Caption,,0,0,0,,{\k31}Except {\k9}the {\k24}part {\k9}of {\k23}you {\k17}that {\k30}doesn't {\k24}want
+Dialogue: 0,0:01:02.43,0:01:03.01,Caption,,0,0,0,,{\k58}to.
+Dialogue: 0,0:01:03.22,0:01:05.04,Caption,,0,0,0,,{\k18}So {\k20}it's {\k21}not {\k10}a {\k53}character {\k61}flaw.
+Dialogue: 0,0:01:05.07,0:01:07.76,Caption,,0,0,0,,{\k21}It's {\k10}a {\k56}pattern, {\k14}and {\k54}patterns {\k24}have {\k91}causes.
+Dialogue: 0,0:01:07.94,0:01:09.05,Caption,,0,0,0,,{\k41}Honest {\k70}caveat.
+Dialogue: 0,0:01:09.05,0:01:11.01,Caption,,0,0,0,,{\k28}Not {\k34}every {\k28}late {\k27}night {\k15}is {\k65}this.
+Dialogue: 0,0:01:11.08,0:01:13.74,Caption,,0,0,0,,{\k34}Shift {\k44}work, {\k33}young {\k45}kids, {\k14}and {\k32}sleep {\k50}problems {\k15}are
+Dialogue: 0,0:01:13.74,0:01:14.93,Caption,,0,0,0,,{\k33}different {\k87}stories.
+Dialogue: 0,0:01:15.10,0:01:17.61,Caption,,0,0,0,,{\k25}Now {\k27}let's {\k24}talk {\k33}about {\k26}why {\k21}your {\k46}evening {\k49}suddenly
+Dialogue: 0,0:01:17.61,0:01:20.06,Caption,,0,0,0,,{\k46}feels {\k19}like {\k15}the {\k35}only {\k41}time {\k17}that {\k56}belongs {\k15}to
+Dialogue: 0,0:01:20.06,0:01:20.54,Caption,,0,0,0,,{\k48}you.
+Dialogue: 0,0:01:21.13,0:01:22.36,Caption,,0,0,0,,{\k20}Think {\k30}about {\k19}your {\k54}day.
+Dialogue: 0,0:01:22.37,0:01:23.91,Caption,,0,0,0,,{\k35}Work {\k39}owns {\k14}the {\k66}morning.
+Dialogue: 0,0:01:23.93,0:01:25.63,Caption,,0,0,0,,{\k45}Chores {\k16}own {\k14}the {\k95}afternoon.
+Dialogue: 0,0:01:25.64,0:01:28.00,Caption,,0,0,0,,{\k39}People {\k19}who {\k33}need {\k44}things {\k14}own {\k15}the {\k73}evening.
+Dialogue: 0,0:01:28.18,0:01:30.70,Caption,,0,0,0,,{\k25}By {\k39}ten {\k64}PM, {\k19}you {\k49}finally {\k19}have {\k9}a {\k30}few
+Dialogue: 0,0:01:30.70,0:01:33.55,Caption,,0,0,0,,{\k55}hours {\k21}with {\k58}nobody {\k46}asking {\k15}for {\k90}anything.
+Dialogue: 0,0:01:33.55,0:01:36.00,Caption,,0,0,0,,{\k23}It {\k45}feels {\k28}like {\k75}unclaimed {\k74}land.
+Dialogue: 0,0:01:36.19,0:01:37.31,Caption,,0,0,0,,{\k10}So {\k16}you {\k27}plant {\k8}a {\k51}flag.
+Dialogue: 0,0:01:37.36,0:01:38.86,Caption,,0,0,0,,{\k28}"This {\k38}hour {\k16}is {\k69}mine."
+Dialogue: 0,0:01:38.89,0:01:39.91,Caption,,0,0,0,,{\k38}Nobody {\k19}may {\k29}touch {\k18}it.
+Dialogue: 0,0:01:39.91,0:01:41.00,Caption,,0,0,0,,{\k19}Not {\k28}even {\k63}sleep.
+Dialogue: 0,0:01:41.19,0:01:46.02,Caption,,0,0,0,,{\k69}Online, {\k40}people {\k69}nicknamed {\k26}this {\k64}revenge {\k68}bedtime {\k147}procrastination.
+Dialogue: 0,0:01:46.02,0:01:49.11,Caption,,0,0,0,,{\k22}It's {\k16}an {\k75}informal {\k49}internet {\k67}nickname, {\k25}not {\k10}a {\k44}medical
+Dialogue: 0,0:01:49.11,0:01:49.78,Caption,,0,0,0,,{\k68}term.
+Dialogue: 0,0:01:49.93,0:01:52.16,Caption,,0,0,0,,{\k50}Also, {\k55}"revenge" {\k11}is {\k6}a {\k20}bit {\k80}dramatic.
+Dialogue: 0,0:01:52.17,0:01:53.08,Caption,,0,0,0,,{\k39}Against {\k52}whom?
+Dialogue: 0,0:01:53.08,0:01:54.40,Caption,,0,0,0,,{\k18}Your {\k41}alarm {\k73}clock?
+Dialogue: 0,0:01:54.54,0:01:56.92,Caption,,0,0,0,,{\k12}The {\k42}feeling {\k69}underneath {\k19}is {\k40}real, {\k55}though.
+Dialogue: 0,0:01:56.96,0:01:58.99,Caption,,0,0,0,,{\k16}You {\k29}want {\k28}some {\k41}time {\k15}that {\k29}isn't {\k34}owed {\k12}to
+Dialogue: 0,0:01:58.99,0:01:59.75,Caption,,0,0,0,,{\k75}anyone.
+Dialogue: 0,0:01:59.93,0:02:01.35,Caption,,0,0,0,,{\k11}The {\k36}catch {\k15}is {\k14}the {\k66}price.
+Dialogue: 0,0:02:01.35,0:02:03.60,Caption,,0,0,0,,{\k16}You {\k29}pay {\k19}with {\k44}sleep, {\k12}and {\k46}tomorrow {\k34}Bob {\k25}gets
+Dialogue: 0,0:02:03.60,0:02:04.27,Caption,,0,0,0,,{\k10}the {\k57}bill.
+Dialogue: 0,0:02:04.55,0:02:07.18,Caption,,0,0,0,,{\k40}Interest {\k40}rate: {\k25}one {\k60}extremely {\k35}grumpy {\k64}morning.
+Dialogue: 0,0:02:07.34,0:02:08.91,Caption,,0,0,0,,{\k12}But {\k24}why {\k29}can't {\k10}you {\k20}just {\k62}stop?
+Dialogue: 0,0:02:08.91,0:02:10.11,Caption,,0,0,0,,{\k24}That's {\k6}a {\k38}brain {\k53}problem.
+Dialogue: 0,0:02:10.11,0:02:11.18,Caption,,0,0,0,,{\k27}Let's {\k18}go {\k62}there.
+Dialogue: 0,0:02:11.76,0:02:13.21,Caption,,0,0,0,,{\k33}Here's {\k14}the {\k40}cruel {\k59}part.
+Dialogue: 0,0:02:13.22,0:02:16.29,Caption,,0,0,0,,{\k20}By {\k45}night, {\k98}self-control {\k39}tends {\k12}to {\k26}run {\k66}low.
+Dialogue: 0,0:02:16.32,0:02:19.41,Caption,,0,0,0,,{\k71}Researchers {\k45}argue {\k30}about {\k65}exactly {\k20}how {\k28}that {\k36}works, {\k14}but
+Dialogue: 0,0:02:19.41,0:02:20.38,Caption,,0,0,0,,{\k21}you've {\k34}felt {\k41}it.
+Dialogue: 0,0:02:20.55,0:02:22.18,Caption,,0,0,0,,{\k22}It's {\k20}like {\k14}a {\k41}phone {\k65}battery.
+Dialogue: 0,0:02:22.18,0:02:23.70,Caption,,0,0,0,,{\k25}At {\k62}noon, {\k65}full.
+Dialogue: 0,0:02:23.70,0:02:25.79,Caption,,0,0,0,,{\k21}At {\k53}midnight, {\k16}it's {\k15}at {\k22}one {\k54}percent, {\k10}and {\k18}you're
+Dialogue: 0,0:02:25.79,0:02:27.07,Caption,,0,0,0,,{\k46}opening {\k11}a {\k70}game.
+Dialogue: 0,0:02:27.21,0:02:29.43,Caption,,0,0,0,,{\k11}The {\k35}same {\k41}brain {\k21}that {\k26}said {\k36}no {\k11}to {\k40}dessert
+Dialogue: 0,0:02:29.43,0:02:31.79,Caption,,0,0,0,,{\k15}at {\k35}lunch {\k40}now {\k28}says {\k27}yes {\k14}to {\k78}everything.
+Dialogue: 0,0:02:31.94,0:02:33.22,Caption,,0,0,0,,{\k11}And {\k12}then {\k22}there's {\k81}timing.
+Dialogue: 0,0:02:33.38,0:02:35.13,Caption,,0,0,0,,{\k45}Scrolling {\k35}pays {\k20}off {\k25}right {\k50}now.
+Dialogue: 0,0:02:35.18,0:02:36.84,Caption,,0,0,0,,{\k32}Sleep {\k32}pays {\k25}off {\k75}tomorrow.
+Dialogue: 0,0:02:36.98,0:02:40.03,Caption,,0,0,0,,{\k36}People {\k31}tend {\k15}to {\k45}favor {\k60}rewards {\k18}that {\k30}come {\k70}sooner.
+Dialogue: 0,0:02:40.03,0:02:42.92,Caption,,0,0,0,,{\k21}It's {\k10}a {\k35}very {\k45}common {\k71}tendency, {\k14}and {\k61}bedtime {\k31}keeps
+Dialogue: 0,0:02:42.92,0:02:43.95,Caption,,0,0,0,,{\k39}losing {\k21}to {\k43}it.
+Dialogue: 0,0:02:44.13,0:02:45.86,Caption,,0,0,0,,{\k12}So {\k10}the {\k28}vote {\k15}is {\k36}tonight {\k44}Bob, {\k19}all {\k9}of
+Dialogue: 0,0:02:45.86,0:02:46.31,Caption,,0,0,0,,{\k45}them.
+Dialogue: 0,0:02:46.32,0:02:47.73,Caption,,0,0,0,,{\k49}Tomorrow {\k35}Bob, {\k57}none.
+Dialogue: 0,0:02:48.12,0:02:49.32,Caption,,0,0,0,,{\k12}He {\k29}wasn't {\k79}invited.
+Dialogue: 0,0:02:49.46,0:02:51.64,Caption,,0,0,0,,{\k23}It's {\k27}not {\k20}that {\k16}you {\k38}can't {\k28}do {\k66}math.
+Dialogue: 0,0:02:51.64,0:02:54.19,Caption,,0,0,0,,{\k25}It's {\k22}that {\k55}tomorrow {\k42}feels {\k19}like {\k6}a {\k85}stranger.
+Dialogue: 0,0:02:54.36,0:02:56.58,Caption,,0,0,0,,{\k11}And {\k11}a {\k38}feed {\k32}knows {\k65}exactly {\k20}what {\k14}to {\k31}do
+Dialogue: 0,0:02:56.58,0:02:58.06,Caption,,0,0,0,,{\k14}with {\k10}a {\k54}tired {\k70}brain.
+Dialogue: 0,0:02:58.66,0:03:00.77,Caption,,0,0,0,,{\k26}Now {\k24}put {\k24}that {\k50}tired {\k41}brain {\k16}in {\k22}front {\k7}of
+Dialogue: 0,0:03:00.77,0:03:02.56,Caption,,0,0,0,,{\k12}a {\k41}feed {\k19}with {\k28}no {\k79}bottom.
+Dialogue: 0,0:03:02.61,0:03:05.58,Caption,,0,0,0,,{\k28}No {\k41}last {\k54}page, {\k21}no {\k57}credits, {\k30}no {\k46}signal {\k20}that
+Dialogue: 0,0:03:05.58,0:03:06.61,Caption,,0,0,0,,{\k25}says {\k17}you're {\k61}done.
+Dialogue: 0,0:03:06.79,0:03:09.54,Caption,,0,0,0,,{\k14}And {\k9}the {\k64}rewards {\k20}are {\k99}unpredictable, {\k17}so {\k18}you {\k35}keep
+Dialogue: 0,0:03:09.54,0:03:11.14,Caption,,0,0,0,,{\k47}checking {\k12}for {\k14}the {\k24}good {\k62}one.
+Dialogue: 0,0:03:11.24,0:03:13.62,Caption,,0,0,0,,{\k25}"One {\k55}more" {\k19}is {\k31}just {\k22}how {\k15}it {\k70}works.
+Dialogue: 0,0:03:13.78,0:03:15.08,Caption,,0,0,0,,{\k51}Also, {\k79}screens.
+Dialogue: 0,0:03:15.09,0:03:18.08,Caption,,0,0,0,,{\k26}Some {\k47}research {\k59}suggests {\k41}evening {\k28}light {\k21}from {\k56}screens {\k20}can
+Dialogue: 0,0:03:18.08,0:03:20.03,Caption,,0,0,0,,{\k26}nudge {\k34}sleep {\k38}later {\k12}for {\k25}some {\k60}people.
+Dialogue: 0,0:03:20.21,0:03:22.77,Caption,,0,0,0,,{\k16}The {\k51}evidence {\k20}on {\k25}how {\k28}big {\k22}that {\k50}effect {\k44}is,
+Dialogue: 0,0:03:22.77,0:03:23.71,Caption,,0,0,0,,{\k21}is {\k72}mixed.
+Dialogue: 0,0:03:23.75,0:03:25.65,Caption,,0,0,0,,{\k21}So {\k17}I'm {\k26}not {\k38}saying {\k10}the {\k47}glow {\k16}is {\k14}the
+Dialogue: 0,0:03:25.65,0:03:26.34,Caption,,0,0,0,,{\k69}villain.
+Dialogue: 0,0:03:26.62,0:03:28.15,Caption,,0,0,0,,{\k18}I'm {\k29}saying {\k12}it's {\k9}a {\k85}suspect.
+Dialogue: 0,0:03:28.35,0:03:30.48,Caption,,0,0,0,,{\k17}So {\k16}you {\k22}end {\k20}up {\k50}somewhere {\k86}strange.
+Dialogue: 0,0:03:30.52,0:03:32.09,Caption,,0,0,0,,{\k81}Exhausted, {\k14}and {\k62}wired.
+Dialogue: 0,0:03:32.09,0:03:34.07,Caption,,0,0,0,,{\k50}Tired, {\k17}but {\k51}unable {\k14}to {\k65}stop.
+Dialogue: 0,0:03:34.20,0:03:37.00,Caption,,0,0,0,,{\k100}Congratulations, {\k21}it's {\k28}one {\k56}AM, {\k11}and {\k9}you {\k21}have {\k34}zero
+Dialogue: 0,0:03:37.00,0:03:37.78,Caption,,0,0,0,,{\k78}regrets.
+Dialogue: 0,0:03:37.78,0:03:38.48,Caption,,0,0,0,,{\k15}For {\k55}now.
+Dialogue: 0,0:03:38.63,0:03:40.42,Caption,,0,0,0,,{\k40}Tomorrow {\k26}Bob {\k11}will {\k24}have {\k22}all {\k7}of {\k48}them.
+Dialogue: 0,0:03:40.81,0:03:41.67,Caption,,0,0,0,,{\k12}In {\k73}bulk.
+Dialogue: 0,0:03:41.83,0:03:43.51,Caption,,0,0,0,,{\k55}Okay, {\k33}enough {\k80}roasting.
+Dialogue: 0,0:03:43.53,0:03:44.48,Caption,,0,0,0,,{\k95}Fixes.
+Dialogue: 0,0:03:44.49,0:03:46.24,Caption,,0,0,0,,{\k26}One {\k12}for {\k14}the {\k49}clock, {\k22}one {\k12}for {\k20}the {\k19}"me
+Dialogue: 0,0:03:46.24,0:03:48.54,Caption,,0,0,0,,{\k56}time," {\k15}and {\k27}one {\k11}for {\k12}the {\k41}finish {\k66}line.
+Dialogue: 0,0:03:49.13,0:03:49.95,Caption,,0,0,0,,{\k34}Fix {\k49}one.
+Dialogue: 0,0:03:49.95,0:03:51.98,Caption,,0,0,0,,{\k24}Set {\k9}an {\k50}alarm {\k12}for {\k30}going {\k14}to {\k39}bed, {\k25}not
+Dialogue: 0,0:03:51.98,0:03:52.85,Caption,,0,0,0,,{\k38}waking {\k50}up.
+Dialogue: 0,0:03:52.90,0:03:55.36,Caption,,0,0,0,,{\k35}Thirty {\k35}minutes {\k40}before {\k15}you {\k19}want {\k7}to {\k14}be {\k81}asleep.
+Dialogue: 0,0:03:55.50,0:03:57.40,Caption,,0,0,0,,{\k20}It's {\k14}a {\k69}wind-down {\k88}reminder.
+Dialogue: 0,0:03:57.41,0:04:00.15,Caption,,0,0,0,,{\k12}A {\k71}homemade {\k50}stopping {\k48}cue, {\k22}since {\k15}the {\k35}feed {\k20}won't
+Dialogue: 0,0:04:00.15,0:04:01.30,Caption,,0,0,0,,{\k22}make {\k23}one {\k19}for {\k51}you.
+Dialogue: 0,0:04:01.43,0:04:03.18,Caption,,0,0,0,,{\k15}And {\k38}yes, {\k21}you'll {\k28}swipe {\k7}it {\k22}away {\k10}the {\k34}first
+Dialogue: 0,0:04:03.18,0:04:03.80,Caption,,0,0,0,,{\k63}time.
+Dialogue: 0,0:04:03.94,0:04:04.56,Caption,,0,0,0,,{\k30}That's {\k33}fine.
+Dialogue: 0,0:04:04.56,0:04:05.43,Caption,,0,0,0,,{\k12}You {\k74}noticed.
+Dialogue: 0,0:04:05.76,0:04:06.50,Caption,,0,0,0,,{\k34}Fix {\k40}two.
+Dialogue: 0,0:04:06.50,0:04:08.93,Caption,,0,0,0,,{\k32}Move {\k22}some {\k9}of {\k28}your {\k19}"me {\k56}time" {\k77}earlier.
+Dialogue: 0,0:04:08.95,0:04:11.06,Caption,,0,0,0,,{\k33}Even {\k26}ten {\k29}minutes {\k11}of {\k48}something {\k32}just {\k18}for {\k15}you
+Dialogue: 0,0:04:11.06,0:04:12.05,Caption,,0,0,0,,{\k40}before {\k59}dinner.
+Dialogue: 0,0:04:12.22,0:04:13.93,Caption,,0,0,0,,{\k16}The {\k50}idea {\k19}is {\k23}that {\k17}if {\k26}some {\k7}of {\k12}the
+Dialogue: 0,0:04:13.93,0:04:16.75,Caption,,0,0,0,,{\k36}day {\k16}is {\k56}already {\k75}yours, {\k14}the {\k34}night {\k21}has {\k29}less
+Dialogue: 0,0:04:16.75,0:04:17.84,Caption,,0,0,0,,{\k12}to {\k24}make {\k19}up {\k54}for.
+Dialogue: 0,0:04:17.98,0:04:19.61,Caption,,0,0,0,,{\k16}Think {\k11}of {\k18}it {\k19}as {\k6}a {\k93}deposit.
+Dialogue: 0,0:04:19.62,0:04:22.27,Caption,,0,0,0,,{\k14}A {\k40}small {\k24}one, {\k39}before {\k12}the {\k50}late-night {\k87}withdrawal.
+Dialogue: 0,0:04:22.45,0:04:24.00,Caption,,0,0,0,,{\k15}Does {\k12}it {\k28}work {\k19}for {\k81}everyone?
+Dialogue: 0,0:04:24.01,0:04:25.06,Caption,,0,0,0,,{\k25}No {\k80}promises.
+Dialogue: 0,0:04:25.06,0:04:27.12,Caption,,0,0,0,,{\k14}It's {\k35}something {\k14}to {\k41}try, {\k19}not {\k11}a {\k72}cure.
+Dialogue: 0,0:04:27.30,0:04:29.70,Caption,,0,0,0,,{\k35}Both {\k19}are {\k56}free, {\k23}which {\k15}is {\k12}the {\k43}correct {\k38}price
+Dialogue: 0,0:04:29.70,0:04:31.64,Caption,,0,0,0,,{\k11}for {\k6}a {\k45}person {\k16}who {\k29}can't {\k16}be {\k71}bothered.
+Dialogue: 0,0:04:31.79,0:04:33.94,Caption,,0,0,0,,{\k14}And {\k15}the {\k41}third {\k15}is {\k26}my {\k64}favorite, {\k30}because {\k10}it
+Dialogue: 0,0:04:33.94,0:04:35.73,Caption,,0,0,0,,{\k34}takes {\k45}barely {\k26}any {\k74}discipline.
+Dialogue: 0,0:04:36.31,0:04:37.04,Caption,,0,0,0,,{\k31}Fix {\k41}three.
+Dialogue: 0,0:04:37.04,0:04:39.09,Caption,,0,0,0,,{\k46}Decide {\k12}the {\k39}last {\k21}thing {\k7}of {\k9}the {\k30}night {\k40}before
+Dialogue: 0,0:04:39.09,0:04:39.94,Caption,,0,0,0,,{\k16}you {\k34}start {\k35}it.
+Dialogue: 0,0:04:39.95,0:04:41.02,Caption,,0,0,0,,{\k26}One {\k81}episode.
+Dialogue: 0,0:04:41.02,0:04:42.01,Caption,,0,0,0,,{\k30}One {\k69}chapter.
+Dialogue: 0,0:04:42.02,0:04:43.19,Caption,,0,0,0,,{\k27}One {\k89}crossword.
+Dialogue: 0,0:04:43.37,0:04:45.87,Caption,,0,0,0,,{\k11}The {\k43}point {\k16}is {\k73}deciding {\k12}in {\k95}advance.
+Dialogue: 0,0:04:45.90,0:04:47.99,Caption,,0,0,0,,{\k39}Not {\k24}"one {\k54}more," {\k11}in {\k9}the {\k48}moment, {\k14}with {\k11}a
+Dialogue: 0,0:04:47.99,0:04:49.32,Caption,,0,0,0,,{\k56}tired {\k76}brain.
+Dialogue: 0,0:04:49.34,0:04:51.51,Caption,,0,0,0,,{\k10}The {\k38}number {\k25}gets {\k30}set {\k22}while {\k18}you're {\k74}awake.
+Dialogue: 0,0:04:51.66,0:04:53.84,Caption,,0,0,0,,{\k16}Then {\k12}the {\k30}thing {\k43}ends, {\k9}the {\k44}credits {\k51}roll, {\k12}and
+Dialogue: 0,0:04:53.84,0:04:55.71,Caption,,0,0,0,,{\k15}you {\k15}get {\k11}a {\k33}real {\k50}stopping {\k64}cue.
+Dialogue: 0,0:04:55.74,0:04:57.22,Caption,,0,0,0,,{\k21}It {\k41}feels {\k85}illegal.
+Dialogue: 0,0:04:57.36,0:04:58.68,Caption,,0,0,0,,{\k19}Pair {\k8}it {\k16}with {\k25}one {\k65}rule.
+Dialogue: 0,0:04:58.82,0:05:00.84,Caption,,0,0,0,,{\k11}When {\k9}the {\k35}last {\k24}thing {\k59}finishes, {\k12}the {\k35}lights {\k18}go
+Dialogue: 0,0:05:00.84,0:05:01.37,Caption,,0,0,0,,{\k52}out.
+Dialogue: 0,0:05:01.38,0:05:03.01,Caption,,0,0,0,,{\k28}No {\k41}bonus {\k94}episode.
+Dialogue: 0,0:05:03.20,0:05:04.95,Caption,,0,0,0,,{\k10}A {\k53}small {\k47}honest {\k65}note.
+Dialogue: 0,0:05:04.95,0:05:07.12,Caption,,0,0,0,,{\k18}If {\k20}your {\k35}sleep {\k41}stays {\k43}bad {\k31}even {\k15}when {\k15}you
+Dialogue: 0,0:05:07.12,0:05:09.34,Caption,,0,0,0,,{\k17}do {\k18}go {\k12}to {\k45}bed, {\k33}that's {\k34}worth {\k49}raising {\k14}with
+Dialogue: 0,0:05:09.34,0:05:10.33,Caption,,0,0,0,,{\k6}a {\k93}professional.
+Dialogue: 0,0:05:10.50,0:05:11.12,Caption,,0,0,0,,{\k34}That's {\k28}it.
+Dialogue: 0,0:05:11.12,0:05:13.63,Caption,,0,0,0,,{\k66}Alarm, {\k81}deposit, {\k41}finish {\k62}line.
+Dialogue: 0,0:05:13.65,0:05:16.10,Caption,,0,0,0,,{\k32}Three {\k41}small {\k39}things {\k15}I {\k21}can {\k39}barely {\k16}be {\k41}bothered
+Dialogue: 0,0:05:16.10,0:05:16.86,Caption,,0,0,0,,{\k14}to {\k62}say.
+Dialogue: 0,0:05:17.16,0:05:18.88,Caption,,0,0,0,,{\k51}Remember {\k56}tomorrow {\k65}Bob?
+Dialogue: 0,0:05:18.88,0:05:21.55,Caption,,0,0,0,,{\k12}The {\k20}one {\k15}who {\k30}wasn't {\k68}invited, {\k32}wasn't {\k72}consulted, {\k16}and
+Dialogue: 0,0:05:21.55,0:05:22.99,Caption,,0,0,0,,{\k49}always {\k25}gets {\k11}the {\k59}bill?
+Dialogue: 0,0:05:23.16,0:05:24.66,Caption,,0,0,0,,{\k40}Tonight, {\k12}you {\k11}could {\k35}invite {\k52}him.
+Dialogue: 0,0:05:25.39,0:05:26.35,Caption,,0,0,0,,{\k19}He'll {\k28}say {\k50}thanks.
+Dialogue: 0,0:05:26.35,0:05:28.46,Caption,,0,0,0,,{\k57}Nobody's {\k31}ever {\k24}given {\k15}him {\k10}the {\k73}chance.

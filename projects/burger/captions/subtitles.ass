@@ -1,0 +1,230 @@
+[Script Info]
+Title: Every Type of Burger Explained
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+PlayResX: 1920
+PlayResY: 1080
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Arial,64,&H00FFFFFF,&H0000D7FF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,3,1,2,40,40,60,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.03,0:00:01.45,Caption,,0,0,0,,{\k50}Classic {\k93}Hamburger.
+Dialogue: 0,0:00:01.84,0:00:04.61,Caption,,0,0,0,,{\k10}The {\k50}classic {\k70}hamburger {\k16}is {\k29}built {\k40}around {\k14}a {\k49}seasoned
+Dialogue: 0,0:00:04.61,0:00:08.21,Caption,,0,0,0,,{\k39}ground {\k33}beef {\k75}patty {\k51}tucked {\k51}inside {\k11}a {\k41}soft {\k58}bun.
+Dialogue: 0,0:00:08.41,0:00:12.36,Caption,,0,0,0,,{\k47}Lettuce, {\k96}tomato, {\k65}onion, {\k50}pickles, {\k14}and {\k59}sauces {\k19}are {\k45}common
+Dialogue: 0,0:00:12.36,0:00:16.94,Caption,,0,0,0,,{\k128}additions, {\k35}although {\k15}the {\k50}exact {\k76}combination {\k49}varies {\k24}by {\k81}restaurant.
+Dialogue: 0,0:00:17.06,0:00:19.98,Caption,,0,0,0,,{\k20}Its {\k54}appeal {\k36}comes {\k16}from {\k12}the {\k54}balance {\k50}between {\k49}juicy
+Dialogue: 0,0:00:19.98,0:00:23.64,Caption,,0,0,0,,{\k84}meat, {\k41}fresh {\k118}vegetables, {\k12}and {\k11}a {\k43}bun {\k16}that {\k41}holds
+Dialogue: 0,0:00:23.64,0:00:24.91,Caption,,0,0,0,,{\k57}everything {\k69}together.
+Dialogue: 0,0:00:25.04,0:00:28.57,Caption,,0,0,0,,{\k14}The {\k69}hamburger {\k50}became {\k10}an {\k66}American {\k51}fast {\k38}food {\k55}staple
+Dialogue: 0,0:00:28.57,0:00:32.10,Caption,,0,0,0,,{\k24}during {\k10}the {\k53}twentieth {\k111}century, {\k50}spreading {\k25}from {\k64}diners {\k18}and
+Dialogue: 0,0:00:32.10,0:00:35.48,Caption,,0,0,0,,{\k81}roadside {\k61}stands {\k15}to {\k61}restaurants {\k44}around {\k10}the {\k65}world.
+Dialogue: 0,0:00:36.29,0:00:37.87,Caption,,0,0,0,,{\k158}Cheeseburger.
+Dialogue: 0,0:00:38.26,0:00:42.90,Caption,,0,0,0,,{\k11}A {\k185}cheeseburger {\k31}takes {\k11}the {\k59}familiar {\k111}hamburger {\k21}and {\k34}adds
+Dialogue: 0,0:00:42.90,0:00:46.65,Caption,,0,0,0,,{\k11}a {\k45}slice {\k17}of {\k112}cheese, {\k60}usually {\k48}melted {\k60}directly {\k21}over
+Dialogue: 0,0:00:46.65,0:00:47.79,Caption,,0,0,0,,{\k12}the {\k35}hot {\k67}patty.
+Dialogue: 0,0:00:47.95,0:00:51.70,Caption,,0,0,0,,{\k55}American {\k42}cheese {\k16}is {\k64}popular {\k35}because {\k16}it {\k32}melts {\k114}smoothly,
+Dialogue: 0,0:00:51.73,0:00:55.53,Caption,,0,0,0,,{\k26}while {\k90}cheddar, {\k86}Swiss, {\k14}and {\k29}other {\k70}varieties {\k29}bring {\k36}different
+Dialogue: 0,0:00:55.53,0:00:57.15,Caption,,0,0,0,,{\k58}flavors {\k14}and {\k91}textures.
+Dialogue: 0,0:00:57.31,0:00:59.94,Caption,,0,0,0,,{\k12}The {\k44}cheese {\k33}adds {\k85}richness {\k14}and {\k34}helps {\k30}bind {\k12}the
+Dialogue: 0,0:00:59.94,0:01:04.14,Caption,,0,0,0,,{\k74}meat, {\k66}sauces, {\k12}and {\k60}toppings {\k31}into {\k38}one {\k81}satisfying {\k58}bite.
+Dialogue: 0,0:01:04.31,0:01:09.09,Caption,,0,0,0,,{\k41}Although {\k21}its {\k60}exact {\k55}origin {\k15}is {\k120}disputed, {\k15}the {\k150}cheeseburger
+Dialogue: 0,0:01:09.09,0:01:12.77,Caption,,0,0,0,,{\k45}became {\k8}a {\k69}defining {\k62}feature {\k16}of {\k61}American {\k39}burger {\k68}culture.
+Dialogue: 0,0:01:13.59,0:01:14.77,Caption,,0,0,0,,{\k40}Smash {\k77}Burger.
+Dialogue: 0,0:01:15.15,0:01:17.34,Caption,,0,0,0,,{\k10}A {\k49}smash {\k53}burger {\k38}starts {\k12}with {\k10}a {\k35}ball {\k12}of
+Dialogue: 0,0:01:17.34,0:01:20.71,Caption,,0,0,0,,{\k47}ground {\k69}beef {\k38}pressed {\k66}firmly {\k39}against {\k11}a {\k35}very {\k33}hot
+Dialogue: 0,0:01:20.71,0:01:21.88,Caption,,0,0,0,,{\k38}cooking {\k79}surface.
+Dialogue: 0,0:01:22.04,0:01:25.89,Caption,,0,0,0,,{\k14}The {\k38}thin {\k44}patty {\k60}develops {\k54}deeply {\k93}browned, {\k45}crispy {\k39}edges
+Dialogue: 0,0:01:25.89,0:01:29.20,Caption,,0,0,0,,{\k20}through {\k10}a {\k62}process {\k26}called {\k12}the {\k56}Maillard {\k120}reaction, {\k24}which
+Dialogue: 0,0:01:29.20,0:01:31.57,Caption,,0,0,0,,{\k53}creates {\k44}rich {\k51}roasted {\k89}flavors.
+Dialogue: 0,0:01:31.72,0:01:35.79,Caption,,0,0,0,,{\k41}Unlike {\k34}thicker {\k95}burgers, {\k51}smash {\k60}burgers {\k25}cook {\k84}quickly {\k16}and
+Dialogue: 0,0:01:35.79,0:01:39.00,Caption,,0,0,0,,{\k41}often {\k46}feature {\k48}several {\k35}thin {\k47}patties {\k39}stacked {\k65}together.
+Dialogue: 0,0:01:39.16,0:01:42.19,Caption,,0,0,0,,{\k15}Their {\k81}popularity {\k31}comes {\k14}from {\k10}the {\k64}contrast {\k39}between {\k50}crunchy
+Dialogue: 0,0:01:42.19,0:01:46.44,Caption,,0,0,0,,{\k86}edges, {\k49}juicy {\k88}beef, {\k49}melted {\k90}cheese, {\k11}and {\k11}a {\k41}soft
+Dialogue: 0,0:01:46.44,0:01:47.05,Caption,,0,0,0,,{\k61}bun.
+Dialogue: 0,0:01:47.86,0:01:48.93,Caption,,0,0,0,,{\k34}Double {\k73}Burger.
+Dialogue: 0,0:01:49.32,0:01:52.36,Caption,,0,0,0,,{\k9}A {\k36}double {\k38}burger {\k65}contains {\k30}two {\k34}beef {\k49}patties {\k44}instead
+Dialogue: 0,0:01:52.36,0:01:55.52,Caption,,0,0,0,,{\k12}of {\k85}one, {\k46}creating {\k11}a {\k49}taller {\k65}sandwich {\k19}with {\k29}more
+Dialogue: 0,0:01:55.52,0:01:56.90,Caption,,0,0,0,,{\k38}meat {\k16}in {\k35}every {\k49}bite.
+Dialogue: 0,0:01:57.06,0:01:59.56,Caption,,0,0,0,,{\k11}The {\k49}patties {\k17}may {\k22}be {\k39}thick {\k19}and {\k67}juicy {\k25}or
+Dialogue: 0,0:01:59.56,0:02:02.82,Caption,,0,0,0,,{\k49}thin {\k15}and {\k101}crispy, {\k49}depending {\k10}on {\k9}the {\k53}restaurant's {\k41}cooking
+Dialogue: 0,0:02:02.82,0:02:03.49,Caption,,0,0,0,,{\k66}style.
+Dialogue: 0,0:02:03.68,0:02:07.16,Caption,,0,0,0,,{\k33}Cheese {\k16}is {\k46}common {\k34}between {\k11}the {\k103}layers, {\k24}while {\k81}pickles,
+Dialogue: 0,0:02:07.17,0:02:10.78,Caption,,0,0,0,,{\k62}onions, {\k14}and {\k66}sauces {\k30}help {\k49}balance {\k18}the {\k43}extra {\k80}richness.
+Dialogue: 0,0:02:10.98,0:02:14.13,Caption,,0,0,0,,{\k22}Some {\k56}restaurants {\k34}build {\k39}even {\k45}larger {\k59}versions {\k20}with {\k40}three
+Dialogue: 0,0:02:14.13,0:02:17.33,Caption,,0,0,0,,{\k15}or {\k24}more {\k110}patties, {\k41}turning {\k14}a {\k45}simple {\k44}burger {\k27}into
+Dialogue: 0,0:02:17.33,0:02:18.88,Caption,,0,0,0,,{\k12}a {\k81}substantial {\k61}meal.
+Dialogue: 0,0:02:19.68,0:02:20.84,Caption,,0,0,0,,{\k42}Bacon {\k73}Burger.
+Dialogue: 0,0:02:21.23,0:02:23.63,Caption,,0,0,0,,{\k10}The {\k42}bacon {\k38}burger {\k53}combines {\k11}a {\k31}beef {\k38}patty {\k17}with
+Dialogue: 0,0:02:23.63,0:02:28.05,Caption,,0,0,0,,{\k39}strips {\k15}of {\k33}cooked {\k101}bacon, {\k43}often {\k85}alongside {\k50}melted {\k77}cheese.
+Dialogue: 0,0:02:28.26,0:02:31.87,Caption,,0,0,0,,{\k45}Bacon {\k60}contributes {\k14}a {\k74}smoky, {\k49}salty {\k95}flavor {\k15}and {\k10}a
+Dialogue: 0,0:02:31.87,0:02:34.67,Caption,,0,0,0,,{\k40}crisp {\k54}texture {\k17}that {\k78}contrasts {\k14}with {\k15}the {\k55}softness {\k7}of
+Dialogue: 0,0:02:34.67,0:02:35.38,Caption,,0,0,0,,{\k12}the {\k59}bun.
+Dialogue: 0,0:02:35.59,0:02:39.90,Caption,,0,0,0,,{\k22}Some {\k50}versions {\k26}use {\k62}barbecue {\k84}sauce {\k21}or {\k72}caramelized {\k92}onions
+Dialogue: 0,0:02:39.90,0:02:42.87,Caption,,0,0,0,,{\k18}to {\k74}emphasize {\k24}their {\k46}sweet {\k15}and {\k46}smoky {\k74}character.
+Dialogue: 0,0:02:43.00,0:02:47.17,Caption,,0,0,0,,{\k12}It {\k50}became {\k12}a {\k66}familiar {\k59}restaurant {\k100}favorite {\k52}because {\k65}bacon
+Dialogue: 0,0:02:47.17,0:02:50.88,Caption,,0,0,0,,{\k38}adds {\k10}a {\k65}distinctive {\k100}flavor {\k43}without {\k55}changing {\k14}the {\k48}basic
+Dialogue: 0,0:02:50.88,0:02:53.07,Caption,,0,0,0,,{\k62}structure {\k12}of {\k10}a {\k67}traditional {\k66}burger.
+Dialogue: 0,0:02:53.89,0:02:55.03,Caption,,0,0,0,,{\k39}Chicken {\k75}Burger.
+Dialogue: 0,0:02:55.42,0:02:58.30,Caption,,0,0,0,,{\k10}A {\k38}chicken {\k38}burger {\k62}replaces {\k10}the {\k64}traditional {\k31}beef {\k35}patty
+Dialogue: 0,0:02:58.30,0:03:02.25,Caption,,0,0,0,,{\k20}with {\k100}chicken, {\k20}which {\k17}can {\k20}be {\k92}grilled, {\k106}roasted, {\k19}or
+Dialogue: 0,0:03:02.25,0:03:04.84,Caption,,0,0,0,,{\k48}coated {\k19}in {\k59}seasoned {\k48}breading {\k15}and {\k72}fried.
+Dialogue: 0,0:03:05.03,0:03:08.43,Caption,,0,0,0,,{\k36}Grilled {\k59}versions {\k47}usually {\k19}have {\k9}a {\k36}lighter {\k109}texture, {\k25}while
+Dialogue: 0,0:03:08.43,0:03:11.83,Caption,,0,0,0,,{\k43}fried {\k57}versions {\k38}offer {\k11}a {\k51}crunchy {\k59}crust {\k40}around {\k41}tender
+Dialogue: 0,0:03:11.83,0:03:12.37,Caption,,0,0,0,,{\k54}meat.
+Dialogue: 0,0:03:12.57,0:03:16.22,Caption,,0,0,0,,{\k54}Lettuce, {\k85}mayonnaise, {\k47}pickles, {\k12}and {\k55}spicy {\k51}sauces {\k16}are {\k44}common
+Dialogue: 0,0:03:16.22,0:03:18.80,Caption,,0,0,0,,{\k112}additions, {\k51}depending {\k12}on {\k10}the {\k72}style.
+Dialogue: 0,0:03:18.96,0:03:21.67,Caption,,0,0,0,,{\k12}The {\k38}chicken {\k55}burger {\k57}appeals {\k12}to {\k38}people {\k15}who {\k44}prefer
+Dialogue: 0,0:03:21.67,0:03:25.07,Caption,,0,0,0,,{\k111}poultry {\k23}or {\k51}simply {\k34}want {\k15}an {\k80}alternative {\k12}to {\k14}the
+Dialogue: 0,0:03:25.07,0:03:26.95,Caption,,0,0,0,,{\k60}familiar {\k44}taste {\k16}of {\k68}beef.
+Dialogue: 0,0:03:27.77,0:03:28.85,Caption,,0,0,0,,{\k34}Veggie {\k74}Burger.
+Dialogue: 0,0:03:29.25,0:03:31.70,Caption,,0,0,0,,{\k9}A {\k31}veggie {\k39}burger {\k41}uses {\k11}a {\k50}meat-free {\k41}patty {\k22}made
+Dialogue: 0,0:03:31.70,0:03:37.01,Caption,,0,0,0,,{\k18}from {\k67}ingredients {\k23}such {\k17}as {\k105}beans, {\k110}lentils, {\k112}mushrooms, {\k79}vegetables,
+Dialogue: 0,0:03:37.01,0:03:38.45,Caption,,0,0,0,,{\k64}grains, {\k19}or {\k62}soy.
+Dialogue: 0,0:03:38.66,0:03:42.39,Caption,,0,0,0,,{\k24}Some {\k49}patties {\k16}have {\k14}a {\k64}soft, {\k70}homemade {\k111}texture, {\k25}while
+Dialogue: 0,0:03:42.39,0:03:45.26,Caption,,0,0,0,,{\k40}others {\k10}are {\k50}designed {\k12}to {\k36}stay {\k80}firm {\k12}and {\k46}develop
+Dialogue: 0,0:03:45.26,0:03:47.28,Caption,,0,0,0,,{\k11}a {\k50}browned {\k44}crust {\k31}during {\k66}cooking.
+Dialogue: 0,0:03:47.43,0:03:50.30,Caption,,0,0,0,,{\k12}The {\k50}flavor {\k53}depends {\k50}heavily {\k14}on {\k14}the {\k80}ingredients {\k15}and
+Dialogue: 0,0:03:50.30,0:03:55.13,Caption,,0,0,0,,{\k129}seasonings, {\k38}making {\k35}veggie {\k52}burgers {\k12}a {\k58}diverse {\k114}category {\k45}rather
+Dialogue: 0,0:03:55.13,0:03:57.07,Caption,,0,0,0,,{\k21}than {\k46}one {\k45}single {\k82}recipe.
+Dialogue: 0,0:03:57.24,0:04:01.21,Caption,,0,0,0,,{\k20}They {\k40}offer {\k18}an {\k78}alternative {\k12}for {\k140}vegetarians {\k35}and {\k55}anyone
+Dialogue: 0,0:04:01.21,0:04:03.56,Caption,,0,0,0,,{\k33}looking {\k12}to {\k52}reduce {\k21}their {\k26}meat {\k90}consumption.
+Dialogue: 0,0:04:04.29,0:04:05.93,Caption,,0,0,0,,{\k35}Plant {\k36}Based {\k26}Meat {\k66}Burger.
+Dialogue: 0,0:04:06.33,0:04:09.50,Caption,,0,0,0,,{\k24}This {\k45}burger {\k41}uses {\k11}a {\k75}plant-based {\k59}patty {\k50}designed {\k12}to
+Dialogue: 0,0:04:09.50,0:04:13.31,Caption,,0,0,0,,{\k53}resemble {\k14}the {\k95}taste, {\k84}texture, {\k12}and {\k62}appearance {\k14}of {\k47}ground
+Dialogue: 0,0:04:13.31,0:04:13.97,Caption,,0,0,0,,{\k65}beef.
+Dialogue: 0,0:04:14.13,0:04:19.36,Caption,,0,0,0,,{\k90}Manufacturers {\k20}may {\k54}combine {\k28}pea {\k107}protein, {\k99}soy, {\k60}vegetable {\k65}oils,
+Dialogue: 0,0:04:19.36,0:04:22.03,Caption,,0,0,0,,{\k16}and {\k76}seasonings {\k14}to {\k32}create {\k10}a {\k41}patty {\k21}that {\k56}browns
+Dialogue: 0,0:04:22.03,0:04:22.99,Caption,,0,0,0,,{\k31}during {\k64}cooking.
+Dialogue: 0,0:04:23.20,0:04:26.14,Caption,,0,0,0,,{\k22}Some {\k51}products {\k45}also {\k29}use {\k70}ingredients {\k15}that {\k50}produce {\k11}a
+Dialogue: 0,0:04:26.14,0:04:29.13,Caption,,0,0,0,,{\k57}meat-like {\k90}color {\k15}and {\k11}a {\k49}juicy {\k76}texture.
+Dialogue: 0,0:04:29.28,0:04:33.75,Caption,,0,0,0,,{\k49}Unlike {\k68}traditional {\k31}veggie {\k95}burgers, {\k29}which {\k47}often {\k62}celebrate {\k66}vegetables
+Dialogue: 0,0:04:33.75,0:04:37.83,Caption,,0,0,0,,{\k14}and {\k46}beans {\k114}directly, {\k31}these {\k50}burgers {\k52}focus {\k24}on {\k76}recreating
+Dialogue: 0,0:04:37.83,0:04:40.12,Caption,,0,0,0,,{\k15}the {\k85}experience {\k18}of {\k44}eating {\k68}beef.
+Dialogue: 0,0:04:40.87,0:04:42.02,Caption,,0,0,0,,{\k43}Turkey {\k73}Burger.
+Dialogue: 0,0:04:42.42,0:04:45.84,Caption,,0,0,0,,{\k9}A {\k41}turkey {\k38}burger {\k62}replaces {\k43}beef {\k19}with {\k43}ground {\k89}turkey,
+Dialogue: 0,0:04:45.89,0:04:48.30,Caption,,0,0,0,,{\k50}producing {\k11}a {\k51}patty {\k14}with {\k10}a {\k39}different {\k53}flavor {\k14}and
+Dialogue: 0,0:04:48.30,0:04:49.04,Caption,,0,0,0,,{\k74}texture.
+Dialogue: 0,0:04:49.16,0:04:52.78,Caption,,0,0,0,,{\k34}Because {\k41}turkey {\k12}can {\k39}become {\k46}dry {\k19}when {\k120}overcooked, {\k50}careful
+Dialogue: 0,0:04:52.78,0:04:55.67,Caption,,0,0,0,,{\k61}seasoning {\k14}and {\k44}cooking {\k29}help {\k26}keep {\k14}the {\k30}meat {\k72}moist.
+Dialogue: 0,0:04:55.89,0:04:59.70,Caption,,0,0,0,,{\k64}Garlic, {\k70}herbs, {\k81}pepper, {\k14}and {\k34}other {\k68}seasonings {\k22}can {\k29}add
+Dialogue: 0,0:04:59.70,0:05:02.30,Caption,,0,0,0,,{\k59}character {\k35}without {\k76}overpowering {\k9}the {\k81}poultry.
+Dialogue: 0,0:05:02.44,0:05:05.59,Caption,,0,0,0,,{\k41}Turkey {\k50}burgers {\k19}are {\k45}often {\k55}chosen {\k21}by {\k41}people {\k43}seeking
+Dialogue: 0,0:05:05.59,0:05:09.93,Caption,,0,0,0,,{\k111}variety {\k24}or {\k12}a {\k40}different {\k65}nutritional {\k130}profile, {\k35}although {\k16}the
+Dialogue: 0,0:05:09.93,0:05:13.06,Caption,,0,0,0,,{\k49}final {\k66}nutritional {\k60}value {\k54}depends {\k14}on {\k14}the {\k44}cut {\k14}and
+Dialogue: 0,0:05:13.06,0:05:14.08,Caption,,0,0,0,,{\k102}preparation.
+Dialogue: 0,0:05:14.89,0:05:15.92,Caption,,0,0,0,,{\k29}Fish {\k74}Burger.
+Dialogue: 0,0:05:16.31,0:05:18.95,Caption,,0,0,0,,{\k9}A {\k31}fish {\k39}burger {\k45}typically {\k38}features {\k11}a {\k31}fish {\k60}fillet
+Dialogue: 0,0:05:18.95,0:05:22.07,Caption,,0,0,0,,{\k14}or {\k11}a {\k41}patty {\k25}made {\k24}from {\k95}fish, {\k50}served {\k53}inside
+Dialogue: 0,0:05:22.07,0:05:22.76,Caption,,0,0,0,,{\k10}a {\k59}bun.
+Dialogue: 0,0:05:22.92,0:05:24.89,Caption,,0,0,0,,{\k12}The {\k35}fish {\k17}may {\k18}be {\k53}grilled {\k15}for {\k10}a {\k36}lighter
+Dialogue: 0,0:05:24.89,0:05:28.72,Caption,,0,0,0,,{\k95}texture {\k23}or {\k39}coated {\k16}in {\k76}breadcrumbs {\k15}and {\k84}fried {\k36}until
+Dialogue: 0,0:05:28.72,0:05:30.10,Caption,,0,0,0,,{\k50}golden {\k14}and {\k74}crisp.
+Dialogue: 0,0:05:30.25,0:05:34.76,Caption,,0,0,0,,{\k41}Tartar {\k104}sauce, {\k67}lettuce, {\k12}and {\k99}lemon-inspired {\k60}flavors {\k19}are {\k49}common
+Dialogue: 0,0:05:34.76,0:05:38.19,Caption,,0,0,0,,{\k104}partners {\k43}because {\k16}they {\k59}complement {\k14}the {\k45}mild {\k46}taste {\k16}of
+Dialogue: 0,0:05:38.19,0:05:39.89,Caption,,0,0,0,,{\k39}many {\k32}fish {\k99}varieties.
+Dialogue: 0,0:05:40.07,0:05:43.22,Caption,,0,0,0,,{\k28}Fish {\k49}burgers {\k14}are {\k64}especially {\k64}familiar {\k18}in {\k46}fast {\k34}food
+Dialogue: 0,0:05:43.22,0:05:47.05,Caption,,0,0,0,,{\k110}restaurants, {\k25}where {\k41}breaded {\k34}white {\k61}fish {\k23}is {\k45}often {\k44}used
+Dialogue: 0,0:05:47.05,0:05:48.70,Caption,,0,0,0,,{\k18}for {\k10}a {\k65}consistent {\k73}texture.
+Dialogue: 0,0:05:49.43,0:05:50.78,Caption,,0,0,0,,{\k34}Pulled {\k31}Pork {\k70}Burger.
+Dialogue: 0,0:05:51.18,0:05:54.51,Caption,,0,0,0,,{\k39}Instead {\k9}of {\k14}a {\k50}formed {\k96}patty, {\k23}this {\k64}sandwich {\k40}uses
+Dialogue: 0,0:05:54.51,0:05:57.93,Caption,,0,0,0,,{\k35}pork {\k34}cooked {\k106}slowly {\k31}until {\k14}the {\k31}meat {\k46}becomes {\k44}tender
+Dialogue: 0,0:05:57.93,0:06:00.16,Caption,,0,0,0,,{\k30}enough {\k12}to {\k25}pull {\k39}apart {\k25}into {\k92}strands.
+Dialogue: 0,0:06:00.32,0:06:03.21,Caption,,0,0,0,,{\k11}The {\k36}pork {\k18}is {\k41}often {\k34}mixed {\k19}with {\k62}barbecue {\k68}sauce
+Dialogue: 0,0:06:03.21,0:06:06.48,Caption,,0,0,0,,{\k15}and {\k42}piled {\k26}into {\k11}a {\k91}bun, {\k72}sometimes {\k19}with {\k50}crunchy
+Dialogue: 0,0:06:06.48,0:06:07.38,Caption,,0,0,0,,{\k89}coleslaw.
+Dialogue: 0,0:06:07.50,0:06:11.42,Caption,,0,0,0,,{\k22}Its {\k60}defining {\k65}feature {\k18}is {\k18}the {\k80}soft, {\k41}shredded {\k88}meat
+Dialogue: 0,0:06:11.42,0:06:14.28,Caption,,0,0,0,,{\k44}rather {\k11}than {\k12}the {\k64}compact {\k61}structure {\k12}of {\k9}a {\k72}conventional
+Dialogue: 0,0:06:14.28,0:06:15.29,Caption,,0,0,0,,{\k38}burger {\k63}patty.
+Dialogue: 0,0:06:15.42,0:06:19.62,Caption,,0,0,0,,{\k58}Popular {\k12}in {\k55}American {\k55}barbecue {\k116}traditions, {\k14}it {\k59}combines {\k51}smoky
+Dialogue: 0,0:06:19.62,0:06:23.95,Caption,,0,0,0,,{\k107}flavors, {\k43}sweet {\k88}sauce, {\k12}and {\k79}contrasting {\k59}textures {\k15}in {\k30}one
+Dialogue: 0,0:06:23.95,0:06:24.84,Caption,,0,0,0,,{\k90}sandwich.
+Dialogue: 0,0:06:25.58,0:06:26.70,Caption,,0,0,0,,{\k40}Patty {\k72}Melt.
+Dialogue: 0,0:06:27.09,0:06:30.62,Caption,,0,0,0,,{\k9}A {\k57}patty {\k31}melt {\k57}combines {\k12}a {\k36}beef {\k99}patty, {\k50}melted
+Dialogue: 0,0:06:30.62,0:06:35.23,Caption,,0,0,0,,{\k100}cheese, {\k16}and {\k81}caramelized {\k57}onions {\k45}between {\k58}slices {\k16}of {\k88}bread
+Dialogue: 0,0:06:35.23,0:06:37.46,Caption,,0,0,0,,{\k48}instead {\k7}of {\k10}a {\k68}traditional {\k39}burger {\k52}bun.
+Dialogue: 0,0:06:37.62,0:06:40.44,Caption,,0,0,0,,{\k12}The {\k60}sandwich {\k17}is {\k80}grilled {\k24}until {\k12}the {\k29}bread {\k47}becomes
+Dialogue: 0,0:06:40.44,0:06:43.75,Caption,,0,0,0,,{\k51}crisp {\k20}and {\k99}golden {\k21}while {\k14}the {\k50}cheese {\k40}melts {\k36}around
+Dialogue: 0,0:06:43.75,0:06:44.41,Caption,,0,0,0,,{\k10}the {\k56}meat.
+Dialogue: 0,0:06:44.61,0:06:47.94,Caption,,0,0,0,,{\k27}Rye {\k45}bread {\k14}and {\k36}Swiss {\k43}cheese {\k15}are {\k46}classic {\k106}choices,
+Dialogue: 0,0:06:47.97,0:06:50.48,Caption,,0,0,0,,{\k30}although {\k68}recipes {\k34}vary {\k40}between {\k80}diners.
+Dialogue: 0,0:06:50.61,0:06:52.79,Caption,,0,0,0,,{\k19}It {\k31}sits {\k50}somewhere {\k38}between {\k11}a {\k48}burger {\k12}and {\k10}a
+Dialogue: 0,0:06:52.79,0:06:56.88,Caption,,0,0,0,,{\k41}grilled {\k43}cheese {\k124}sandwich, {\k41}bringing {\k45}together {\k15}the {\k59}savory {\k41}filling
+Dialogue: 0,0:06:56.88,0:06:59.23,Caption,,0,0,0,,{\k18}of {\k84}one {\k15}and {\k12}the {\k44}crisp {\k40}bread {\k9}of {\k14}the
+Dialogue: 0,0:06:59.23,0:06:59.73,Caption,,0,0,0,,{\k50}other.
+Dialogue: 0,0:07:00.54,0:07:01.69,Caption,,0,0,0,,{\k40}Juicy {\k76}Lucy.
+Dialogue: 0,0:07:02.08,0:07:05.87,Caption,,0,0,0,,{\k11}The {\k41}Juicy {\k71}Lucy {\k14}is {\k14}a {\k161}cheeseburger {\k20}with {\k46}cheese
+Dialogue: 0,0:07:05.87,0:07:08.96,Caption,,0,0,0,,{\k41}sealed {\k51}inside {\k12}the {\k31}beef {\k77}patty {\k38}rather {\k19}than {\k39}placed
+Dialogue: 0,0:07:08.96,0:07:09.78,Caption,,0,0,0,,{\k21}on {\k61}top.
+Dialogue: 0,0:07:10.00,0:07:12.87,Caption,,0,0,0,,{\k19}As {\k10}the {\k45}patty {\k89}cooks, {\k15}the {\k48}cheese {\k36}melts {\k26}into
+Dialogue: 0,0:07:12.87,0:07:14.93,Caption,,0,0,0,,{\k11}a {\k35}hot {\k44}center {\k21}that {\k44}spills {\k26}out {\k12}when {\k12}the
+Dialogue: 0,0:07:14.93,0:07:16.75,Caption,,0,0,0,,{\k41}burger {\k20}is {\k39}cut {\k19}or {\k63}bitten.
+Dialogue: 0,0:07:16.91,0:07:21.81,Caption,,0,0,0,,{\k11}The {\k44}burger {\k16}is {\k54}closely {\k90}associated {\k23}with {\k129}Minneapolis, {\k124}Minnesota,
+Dialogue: 0,0:07:21.86,0:07:25.56,Caption,,0,0,0,,{\k18}where {\k64}competing {\k60}restaurants {\k39}claim {\k65}connections {\k15}to {\k20}its {\k90}creation.
+Dialogue: 0,0:07:25.68,0:07:28.83,Caption,,0,0,0,,{\k28}Its {\k70}unusual {\k73}construction {\k27}makes {\k15}the {\k50}melted {\k40}filling {\k12}the
+Dialogue: 0,0:07:28.83,0:07:32.37,Caption,,0,0,0,,{\k32}main {\k127}attraction, {\k15}but {\k15}the {\k45}center {\k18}can {\k19}be {\k83}extremely
+Dialogue: 0,0:07:32.37,0:07:34.09,Caption,,0,0,0,,{\k35}hot {\k41}straight {\k22}off {\k11}the {\k62}grill.
+Dialogue: 0,0:07:34.91,0:07:35.76,Caption,,0,0,0,,{\k85}Sliders.
+Dialogue: 0,0:07:36.21,0:07:39.90,Caption,,0,0,0,,{\k52}Sliders {\k19}are {\k45}small {\k48}burgers {\k74}traditionally {\k44}served {\k20}on {\k68}compact
+Dialogue: 0,0:07:39.90,0:07:42.80,Caption,,0,0,0,,{\k105}buns, {\k36}making {\k25}them {\k38}easy {\k18}to {\k32}eat {\k15}in {\k21}just
+Dialogue: 0,0:07:42.80,0:07:43.86,Caption,,0,0,0,,{\k7}a {\k25}few {\k74}bites.
+Dialogue: 0,0:07:44.02,0:07:48.11,Caption,,0,0,0,,{\k15}They {\k20}can {\k60}contain {\k74}beef, {\k85}cheese, {\k70}onions, {\k69}pickles, {\k16}or
+Dialogue: 0,0:07:48.11,0:07:52.26,Caption,,0,0,0,,{\k33}other {\k56}familiar {\k115}toppings, {\k20}with {\k66}recipes {\k51}varying {\k24}from {\k50}simple
+Dialogue: 0,0:07:52.26,0:07:53.28,Caption,,0,0,0,,{\k16}to {\k85}elaborate.
+Dialogue: 0,0:07:53.43,0:07:56.51,Caption,,0,0,0,,{\k10}The {\k38}name {\k20}is {\k40}often {\k85}associated {\k20}with {\k44}small {\k51}burgers
+Dialogue: 0,0:07:56.51,0:08:00.08,Caption,,0,0,0,,{\k43}served {\k10}at {\k56}American {\k103}diners {\k21}and {\k45}early {\k46}fast {\k34}food
+Dialogue: 0,0:08:00.08,0:08:00.92,Caption,,0,0,0,,{\k84}restaurants.
+Dialogue: 0,0:08:01.04,0:08:05.10,Caption,,0,0,0,,{\k35}Because {\k32}each {\k54}slider {\k19}is {\k62}relatively {\k103}small, {\k39}people {\k62}commonly
+Dialogue: 0,0:08:05.10,0:08:08.09,Caption,,0,0,0,,{\k43}order {\k46}several {\k16}at {\k60}once {\k29}or {\k38}share {\k11}a {\k56}selection
+Dialogue: 0,0:08:08.09,0:08:09.45,Caption,,0,0,0,,{\k12}of {\k38}different {\k87}fillings.
+Dialogue: 0,0:08:10.24,0:08:11.59,Caption,,0,0,0,,{\k64}Hawaiian {\k72}Burger.
+Dialogue: 0,0:08:12.06,0:08:14.71,Caption,,0,0,0,,{\k8}A {\k62}Hawaiian {\k39}burger {\k42}typically {\k34}pairs {\k11}a {\k31}beef {\k38}patty
+Dialogue: 0,0:08:14.71,0:08:19.69,Caption,,0,0,0,,{\k19}with {\k38}grilled {\k117}pineapple, {\k36}often {\k79}alongside {\k99}cheese, {\k96}lettuce, {\k14}or
+Dialogue: 0,0:08:19.69,0:08:21.74,Caption,,0,0,0,,{\k14}a {\k46}sweet {\k15}and {\k53}savory {\k78}sauce.
+Dialogue: 0,0:08:21.91,0:08:25.44,Caption,,0,0,0,,{\k11}The {\k65}pineapple {\k34}adds {\k60}acidity {\k15}and {\k114}sweetness, {\k44}creating {\k11}a
+Dialogue: 0,0:08:25.44,0:08:28.72,Caption,,0,0,0,,{\k73}contrast {\k14}with {\k16}the {\k97}salty, {\k56}savory {\k50}flavor {\k9}of {\k12}the
+Dialogue: 0,0:08:28.72,0:08:29.27,Caption,,0,0,0,,{\k55}meat.
+Dialogue: 0,0:08:29.47,0:08:33.42,Caption,,0,0,0,,{\k22}Some {\k50}versions {\k49}include {\k74}teriyaki {\k108}sauce, {\k25}while {\k41}others {\k26}keep
+Dialogue: 0,0:08:33.42,0:08:37.48,Caption,,0,0,0,,{\k11}the {\k57}toppings {\k50}closer {\k14}to {\k10}a {\k81}conventional {\k182}cheeseburger.
+Dialogue: 0,0:08:37.61,0:08:41.49,Caption,,0,0,0,,{\k45}Despite {\k12}the {\k94}name, {\k68}recipes {\k35}vary {\k112}widely, {\k12}and {\k9}the
+Dialogue: 0,0:08:41.49,0:08:45.45,Caption,,0,0,0,,{\k80}combination {\k18}is {\k38}better {\k67}understood {\k15}as {\k11}a {\k127}tropical-inspired {\k40}burger
+Dialogue: 0,0:08:45.45,0:08:49.49,Caption,,0,0,0,,{\k99}style {\k24}than {\k46}one {\k101}standardized {\k67}traditional {\k67}dish.
+Dialogue: 0,0:08:50.27,0:08:51.53,Caption,,0,0,0,,{\k54}Breakfast {\k73}Burger.
+Dialogue: 0,0:08:51.98,0:08:54.84,Caption,,0,0,0,,{\k9}A {\k49}breakfast {\k39}burger {\k38}brings {\k49}breakfast {\k65}ingredients {\k27}into {\k11}a
+Dialogue: 0,0:08:54.84,0:08:57.89,Caption,,0,0,0,,{\k99}burger, {\k40}often {\k55}combining {\k11}a {\k31}beef {\k42}patty {\k14}with {\k12}a
+Dialogue: 0,0:08:57.89,0:09:00.50,Caption,,0,0,0,,{\k54}fried {\k61}egg, {\k54}bacon, {\k15}and {\k77}cheese.
+Dialogue: 0,0:09:00.71,0:09:03.60,Caption,,0,0,0,,{\k23}Some {\k50}versions {\k48}replace {\k14}the {\k45}usual {\k39}bun {\k19}with {\k52}toasted
+Dialogue: 0,0:09:03.60,0:09:07.34,Caption,,0,0,0,,{\k90}bread {\k16}or {\k44}include {\k40}hash {\k51}browns {\k16}for {\k42}extra {\k74}crunch.
+Dialogue: 0,0:09:07.49,0:09:11.07,Caption,,0,0,0,,{\k18}The {\k39}egg {\k33}adds {\k104}richness, {\k25}while {\k49}salty {\k52}breakfast {\k39}meats
+Dialogue: 0,0:09:11.07,0:09:14.14,Caption,,0,0,0,,{\k14}and {\k49}melted {\k56}cheese {\k34}create {\k11}a {\k39}hearty {\k104}combination.
+Dialogue: 0,0:09:14.26,0:09:16.50,Caption,,0,0,0,,{\k12}It {\k12}can {\k19}be {\k46}served {\k16}at {\k66}brunch {\k21}or {\k30}any
+Dialogue: 0,0:09:16.50,0:09:19.41,Caption,,0,0,0,,{\k33}time {\k12}of {\k95}day, {\k46}blurring {\k14}the {\k44}line {\k38}between {\k10}a
+Dialogue: 0,0:09:19.41,0:09:22.03,Caption,,0,0,0,,{\k64}traditional {\k55}burger {\k12}and {\k11}a {\k33}full {\k87}breakfast.
+Dialogue: 0,0:09:22.81,0:09:23.96,Caption,,0,0,0,,{\k45}Gourmet {\k70}Burger.
+Dialogue: 0,0:09:24.35,0:09:28.53,Caption,,0,0,0,,{\k9}A {\k53}gourmet {\k44}burger {\k58}focuses {\k27}on {\k56}carefully {\k54}selected {\k119}ingredients
+Dialogue: 0,0:09:28.53,0:09:32.61,Caption,,0,0,0,,{\k19}and {\k25}more {\k58}elaborate {\k140}combinations {\k45}rather {\k20}than {\k60}following {\k41}one
+Dialogue: 0,0:09:32.61,0:09:33.80,Caption,,0,0,0,,{\k36}fixed {\k83}recipe.
+Dialogue: 0,0:09:33.99,0:09:38.09,Caption,,0,0,0,,{\k55}Restaurants {\k22}might {\k26}use {\k55}premium {\k80}beef, {\k52}brioche {\k57}buns, {\k61}specialty
+Dialogue: 0,0:09:38.09,0:09:42.22,Caption,,0,0,0,,{\k89}cheeses, {\k73}caramelized {\k61}onions, {\k19}or {\k60}sauces {\k30}made {\k82}in-house.
+Dialogue: 0,0:09:42.44,0:09:47.24,Caption,,0,0,0,,{\k23}Some {\k56}versions {\k88}emphasize {\k70}unusual {\k124}toppings, {\k25}while {\k41}others {\k54}rely
+Dialogue: 0,0:09:47.24,0:09:50.44,Caption,,0,0,0,,{\k25}on {\k57}excellent {\k59}meat {\k18}and {\k45}careful {\k55}cooking {\k14}to {\k47}deliver
+Dialogue: 0,0:09:50.44,0:09:51.39,Caption,,0,0,0,,{\k23}their {\k73}flavor.
+Dialogue: 0,0:09:51.54,0:09:54.41,Caption,,0,0,0,,{\k11}The {\k36}term {\k68}describes {\k11}a {\k52}restaurant {\k69}style {\k27}more {\k12}than
+Dialogue: 0,0:09:54.41,0:09:57.97,Caption,,0,0,0,,{\k8}a {\k59}distinct {\k39}burger {\k129}category, {\k12}and {\k10}a {\k43}higher {\k56}price
+Dialogue: 0,0:09:57.97,0:10:01.39,Caption,,0,0,0,,{\k23}does {\k30}not {\k89}automatically {\k88}guarantee {\k12}a {\k38}better {\k64}burger.
+Dialogue: 0,0:10:02.18,0:10:03.76,Caption,,0,0,0,,{\k49}Regional {\k44}Style {\k65}Burger.
+Dialogue: 0,0:10:04.19,0:10:08.73,Caption,,0,0,0,,{\k51}Regional {\k70}burgers {\k49}reflect {\k15}the {\k131}ingredients, {\k44}cooking {\k75}methods, {\k19}and
+Dialogue: 0,0:10:08.73,0:10:12.34,Caption,,0,0,0,,{\k39}food {\k66}traditions {\k96}associated {\k17}with {\k60}particular {\k82}places.
+Dialogue: 0,0:10:12.56,0:10:16.33,Caption,,0,0,0,,{\k15}An {\k90}Oklahoma {\k40}onion {\k40}burger, {\k12}for {\k101}example, {\k36}cooks {\k43}thinly
+Dialogue: 0,0:10:16.33,0:10:20.16,Caption,,0,0,0,,{\k50}sliced {\k57}onions {\k60}directly {\k27}into {\k11}a {\k32}beef {\k95}patty, {\k49}creating
+Dialogue: 0,0:10:20.16,0:10:22.07,Caption,,0,0,0,,{\k12}a {\k54}deeply {\k52}savory {\k73}flavor.
+Dialogue: 0,0:10:22.22,0:10:26.57,Caption,,0,0,0,,{\k28}Other {\k44}regional {\k62}styles {\k26}may {\k43}feature {\k62}distinctive {\k125}sauces, {\k45}local
+Dialogue: 0,0:10:26.57,0:10:30.21,Caption,,0,0,0,,{\k104}cheeses, {\k17}or {\k59}specific {\k81}combinations {\k12}of {\k90}toppings.
+Dialogue: 0,0:10:30.38,0:10:33.66,Caption,,0,0,0,,{\k27}These {\k90}variations {\k31}show {\k24}how {\k14}a {\k45}simple {\k79}combination {\k17}of
+Dialogue: 0,0:10:33.66,0:10:37.78,Caption,,0,0,0,,{\k35}meat {\k16}and {\k92}bread {\k21}can {\k51}develop {\k36}different {\k104}identities {\k56}depending
+Dialogue: 0,0:10:37.78,0:10:40.84,Caption,,0,0,0,,{\k21}on {\k40}local {\k78}tastes {\k20}and {\k46}restaurant {\k101}traditions.

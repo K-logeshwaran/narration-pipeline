@@ -1,0 +1,1627 @@
+{
+  "schema_version": "1.1",
+  "source_sha256": "95fdb3fe64f9216dcb29e30d3f9a6afff319df7f40738c20d22774a9e4ec0e53",
+  "fps": 30,
+  "duration": 328.364,
+  "scenes": [
+    {
+      "id": "scene01",
+      "start": 0.0,
+      "end": 32.034,
+      "image": "s01_tired_wired",
+      "music": "none"
+    },
+    {
+      "id": "scene02",
+      "start": 32.034,
+      "end": 81.044,
+      "image": "s02_has_a_name",
+      "music": "none"
+    },
+    {
+      "id": "scene03",
+      "start": 81.044,
+      "end": 131.685,
+      "image": "s03_my_time",
+      "music": "none"
+    },
+    {
+      "id": "scene04",
+      "start": 131.685,
+      "end": 178.564,
+      "image": "s04_tired_brain",
+      "music": "none"
+    },
+    {
+      "id": "scene05",
+      "start": 178.564,
+      "end": 229.045,
+      "image": "s05_endless_night",
+      "music": "none"
+    },
+    {
+      "id": "scene06",
+      "start": 229.045,
+      "end": 276.236,
+      "image": "s06_alarm_and_deposit",
+      "music": "none"
+    },
+    {
+      "id": "scene07",
+      "start": 276.236,
+      "end": 328.364,
+      "image": "s07_last_thing",
+      "music": "none"
+    }
+  ],
+  "events": [
+    {
+      "type": "narration",
+      "id": "scene01_seg01",
+      "scene": "scene01",
+      "start": 0.0,
+      "end": 6.339,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "zoom_in",
+      "segment": "scene01_seg01",
+      "start": 0.061,
+      "estimated": false,
+      "duration_s": 8.0
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "3 FIXES",
+      "segment": "scene01_seg01",
+      "start": 4.136,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 6.339,
+      "end": 6.689,
+      "after": "scene01_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene01_seg02",
+      "scene": "scene01",
+      "start": 6.689,
+      "end": 14.586,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "sarcastic_wow",
+      "segment": "scene01_seg02",
+      "start": 8.175,
+      "estimated": false,
+      "duration_s": 2.5
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "FREE TIME",
+      "segment": "scene01_seg02",
+      "start": 13.05,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 14.586,
+      "end": 14.806,
+      "after": "scene01_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene01_seg03",
+      "scene": "scene01",
+      "start": 14.806,
+      "end": 17.262,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "pizzicato_sting",
+      "file": "sfx/pizzicato_sting.wav",
+      "start": 14.84,
+      "estimated": false,
+      "segment": "scene01_seg03"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 17.262,
+      "end": 17.462,
+      "after": "scene01_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene01_seg04",
+      "scene": "scene01",
+      "start": 17.462,
+      "end": 19.372,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "TOMORROW BOB",
+      "segment": "scene01_seg04",
+      "start": 18.419,
+      "estimated": false,
+      "style": "jitter"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 19.372,
+      "end": 19.592,
+      "after": "scene01_seg04"
+    },
+    {
+      "type": "narration",
+      "id": "scene01_seg05",
+      "scene": "scene01",
+      "start": 19.592,
+      "end": 25.207,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene01_seg05",
+      "start": 22.354,
+      "estimated": false
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 25.207,
+      "end": 25.657,
+      "after": "scene01_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene01_seg06",
+      "scene": "scene01",
+      "start": 25.657,
+      "end": 26.86,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 26.86,
+      "end": 27.08,
+      "after": "scene01_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene01_seg07",
+      "scene": "scene01",
+      "start": 27.08,
+      "end": 31.434,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "A REAL NAME",
+      "segment": "scene01_seg07",
+      "start": 27.145,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "scene_gap",
+      "start": 31.434,
+      "end": 32.034,
+      "after": "scene01_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg01",
+      "scene": "scene02",
+      "start": 32.034,
+      "end": 41.475,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "BEDTIME PROCRASTINATION",
+      "segment": "scene02_seg01",
+      "start": 32.685,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 41.475,
+      "end": 41.695,
+      "after": "scene02_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg02",
+      "scene": "scene02",
+      "start": 41.695,
+      "end": 48.762,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene02_seg02",
+      "start": 41.774,
+      "estimated": false
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "KROESE, 2014",
+      "segment": "scene02_seg02",
+      "start": 45.886,
+      "estimated": false,
+      "style": "fade"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 48.762,
+      "end": 48.982,
+      "after": "scene02_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg03",
+      "scene": "scene02",
+      "start": 48.982,
+      "end": 55.73,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "pop",
+      "file": "sfx/pop.wav",
+      "start": 49.918,
+      "estimated": false,
+      "segment": "scene02_seg03"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 55.73,
+      "end": 56.08,
+      "after": "scene02_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg04",
+      "scene": "scene02",
+      "start": 56.08,
+      "end": 60.516,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "NOTHING STOPS YOU",
+      "segment": "scene02_seg04",
+      "start": 56.138,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 60.516,
+      "end": 60.716,
+      "after": "scene02_seg04"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg05",
+      "scene": "scene02",
+      "start": 60.716,
+      "end": 62.914,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 62.914,
+      "end": 63.134,
+      "after": "scene02_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg06",
+      "scene": "scene02",
+      "start": 63.134,
+      "end": 67.668,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "done_with_everything",
+      "segment": "scene02_seg06",
+      "start": 63.221,
+      "estimated": false,
+      "duration_s": 2.5
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 67.668,
+      "end": 67.888,
+      "after": "scene02_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg07",
+      "scene": "scene02",
+      "start": 67.888,
+      "end": 74.836,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "NOT ALWAYS",
+      "segment": "scene02_seg07",
+      "start": 71.081,
+      "estimated": false,
+      "style": "fade"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 74.836,
+      "end": 75.056,
+      "after": "scene02_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene02_seg08",
+      "scene": "scene02",
+      "start": 75.056,
+      "end": 80.444,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "pan_left",
+      "segment": "scene02_seg08",
+      "start": 75.105,
+      "estimated": false,
+      "duration_s": 6.0
+    },
+    {
+      "type": "pause",
+      "kind": "scene_gap",
+      "start": 80.444,
+      "end": 81.044,
+      "after": "scene02_seg08"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg01",
+      "scene": "scene03",
+      "start": 81.044,
+      "end": 87.905,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "WHO OWNS IT",
+      "segment": "scene03_seg01",
+      "start": 82.373,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 87.905,
+      "end": 88.125,
+      "after": "scene03_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg02",
+      "scene": "scene03",
+      "start": 88.125,
+      "end": 95.903,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene03_seg02",
+      "start": 93.559,
+      "estimated": false
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 95.903,
+      "end": 96.123,
+      "after": "scene03_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg03",
+      "scene": "scene03",
+      "start": 96.123,
+      "end": 100.907,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "triumphant_sting",
+      "file": "sfx/triumphant_sting.wav",
+      "start": 96.193,
+      "estimated": false,
+      "segment": "scene03_seg03"
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "MY TIME",
+      "segment": "scene03_seg03",
+      "start": 97.368,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 100.907,
+      "end": 101.127,
+      "after": "scene03_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg04",
+      "scene": "scene03",
+      "start": 101.127,
+      "end": 109.689,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "fourth_wall",
+      "segment": "scene03_seg04",
+      "start": 101.199,
+      "estimated": false,
+      "duration_s": 2.5
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "NOT MEDICAL",
+      "segment": "scene03_seg04",
+      "start": 108.324,
+      "estimated": false,
+      "style": "fade"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 109.689,
+      "end": 109.889,
+      "before": "scene03_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg05",
+      "scene": "scene03",
+      "start": 109.889,
+      "end": 114.305,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 114.305,
+      "end": 114.525,
+      "after": "scene03_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg06",
+      "scene": "scene03",
+      "start": 114.525,
+      "end": 119.65,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "NOBODY'S TURN",
+      "segment": "scene03_seg06",
+      "start": 118.247,
+      "estimated": false,
+      "style": "jitter"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 119.65,
+      "end": 119.87,
+      "after": "scene03_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg07",
+      "scene": "scene03",
+      "start": 119.87,
+      "end": 124.173,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "TOMORROW BOB",
+      "segment": "scene03_seg07",
+      "start": 122.556,
+      "estimated": false,
+      "style": "jitter"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 124.173,
+      "end": 124.523,
+      "after": "scene03_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg08",
+      "scene": "scene03",
+      "start": 124.523,
+      "end": 127.089,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "ka_ching",
+      "file": "sfx/ka_ching.wav",
+      "start": 124.55,
+      "estimated": false,
+      "segment": "scene03_seg08"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 127.089,
+      "end": 127.309,
+      "after": "scene03_seg08"
+    },
+    {
+      "type": "narration",
+      "id": "scene03_seg09",
+      "scene": "scene03",
+      "start": 127.309,
+      "end": 131.085,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene03_seg09",
+      "start": 128.916,
+      "estimated": false
+    },
+    {
+      "type": "pause",
+      "kind": "scene_gap",
+      "start": 131.085,
+      "end": 131.685,
+      "after": "scene03_seg09"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg01",
+      "scene": "scene04",
+      "start": 131.685,
+      "end": 140.282,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "bed",
+      "name": "ticking_clock",
+      "file": "sfx/ticking_clock.wav",
+      "start": 131.767,
+      "estimated": false,
+      "segment": "scene04_seg01",
+      "end": 174.361
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "zoom_in",
+      "segment": "scene04_seg01",
+      "start": 131.767,
+      "estimated": false,
+      "duration_s": 6.0
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "LOW BATTERY",
+      "segment": "scene04_seg01",
+      "start": 136.329,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 140.282,
+      "end": 140.502,
+      "after": "scene04_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg02",
+      "scene": "scene04",
+      "start": 140.502,
+      "end": 146.971,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "ONE PERCENT",
+      "segment": "scene04_seg02",
+      "start": 144.755,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 146.971,
+      "end": 147.191,
+      "after": "scene04_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg03",
+      "scene": "scene04",
+      "start": 147.191,
+      "end": 151.699,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "YES TO EVERYTHING",
+      "segment": "scene04_seg03",
+      "start": 150.61,
+      "estimated": false,
+      "style": "jitter"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 151.699,
+      "end": 151.919,
+      "after": "scene04_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg04",
+      "scene": "scene04",
+      "start": 151.919,
+      "end": 153.124,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "whoosh",
+      "file": "sfx/whoosh.wav",
+      "start": 151.947,
+      "estimated": false,
+      "segment": "scene04_seg04"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 153.124,
+      "end": 153.324,
+      "after": "scene04_seg04"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg05",
+      "scene": "scene04",
+      "start": 153.324,
+      "end": 156.74,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "RIGHT NOW",
+      "segment": "scene04_seg05",
+      "start": 155.187,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 156.74,
+      "end": 156.96,
+      "after": "scene04_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg06",
+      "scene": "scene04",
+      "start": 156.96,
+      "end": 163.853,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene04_seg06",
+      "start": 156.988,
+      "estimated": false
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 163.853,
+      "end": 164.073,
+      "after": "scene04_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg07",
+      "scene": "scene04",
+      "start": 164.073,
+      "end": 167.636,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "TONIGHT BOB",
+      "segment": "scene04_seg07",
+      "start": 164.789,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 167.636,
+      "end": 168.086,
+      "after": "scene04_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg08",
+      "scene": "scene04",
+      "start": 168.086,
+      "end": 169.222,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 169.222,
+      "end": 169.442,
+      "after": "scene04_seg08"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg09",
+      "scene": "scene04",
+      "start": 169.442,
+      "end": 174.09,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "done_with_everything",
+      "segment": "scene04_seg09",
+      "start": 169.468,
+      "estimated": false,
+      "duration_s": 2.5
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 174.09,
+      "end": 174.31,
+      "after": "scene04_seg09"
+    },
+    {
+      "type": "narration",
+      "id": "scene04_seg10",
+      "scene": "scene04",
+      "start": 174.31,
+      "end": 177.964,
+      "emotion": "whisper",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "scene_gap",
+      "start": 177.964,
+      "end": 178.564,
+      "after": "scene04_seg10"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg01",
+      "scene": "scene05",
+      "start": 178.564,
+      "end": 186.519,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "zoom_out",
+      "segment": "scene05_seg01",
+      "start": 178.661,
+      "estimated": false,
+      "duration_s": 6.0
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "NO BOTTOM",
+      "segment": "scene05_seg01",
+      "start": 182.611,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 186.519,
+      "end": 186.739,
+      "after": "scene05_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg02",
+      "scene": "scene05",
+      "start": 186.739,
+      "end": 193.524,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "ding",
+      "file": "sfx/ding.wav",
+      "start": 191.248,
+      "estimated": false,
+      "segment": "scene05_seg02"
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "ONE MORE",
+      "segment": "scene05_seg02",
+      "start": 191.248,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 193.524,
+      "end": 193.744,
+      "after": "scene05_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg03",
+      "scene": "scene05",
+      "start": 193.744,
+      "end": 199.935,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "BRIGHT SCREENS",
+      "segment": "scene05_seg03",
+      "start": 195.095,
+      "estimated": false,
+      "style": "fade"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 199.935,
+      "end": 200.155,
+      "after": "scene05_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg04",
+      "scene": "scene05",
+      "start": 200.155,
+      "end": 206.243,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene05_seg04",
+      "start": 203.752,
+      "estimated": false
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 206.243,
+      "end": 206.593,
+      "after": "scene05_seg04"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg05",
+      "scene": "scene05",
+      "start": 206.593,
+      "end": 208.052,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 208.052,
+      "end": 208.272,
+      "after": "scene05_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg06",
+      "scene": "scene05",
+      "start": 208.272,
+      "end": 213.972,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "smug_genius",
+      "segment": "scene05_seg06",
+      "start": 208.358,
+      "estimated": false,
+      "duration_s": 2.5
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 213.972,
+      "end": 214.192,
+      "after": "scene05_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg07",
+      "scene": "scene05",
+      "start": 214.192,
+      "end": 218.383,
+      "emotion": "fake_excitement",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "party_horn",
+      "file": "sfx/party_horn.wav",
+      "start": 214.205,
+      "estimated": false,
+      "segment": "scene05_seg07"
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "ZERO REGRETS",
+      "segment": "scene05_seg07",
+      "start": 216.668,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 218.383,
+      "end": 218.603,
+      "after": "scene05_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg08",
+      "scene": "scene05",
+      "start": 218.603,
+      "end": 220.325,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 220.325,
+      "end": 220.775,
+      "after": "scene05_seg08"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg09",
+      "scene": "scene05",
+      "start": 220.775,
+      "end": 221.578,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 221.578,
+      "end": 221.798,
+      "after": "scene05_seg09"
+    },
+    {
+      "type": "narration",
+      "id": "scene05_seg10",
+      "scene": "scene05",
+      "start": 221.798,
+      "end": 228.445,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "3 FIXES",
+      "segment": "scene05_seg10",
+      "start": 223.536,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "scene_gap",
+      "start": 228.445,
+      "end": 229.045,
+      "after": "scene05_seg10"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg01",
+      "scene": "scene06",
+      "start": 229.045,
+      "end": 235.267,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "FIX ONE",
+      "segment": "scene06_seg01",
+      "start": 229.133,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 235.267,
+      "end": 235.487,
+      "after": "scene06_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg02",
+      "scene": "scene06",
+      "start": 235.487,
+      "end": 241.206,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "phone_ring",
+      "file": "sfx/phone_ring.wav",
+      "start": 237.416,
+      "estimated": false,
+      "segment": "scene06_seg02"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 241.206,
+      "end": 241.426,
+      "after": "scene06_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg03",
+      "scene": "scene06",
+      "start": 241.426,
+      "end": 243.708,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 243.708,
+      "end": 243.908,
+      "after": "scene06_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg04",
+      "scene": "scene06",
+      "start": 243.908,
+      "end": 245.332,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "STILL COUNTS",
+      "segment": "scene06_seg04",
+      "start": 243.942,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 245.332,
+      "end": 245.682,
+      "after": "scene06_seg04"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg05",
+      "scene": "scene06",
+      "start": 245.682,
+      "end": 251.955,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "FIX TWO",
+      "segment": "scene06_seg05",
+      "start": 245.763,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 251.955,
+      "end": 252.175,
+      "after": "scene06_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg06",
+      "scene": "scene06",
+      "start": 252.175,
+      "end": 257.742,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene06_seg06",
+      "start": 255.775,
+      "estimated": false
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 257.742,
+      "end": 257.962,
+      "after": "scene06_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg07",
+      "scene": "scene06",
+      "start": 257.962,
+      "end": 262.177,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "playful_wink",
+      "segment": "scene06_seg07",
+      "start": 257.985,
+      "estimated": false,
+      "duration_s": 2.5
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "SMALL DEPOSIT",
+      "segment": "scene06_seg07",
+      "start": 259.622,
+      "estimated": false,
+      "style": "jitter"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 262.177,
+      "end": 262.397,
+      "after": "scene06_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg08",
+      "scene": "scene06",
+      "start": 262.397,
+      "end": 267.023,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 267.023,
+      "end": 267.243,
+      "after": "scene06_seg08"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg09",
+      "scene": "scene06",
+      "start": 267.243,
+      "end": 271.545,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "bonk",
+      "file": "sfx/bonk.wav",
+      "start": 267.302,
+      "estimated": false,
+      "segment": "scene06_seg09"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 271.545,
+      "end": 271.765,
+      "after": "scene06_seg09"
+    },
+    {
+      "type": "narration",
+      "id": "scene06_seg10",
+      "scene": "scene06",
+      "start": 271.765,
+      "end": 275.636,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "pan_right",
+      "segment": "scene06_seg10",
+      "start": 271.795,
+      "estimated": false,
+      "duration_s": 6.0
+    },
+    {
+      "type": "pause",
+      "kind": "scene_gap",
+      "start": 275.636,
+      "end": 276.236,
+      "after": "scene06_seg10"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg01",
+      "scene": "scene07",
+      "start": 276.236,
+      "end": 283.095,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "FIX THREE",
+      "segment": "scene07_seg01",
+      "start": 276.317,
+      "estimated": false,
+      "style": "slam"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 283.095,
+      "end": 283.315,
+      "after": "scene07_seg01"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg02",
+      "scene": "scene07",
+      "start": 283.315,
+      "end": 291.415,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "cam",
+      "name": "punch_in",
+      "segment": "scene07_seg02",
+      "start": 285.909,
+      "estimated": false
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "IN ADVANCE",
+      "segment": "scene07_seg02",
+      "start": 289.347,
+      "estimated": false,
+      "style": "fade"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 291.415,
+      "end": 291.635,
+      "after": "scene07_seg02"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg03",
+      "scene": "scene07",
+      "start": 291.635,
+      "end": 297.121,
+      "emotion": "smug",
+      "modifier": null
+    },
+    {
+      "type": "sfx",
+      "kind": "point",
+      "name": "ta_da",
+      "file": "sfx/ta_da.wav",
+      "start": 291.669,
+      "estimated": false,
+      "segment": "scene07_seg03"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 297.121,
+      "end": 297.341,
+      "after": "scene07_seg03"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg04",
+      "scene": "scene07",
+      "start": 297.341,
+      "end": 298.589,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 298.589,
+      "end": 298.789,
+      "after": "scene07_seg04"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg05",
+      "scene": "scene07",
+      "start": 298.789,
+      "end": 302.912,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "LIGHTS OUT",
+      "segment": "scene07_seg05",
+      "start": 300.195,
+      "estimated": false,
+      "style": "pop"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 302.912,
+      "end": 303.132,
+      "after": "scene07_seg05"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg06",
+      "scene": "scene07",
+      "start": 303.132,
+      "end": 310.232,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "text",
+      "name": "ASK A PRO",
+      "segment": "scene07_seg06",
+      "start": 308.054,
+      "estimated": false,
+      "style": "fade"
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 310.232,
+      "end": 310.452,
+      "after": "scene07_seg06"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg07",
+      "scene": "scene07",
+      "start": 310.452,
+      "end": 316.762,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 316.762,
+      "end": 317.112,
+      "after": "scene07_seg07"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg08",
+      "scene": "scene07",
+      "start": 317.112,
+      "end": 322.893,
+      "emotion": "deadpan",
+      "modifier": null
+    },
+    {
+      "type": "cue",
+      "cue_type": "img",
+      "name": "sarcastic_wow",
+      "segment": "scene07_seg08",
+      "start": 318.888,
+      "estimated": false,
+      "duration_s": 2.0
+    },
+    {
+      "type": "pause",
+      "kind": "line_gap",
+      "start": 322.893,
+      "end": 323.113,
+      "after": "scene07_seg08"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg09",
+      "scene": "scene07",
+      "start": 323.113,
+      "end": 324.567,
+      "emotion": "flat",
+      "modifier": null
+    },
+    {
+      "type": "pause",
+      "kind": "explicit",
+      "start": 324.567,
+      "end": 325.367,
+      "after": "scene07_seg09"
+    },
+    {
+      "type": "narration",
+      "id": "scene07_seg10",
+      "scene": "scene07",
+      "start": 325.367,
+      "end": 328.364,
+      "emotion": "deadpan",
+      "modifier": null
+    }
+  ]
+}

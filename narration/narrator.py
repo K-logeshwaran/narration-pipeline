@@ -34,7 +34,7 @@ import numpy as np
 
 from . import audio as A
 from .align import word_spans
-from .captions import write_ass
+from .captions import write_ass, write_srt
 from .emotions import UnknownEmotion, available, resolve_profile, segment_speed
 from .errors import AudioToolError, NarrationError, Problem
 from .kokoro import TTSBackend
@@ -44,9 +44,11 @@ from .wavio import read_wav, wav_duration, write_wav
 
 KEY_VERSION = "n1"          # bump to invalidate every cache entry after a logic change
 NARRATION_VERSION = "1.1"
+WORD_TIMING_VERSION = "1.0"
 FULL_EXPORT_NAME = "full_narration.wav"
 CAPTIONS_PATH = Path("captions") / "subtitles.ass"
-
+CAPTIONS_SRT_PATH = Path("captions") / "subtitles.srt"
+WORD_TIMING_NAME = "word_timing.json"
 
 # ---------------------------------------------------------------------------
 # helpers
@@ -84,6 +86,9 @@ class NarrationResult:
     orphans: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
     captions_path: Optional[Path] = None
+    srt_path: Optional[Path] = None
+    word_timing_path: Optional[Path] = None
+    markers_path: Optional[Path] = None
 
 
 # ---------------------------------------------------------------------------
@@ -380,10 +385,36 @@ def narrate_project(project: Dict[str, Any], project_dir: Path, cfg: Dict[str, A
         "total_duration": timeline["duration"],
         "segments": segments_out,
     }
+
     captions_path: Optional[Path] = None
+    srt_path: Optional[Path] = None
     if cfg.get("captions", {}).get("enabled", True):
         captions_path = write_ass(project, segments_out, cfg, project_dir / CAPTIONS_PATH)
+        srt_path = write_srt(segments_out, cfg, project_dir / CAPTIONS_SRT_PATH)
         narration["captions"] = str(CAPTIONS_PATH)
+        narration["captions_srt"] = str(CAPTIONS_SRT_PATH)
+
+    word_timing_data = {
+        "schema_version": WORD_TIMING_VERSION,
+        "source_sha256": project.get("source", {}).get("sha256"),
+        "backend": backend.id,
+        "total_duration": timeline["duration"],
+        "segments": [
+            {
+                "id": s["id"],
+                "scene": s["scene"],
+                "start": s["start"],
+                "end": s["end"],
+                "duration": s["duration"],
+                "text": s["text"],
+                "timing": s["timing"],
+                "words": s["words"],
+            }
+            for s in segments_out
+        ],
+    }
+    word_timing_path = project_dir / WORD_TIMING_NAME
+    word_timing_path.write_text(_dump(word_timing_data), encoding="utf-8")
 
     (project_dir / "narration.json").write_text(_dump(narration), encoding="utf-8")
     (project_dir / "timeline.json").write_text(_dump(timeline), encoding="utf-8")
@@ -408,4 +439,4 @@ def narrate_project(project: Dict[str, Any], project_dir: Path, cfg: Dict[str, A
         f"{stats['reprocessed']} reprocessed, {stats['cache']} from cache. "
         f"Narration length {int(mins)}:{secs:04.1f}")
     return NarrationResult(narration, timeline, dict(stats), export_path, orphans, warnings,
-                           captions_path)
+                           captions_path, srt_path=srt_path, word_timing_path=word_timing_path)

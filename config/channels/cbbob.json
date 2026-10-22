@@ -25,6 +25,12 @@
   "pauses": { "short": 0.20, "default": 0.35, "beat": 0.45, "long": 0.80 },
   "line_gap_s": 0.22,
   "title_gap_s": null,
+    "tts": {
+    "backend": "kokoro",
+    "voice": "am_fenrir",
+    "lang": "a",
+    "base_speed": 0.91
+  },
 
   "emotions": {
     "deadpan":         { "speed": 0.88, "pitch": 0,  "volume": 1.00 },

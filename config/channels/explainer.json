@@ -20,6 +20,12 @@
   "pauses": { "short": 0.25, "default": 0.40, "beat": 0.50, "long": 0.80 },
   "line_gap_s": 0.22,
   "title_gap_s": 0.45,
+    "tts": {
+    "backend": "kokoro",
+    "voice": "am_michael",
+    "lang": "a",
+    "base_speed": 0.90
+  },
 
   "emotions": {
     "calm":    { "speed": 0.90, "pitch": 0,  "volume": 1.00 },

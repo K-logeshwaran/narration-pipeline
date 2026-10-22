@@ -1,0 +1,5687 @@
+{
+  "schema_version": "1.1",
+  "source_sha256": "95fdb3fe64f9216dcb29e30d3f9a6afff319df7f40738c20d22774a9e4ec0e53",
+  "backend": "kokoro:am_fenrir:a",
+  "sample_rate": 24000,
+  "processing": {
+    "trim_threshold": 0.003,
+    "trim_keep_s": 0.06,
+    "fade_s": 0.012,
+    "fade_curve": "linear",
+    "polish": true,
+    "ffmpeg_filter": "highpass=f=60,acompressor=threshold=-18dB:ratio=2.5:attack=10:release=180:makeup=1.5",
+    "peak_limit": 0.98
+  },
+  "total_duration": 328.364,
+  "segments": [
+    {
+      "id": "scene01_seg01",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg01.wav",
+      "duration": 6.339,
+      "start": 0.0,
+      "end": 6.339,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "db1e5996ed2fb8d3",
+      "text": "In the next eight minutes, I'll explain why you stay up when you're exhausted, and hand you three fixes for tonight.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "In",
+          "start": 0.061,
+          "end": 0.149
+        },
+        {
+          "w": "the",
+          "start": 0.149,
+          "end": 0.236
+        },
+        {
+          "w": "next",
+          "start": 0.236,
+          "end": 0.561
+        },
+        {
+          "w": "eight",
+          "start": 0.561,
+          "end": 0.811
+        },
+        {
+          "w": "minutes,",
+          "start": 0.811,
+          "end": 1.211
+        },
+        {
+          "w": "I'll",
+          "start": 1.261,
+          "end": 1.461
+        },
+        {
+          "w": "explain",
+          "start": 1.461,
+          "end": 2.086
+        },
+        {
+          "w": "why",
+          "start": 2.086,
+          "end": 2.286
+        },
+        {
+          "w": "you",
+          "start": 2.286,
+          "end": 2.449
+        },
+        {
+          "w": "stay",
+          "start": 2.449,
+          "end": 2.761
+        },
+        {
+          "w": "up",
+          "start": 2.761,
+          "end": 2.974
+        },
+        {
+          "w": "when",
+          "start": 2.974,
+          "end": 3.111
+        },
+        {
+          "w": "you're",
+          "start": 3.111,
+          "end": 3.286
+        },
+        {
+          "w": "exhausted,",
+          "start": 3.286,
+          "end": 4.061
+        },
+        {
+          "w": "and",
+          "start": 4.136,
+          "end": 4.274
+        },
+        {
+          "w": "hand",
+          "start": 4.274,
+          "end": 4.586
+        },
+        {
+          "w": "you",
+          "start": 4.586,
+          "end": 4.774
+        },
+        {
+          "w": "three",
+          "start": 4.774,
+          "end": 5.111
+        },
+        {
+          "w": "fixes",
+          "start": 5.111,
+          "end": 5.611
+        },
+        {
+          "w": "for",
+          "start": 5.611,
+          "end": 5.761
+        },
+        {
+          "w": "tonight.",
+          "start": 5.761,
+          "end": 6.339
+        }
+      ]
+    },
+    {
+      "id": "scene01_seg02",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg02.wav",
+      "duration": 7.896,
+      "start": 6.689,
+      "end": 14.586,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "b85ebe53bb547c7f",
+      "text": "But first, a question. You're tired. You know you're tired. So why does eleven PM feel like the best part of your day?",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "But",
+          "start": 6.75,
+          "end": 6.95
+        },
+        {
+          "w": "first,",
+          "start": 6.95,
+          "end": 7.4
+        },
+        {
+          "w": "a",
+          "start": 7.438,
+          "end": 7.538
+        },
+        {
+          "w": "question.",
+          "start": 7.538,
+          "end": 8.1
+        },
+        {
+          "w": "You're",
+          "start": 8.175,
+          "end": 8.388
+        },
+        {
+          "w": "tired.",
+          "start": 8.388,
+          "end": 9.05
+        },
+        {
+          "w": "You",
+          "start": 9.163,
+          "end": 9.325
+        },
+        {
+          "w": "know",
+          "start": 9.325,
+          "end": 9.525
+        },
+        {
+          "w": "you're",
+          "start": 9.525,
+          "end": 9.738
+        },
+        {
+          "w": "tired.",
+          "start": 9.738,
+          "end": 10.475
+        },
+        {
+          "w": "So",
+          "start": 10.588,
+          "end": 10.813
+        },
+        {
+          "w": "why",
+          "start": 10.813,
+          "end": 11.075
+        },
+        {
+          "w": "does",
+          "start": 11.075,
+          "end": 11.325
+        },
+        {
+          "w": "eleven",
+          "start": 11.325,
+          "end": 11.8
+        },
+        {
+          "w": "PM",
+          "start": 11.8,
+          "end": 12.388
+        },
+        {
+          "w": "feel",
+          "start": 12.388,
+          "end": 12.825
+        },
+        {
+          "w": "like",
+          "start": 12.825,
+          "end": 13.05
+        },
+        {
+          "w": "the",
+          "start": 13.05,
+          "end": 13.188
+        },
+        {
+          "w": "best",
+          "start": 13.188,
+          "end": 13.525
+        },
+        {
+          "w": "part",
+          "start": 13.525,
+          "end": 13.788
+        },
+        {
+          "w": "of",
+          "start": 13.788,
+          "end": 13.875
+        },
+        {
+          "w": "your",
+          "start": 13.875,
+          "end": 14.05
+        },
+        {
+          "w": "day?",
+          "start": 14.05,
+          "end": 14.586
+        }
+      ]
+    },
+    {
+      "id": "scene01_seg03",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg03.wav",
+      "duration": 2.456,
+      "start": 14.806,
+      "end": 17.262,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "94ca300776dc76f4",
+      "text": "Here's the secret. It isn't that you hate sleep.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Here's",
+          "start": 14.84,
+          "end": 15.103
+        },
+        {
+          "w": "the",
+          "start": 15.103,
+          "end": 15.228
+        },
+        {
+          "w": "secret.",
+          "start": 15.228,
+          "end": 15.74
+        },
+        {
+          "w": "It",
+          "start": 15.79,
+          "end": 15.915
+        },
+        {
+          "w": "isn't",
+          "start": 15.915,
+          "end": 16.153
+        },
+        {
+          "w": "that",
+          "start": 16.153,
+          "end": 16.29
+        },
+        {
+          "w": "you",
+          "start": 16.29,
+          "end": 16.44
+        },
+        {
+          "w": "hate",
+          "start": 16.44,
+          "end": 16.728
+        },
+        {
+          "w": "sleep.",
+          "start": 16.728,
+          "end": 17.262
+        }
+      ]
+    },
+    {
+      "id": "scene01_seg04",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg04.wav",
+      "duration": 1.91,
+      "start": 17.462,
+      "end": 19.372,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "53b5f31eb03c42cd",
+      "text": "You've been borrowing from tomorrow Bob.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "You've",
+          "start": 17.494,
+          "end": 17.606
+        },
+        {
+          "w": "been",
+          "start": 17.606,
+          "end": 17.794
+        },
+        {
+          "w": "borrowing",
+          "start": 17.794,
+          "end": 18.244
+        },
+        {
+          "w": "from",
+          "start": 18.244,
+          "end": 18.419
+        },
+        {
+          "w": "tomorrow",
+          "start": 18.419,
+          "end": 18.844
+        },
+        {
+          "w": "Bob.",
+          "start": 18.844,
+          "end": 19.372
+        }
+      ]
+    },
+    {
+      "id": "scene01_seg05",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg05.wav",
+      "duration": 5.615,
+      "start": 19.592,
+      "end": 25.207,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "7bc7381731da8977",
+      "text": "He's the guy you hand every problem to. Groggy, grumpy, and never once consulted.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "He's",
+          "start": 19.654,
+          "end": 19.904
+        },
+        {
+          "w": "the",
+          "start": 19.904,
+          "end": 20.041
+        },
+        {
+          "w": "guy",
+          "start": 20.041,
+          "end": 20.329
+        },
+        {
+          "w": "you",
+          "start": 20.329,
+          "end": 20.491
+        },
+        {
+          "w": "hand",
+          "start": 20.491,
+          "end": 20.891
+        },
+        {
+          "w": "every",
+          "start": 20.891,
+          "end": 21.229
+        },
+        {
+          "w": "problem",
+          "start": 21.229,
+          "end": 21.716
+        },
+        {
+          "w": "to.",
+          "start": 21.716,
+          "end": 22.104
+        },
+        {
+          "w": "Groggy,",
+          "start": 22.354,
+          "end": 22.904
+        },
+        {
+          "w": "grumpy,",
+          "start": 22.991,
+          "end": 23.504
+        },
+        {
+          "w": "and",
+          "start": 23.579,
+          "end": 23.704
+        },
+        {
+          "w": "never",
+          "start": 23.704,
+          "end": 24.029
+        },
+        {
+          "w": "once",
+          "start": 24.029,
+          "end": 24.354
+        },
+        {
+          "w": "consulted.",
+          "start": 24.354,
+          "end": 25.207
+        }
+      ]
+    },
+    {
+      "id": "scene01_seg06",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg06.wav",
+      "duration": 1.203,
+      "start": 25.657,
+      "end": 26.86,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "f7ac5ce563d2d14d",
+      "text": "He is not a fan.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "He",
+          "start": 25.683,
+          "end": 25.833
+        },
+        {
+          "w": "is",
+          "start": 25.833,
+          "end": 25.983
+        },
+        {
+          "w": "not",
+          "start": 25.983,
+          "end": 26.22
+        },
+        {
+          "w": "a",
+          "start": 26.22,
+          "end": 26.295
+        },
+        {
+          "w": "fan.",
+          "start": 26.295,
+          "end": 26.86
+        }
+      ]
+    },
+    {
+      "id": "scene01_seg07",
+      "scene": "scene01",
+      "audio": "audio/scene01_seg07.wav",
+      "duration": 4.354,
+      "start": 27.08,
+      "end": 31.434,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "ad189278e440cec0",
+      "text": "First, this has an actual name. And it's less dramatic than you'd hope.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "First,",
+          "start": 27.145,
+          "end": 27.47
+        },
+        {
+          "w": "this",
+          "start": 27.508,
+          "end": 27.72
+        },
+        {
+          "w": "has",
+          "start": 27.72,
+          "end": 27.958
+        },
+        {
+          "w": "an",
+          "start": 27.958,
+          "end": 28.12
+        },
+        {
+          "w": "actual",
+          "start": 28.12,
+          "end": 28.62
+        },
+        {
+          "w": "name.",
+          "start": 28.62,
+          "end": 29.195
+        },
+        {
+          "w": "And",
+          "start": 29.295,
+          "end": 29.458
+        },
+        {
+          "w": "it's",
+          "start": 29.458,
+          "end": 29.658
+        },
+        {
+          "w": "less",
+          "start": 29.658,
+          "end": 29.92
+        },
+        {
+          "w": "dramatic",
+          "start": 29.92,
+          "end": 30.545
+        },
+        {
+          "w": "than",
+          "start": 30.545,
+          "end": 30.72
+        },
+        {
+          "w": "you'd",
+          "start": 30.72,
+          "end": 30.92
+        },
+        {
+          "w": "hope.",
+          "start": 30.92,
+          "end": 31.434
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg01",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg01.wav",
+      "duration": 9.441,
+      "start": 32.034,
+      "end": 41.475,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "99ce22c85adbe8e0",
+      "text": "It's called bedtime procrastination. Researchers define it as going to bed later than you meant to, with no outside reason forcing you.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "It's",
+          "start": 32.06,
+          "end": 32.297
+        },
+        {
+          "w": "called",
+          "start": 32.297,
+          "end": 32.685
+        },
+        {
+          "w": "bedtime",
+          "start": 32.685,
+          "end": 33.435
+        },
+        {
+          "w": "procrastination.",
+          "start": 33.435,
+          "end": 34.885
+        },
+        {
+          "w": "Researchers",
+          "start": 35.022,
+          "end": 35.71
+        },
+        {
+          "w": "define",
+          "start": 35.71,
+          "end": 36.235
+        },
+        {
+          "w": "it",
+          "start": 36.235,
+          "end": 36.397
+        },
+        {
+          "w": "as",
+          "start": 36.397,
+          "end": 36.56
+        },
+        {
+          "w": "going",
+          "start": 36.56,
+          "end": 36.935
+        },
+        {
+          "w": "to",
+          "start": 36.935,
+          "end": 37.085
+        },
+        {
+          "w": "bed",
+          "start": 37.085,
+          "end": 37.422
+        },
+        {
+          "w": "later",
+          "start": 37.422,
+          "end": 37.81
+        },
+        {
+          "w": "than",
+          "start": 37.81,
+          "end": 37.96
+        },
+        {
+          "w": "you",
+          "start": 37.96,
+          "end": 38.11
+        },
+        {
+          "w": "meant",
+          "start": 38.11,
+          "end": 38.422
+        },
+        {
+          "w": "to,",
+          "start": 38.422,
+          "end": 38.735
+        },
+        {
+          "w": "with",
+          "start": 38.835,
+          "end": 39.06
+        },
+        {
+          "w": "no",
+          "start": 39.06,
+          "end": 39.397
+        },
+        {
+          "w": "outside",
+          "start": 39.397,
+          "end": 40.11
+        },
+        {
+          "w": "reason",
+          "start": 40.11,
+          "end": 40.56
+        },
+        {
+          "w": "forcing",
+          "start": 40.56,
+          "end": 41.097
+        },
+        {
+          "w": "you.",
+          "start": 41.097,
+          "end": 41.475
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg02",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg02.wav",
+      "duration": 7.067,
+      "start": 41.695,
+      "end": 48.762,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "399773de2804085f",
+      "text": "Kroese and colleagues wrote about it in two thousand fourteen. The \"no outside reason\" part is the key.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Kroese",
+          "start": 41.774,
+          "end": 42.299
+        },
+        {
+          "w": "and",
+          "start": 42.299,
+          "end": 42.436
+        },
+        {
+          "w": "colleagues",
+          "start": 42.436,
+          "end": 43.061
+        },
+        {
+          "w": "wrote",
+          "start": 43.061,
+          "end": 43.324
+        },
+        {
+          "w": "about",
+          "start": 43.324,
+          "end": 43.649
+        },
+        {
+          "w": "it",
+          "start": 43.649,
+          "end": 43.799
+        },
+        {
+          "w": "in",
+          "start": 43.799,
+          "end": 43.974
+        },
+        {
+          "w": "two",
+          "start": 43.974,
+          "end": 44.286
+        },
+        {
+          "w": "thousand",
+          "start": 44.286,
+          "end": 44.811
+        },
+        {
+          "w": "fourteen.",
+          "start": 44.811,
+          "end": 45.749
+        },
+        {
+          "w": "The",
+          "start": 45.886,
+          "end": 46.024
+        },
+        {
+          "w": "\"no",
+          "start": 46.099,
+          "end": 46.386
+        },
+        {
+          "w": "outside",
+          "start": 46.386,
+          "end": 47.049
+        },
+        {
+          "w": "reason\"",
+          "start": 47.049,
+          "end": 47.449
+        },
+        {
+          "w": "part",
+          "start": 47.499,
+          "end": 47.886
+        },
+        {
+          "w": "is",
+          "start": 47.886,
+          "end": 48.049
+        },
+        {
+          "w": "the",
+          "start": 48.049,
+          "end": 48.199
+        },
+        {
+          "w": "key.",
+          "start": 48.199,
+          "end": 48.762
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg03",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg03.wav",
+      "duration": 6.748,
+      "start": 48.982,
+      "end": 55.73,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "bf3bb50ee9bfb1fa",
+      "text": "No deadline. No newborn. No night shift. Just you, a phone, and a very flexible idea of \"ten more minutes.\"",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "No",
+          "start": 49.055,
+          "end": 49.293
+        },
+        {
+          "w": "deadline.",
+          "start": 49.293,
+          "end": 49.83
+        },
+        {
+          "w": "No",
+          "start": 49.918,
+          "end": 50.118
+        },
+        {
+          "w": "newborn.",
+          "start": 50.118,
+          "end": 50.655
+        },
+        {
+          "w": "No",
+          "start": 50.73,
+          "end": 50.905
+        },
+        {
+          "w": "night",
+          "start": 50.905,
+          "end": 51.18
+        },
+        {
+          "w": "shift.",
+          "start": 51.18,
+          "end": 51.655
+        },
+        {
+          "w": "Just",
+          "start": 51.743,
+          "end": 52.043
+        },
+        {
+          "w": "you,",
+          "start": 52.043,
+          "end": 52.305
+        },
+        {
+          "w": "a",
+          "start": 52.38,
+          "end": 52.518
+        },
+        {
+          "w": "phone,",
+          "start": 52.518,
+          "end": 52.955
+        },
+        {
+          "w": "and",
+          "start": 52.993,
+          "end": 53.093
+        },
+        {
+          "w": "a",
+          "start": 53.093,
+          "end": 53.155
+        },
+        {
+          "w": "very",
+          "start": 53.155,
+          "end": 53.443
+        },
+        {
+          "w": "flexible",
+          "start": 53.443,
+          "end": 54.005
+        },
+        {
+          "w": "idea",
+          "start": 54.005,
+          "end": 54.48
+        },
+        {
+          "w": "of",
+          "start": 54.48,
+          "end": 54.63
+        },
+        {
+          "w": "\"ten",
+          "start": 54.705,
+          "end": 54.93
+        },
+        {
+          "w": "more",
+          "start": 54.93,
+          "end": 55.155
+        },
+        {
+          "w": "minutes.\"",
+          "start": 55.155,
+          "end": 55.73
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg04",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg04.wav",
+      "duration": 4.436,
+      "start": 56.08,
+      "end": 60.516,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "b9bdc4b79c0125ba",
+      "text": "That's what makes it odd. Nothing is actually stopping you from going to bed.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "That's",
+          "start": 56.138,
+          "end": 56.463
+        },
+        {
+          "w": "what",
+          "start": 56.463,
+          "end": 56.663
+        },
+        {
+          "w": "makes",
+          "start": 56.663,
+          "end": 56.938
+        },
+        {
+          "w": "it",
+          "start": 56.938,
+          "end": 57.1
+        },
+        {
+          "w": "odd.",
+          "start": 57.1,
+          "end": 57.613
+        },
+        {
+          "w": "Nothing",
+          "start": 57.738,
+          "end": 58.163
+        },
+        {
+          "w": "is",
+          "start": 58.163,
+          "end": 58.338
+        },
+        {
+          "w": "actually",
+          "start": 58.338,
+          "end": 58.788
+        },
+        {
+          "w": "stopping",
+          "start": 58.788,
+          "end": 59.263
+        },
+        {
+          "w": "you",
+          "start": 59.263,
+          "end": 59.413
+        },
+        {
+          "w": "from",
+          "start": 59.413,
+          "end": 59.613
+        },
+        {
+          "w": "going",
+          "start": 59.613,
+          "end": 59.888
+        },
+        {
+          "w": "to",
+          "start": 59.888,
+          "end": 60.013
+        },
+        {
+          "w": "bed.",
+          "start": 60.013,
+          "end": 60.516
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg05",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg05.wav",
+      "duration": 2.198,
+      "start": 60.716,
+      "end": 62.914,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "e8de3d36e601fd58",
+      "text": "Except the part of you that doesn't want to.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Except",
+          "start": 60.772,
+          "end": 61.085
+        },
+        {
+          "w": "the",
+          "start": 61.085,
+          "end": 61.172
+        },
+        {
+          "w": "part",
+          "start": 61.172,
+          "end": 61.41
+        },
+        {
+          "w": "of",
+          "start": 61.41,
+          "end": 61.497
+        },
+        {
+          "w": "you",
+          "start": 61.497,
+          "end": 61.722
+        },
+        {
+          "w": "that",
+          "start": 61.722,
+          "end": 61.897
+        },
+        {
+          "w": "doesn't",
+          "start": 61.897,
+          "end": 62.197
+        },
+        {
+          "w": "want",
+          "start": 62.197,
+          "end": 62.435
+        },
+        {
+          "w": "to.",
+          "start": 62.435,
+          "end": 62.914
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg06",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg06.wav",
+      "duration": 4.534,
+      "start": 63.134,
+      "end": 67.668,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "1aaad493e0aad7ce",
+      "text": "So it's not a character flaw. It's a pattern, and patterns have causes.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "So",
+          "start": 63.221,
+          "end": 63.396
+        },
+        {
+          "w": "it's",
+          "start": 63.396,
+          "end": 63.596
+        },
+        {
+          "w": "not",
+          "start": 63.596,
+          "end": 63.808
+        },
+        {
+          "w": "a",
+          "start": 63.808,
+          "end": 63.908
+        },
+        {
+          "w": "character",
+          "start": 63.908,
+          "end": 64.433
+        },
+        {
+          "w": "flaw.",
+          "start": 64.433,
+          "end": 64.946
+        },
+        {
+          "w": "It's",
+          "start": 65.071,
+          "end": 65.283
+        },
+        {
+          "w": "a",
+          "start": 65.283,
+          "end": 65.383
+        },
+        {
+          "w": "pattern,",
+          "start": 65.383,
+          "end": 65.896
+        },
+        {
+          "w": "and",
+          "start": 65.946,
+          "end": 66.083
+        },
+        {
+          "w": "patterns",
+          "start": 66.083,
+          "end": 66.621
+        },
+        {
+          "w": "have",
+          "start": 66.621,
+          "end": 66.858
+        },
+        {
+          "w": "causes.",
+          "start": 66.858,
+          "end": 67.668
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg07",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg07.wav",
+      "duration": 6.948,
+      "start": 67.888,
+      "end": 74.836,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "9c5d546d6ed7fb69",
+      "text": "Honest caveat. Not every late night is this. Shift work, young kids, and sleep problems are different stories.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Honest",
+          "start": 67.944,
+          "end": 68.356
+        },
+        {
+          "w": "caveat.",
+          "start": 68.356,
+          "end": 68.969
+        },
+        {
+          "w": "Not",
+          "start": 69.056,
+          "end": 69.331
+        },
+        {
+          "w": "every",
+          "start": 69.331,
+          "end": 69.669
+        },
+        {
+          "w": "late",
+          "start": 69.669,
+          "end": 69.944
+        },
+        {
+          "w": "night",
+          "start": 69.944,
+          "end": 70.219
+        },
+        {
+          "w": "is",
+          "start": 70.219,
+          "end": 70.369
+        },
+        {
+          "w": "this.",
+          "start": 70.369,
+          "end": 70.919
+        },
+        {
+          "w": "Shift",
+          "start": 71.081,
+          "end": 71.419
+        },
+        {
+          "w": "work,",
+          "start": 71.419,
+          "end": 71.769
+        },
+        {
+          "w": "young",
+          "start": 71.856,
+          "end": 72.181
+        },
+        {
+          "w": "kids,",
+          "start": 72.181,
+          "end": 72.594
+        },
+        {
+          "w": "and",
+          "start": 72.631,
+          "end": 72.769
+        },
+        {
+          "w": "sleep",
+          "start": 72.769,
+          "end": 73.094
+        },
+        {
+          "w": "problems",
+          "start": 73.094,
+          "end": 73.594
+        },
+        {
+          "w": "are",
+          "start": 73.594,
+          "end": 73.744
+        },
+        {
+          "w": "different",
+          "start": 73.744,
+          "end": 74.069
+        },
+        {
+          "w": "stories.",
+          "start": 74.069,
+          "end": 74.836
+        }
+      ]
+    },
+    {
+      "id": "scene02_seg08",
+      "scene": "scene02",
+      "audio": "audio/scene02_seg08.wav",
+      "duration": 5.388,
+      "start": 75.056,
+      "end": 80.444,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "3fde40575186903c",
+      "text": "Now let's talk about why your evening suddenly feels like the only time that belongs to you.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Now",
+          "start": 75.105,
+          "end": 75.355
+        },
+        {
+          "w": "let's",
+          "start": 75.355,
+          "end": 75.63
+        },
+        {
+          "w": "talk",
+          "start": 75.63,
+          "end": 75.868
+        },
+        {
+          "w": "about",
+          "start": 75.868,
+          "end": 76.193
+        },
+        {
+          "w": "why",
+          "start": 76.193,
+          "end": 76.455
+        },
+        {
+          "w": "your",
+          "start": 76.455,
+          "end": 76.668
+        },
+        {
+          "w": "evening",
+          "start": 76.668,
+          "end": 77.13
+        },
+        {
+          "w": "suddenly",
+          "start": 77.13,
+          "end": 77.618
+        },
+        {
+          "w": "feels",
+          "start": 77.618,
+          "end": 78.08
+        },
+        {
+          "w": "like",
+          "start": 78.08,
+          "end": 78.268
+        },
+        {
+          "w": "the",
+          "start": 78.268,
+          "end": 78.418
+        },
+        {
+          "w": "only",
+          "start": 78.418,
+          "end": 78.768
+        },
+        {
+          "w": "time",
+          "start": 78.768,
+          "end": 79.18
+        },
+        {
+          "w": "that",
+          "start": 79.18,
+          "end": 79.355
+        },
+        {
+          "w": "belongs",
+          "start": 79.355,
+          "end": 79.918
+        },
+        {
+          "w": "to",
+          "start": 79.918,
+          "end": 80.068
+        },
+        {
+          "w": "you.",
+          "start": 80.068,
+          "end": 80.444
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg01",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg01.wav",
+      "duration": 6.861,
+      "start": 81.044,
+      "end": 87.905,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "c295302956b777c2",
+      "text": "Think about your day. Work owns the morning. Chores own the afternoon. People who need things own the evening.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Think",
+          "start": 81.136,
+          "end": 81.336
+        },
+        {
+          "w": "about",
+          "start": 81.336,
+          "end": 81.636
+        },
+        {
+          "w": "your",
+          "start": 81.636,
+          "end": 81.823
+        },
+        {
+          "w": "day.",
+          "start": 81.823,
+          "end": 82.261
+        },
+        {
+          "w": "Work",
+          "start": 82.373,
+          "end": 82.723
+        },
+        {
+          "w": "owns",
+          "start": 82.723,
+          "end": 83.111
+        },
+        {
+          "w": "the",
+          "start": 83.111,
+          "end": 83.248
+        },
+        {
+          "w": "morning.",
+          "start": 83.248,
+          "end": 83.811
+        },
+        {
+          "w": "Chores",
+          "start": 83.936,
+          "end": 84.386
+        },
+        {
+          "w": "own",
+          "start": 84.386,
+          "end": 84.548
+        },
+        {
+          "w": "the",
+          "start": 84.548,
+          "end": 84.686
+        },
+        {
+          "w": "afternoon.",
+          "start": 84.686,
+          "end": 85.536
+        },
+        {
+          "w": "People",
+          "start": 85.648,
+          "end": 86.036
+        },
+        {
+          "w": "who",
+          "start": 86.036,
+          "end": 86.223
+        },
+        {
+          "w": "need",
+          "start": 86.223,
+          "end": 86.548
+        },
+        {
+          "w": "things",
+          "start": 86.548,
+          "end": 86.986
+        },
+        {
+          "w": "own",
+          "start": 86.986,
+          "end": 87.123
+        },
+        {
+          "w": "the",
+          "start": 87.123,
+          "end": 87.273
+        },
+        {
+          "w": "evening.",
+          "start": 87.273,
+          "end": 87.905
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg02",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg02.wav",
+      "duration": 7.778,
+      "start": 88.125,
+      "end": 95.903,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "9c43daeed45b654e",
+      "text": "By ten PM, you finally have a few hours with nobody asking for anything. It feels like unclaimed land.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "By",
+          "start": 88.184,
+          "end": 88.434
+        },
+        {
+          "w": "ten",
+          "start": 88.434,
+          "end": 88.822
+        },
+        {
+          "w": "PM,",
+          "start": 88.822,
+          "end": 89.384
+        },
+        {
+          "w": "you",
+          "start": 89.459,
+          "end": 89.647
+        },
+        {
+          "w": "finally",
+          "start": 89.647,
+          "end": 90.134
+        },
+        {
+          "w": "have",
+          "start": 90.134,
+          "end": 90.322
+        },
+        {
+          "w": "a",
+          "start": 90.322,
+          "end": 90.409
+        },
+        {
+          "w": "few",
+          "start": 90.409,
+          "end": 90.709
+        },
+        {
+          "w": "hours",
+          "start": 90.709,
+          "end": 91.259
+        },
+        {
+          "w": "with",
+          "start": 91.259,
+          "end": 91.472
+        },
+        {
+          "w": "nobody",
+          "start": 91.472,
+          "end": 92.047
+        },
+        {
+          "w": "asking",
+          "start": 92.047,
+          "end": 92.509
+        },
+        {
+          "w": "for",
+          "start": 92.509,
+          "end": 92.659
+        },
+        {
+          "w": "anything.",
+          "start": 92.659,
+          "end": 93.459
+        },
+        {
+          "w": "It",
+          "start": 93.559,
+          "end": 93.784
+        },
+        {
+          "w": "feels",
+          "start": 93.784,
+          "end": 94.234
+        },
+        {
+          "w": "like",
+          "start": 94.234,
+          "end": 94.509
+        },
+        {
+          "w": "unclaimed",
+          "start": 94.509,
+          "end": 95.259
+        },
+        {
+          "w": "land.",
+          "start": 95.259,
+          "end": 95.903
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg03",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg03.wav",
+      "duration": 4.783,
+      "start": 96.123,
+      "end": 100.907,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "6ac95a0536954486",
+      "text": "So you plant a flag. \"This hour is mine.\" Nobody may touch it. Not even sleep.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "So",
+          "start": 96.193,
+          "end": 96.293
+        },
+        {
+          "w": "you",
+          "start": 96.293,
+          "end": 96.456
+        },
+        {
+          "w": "plant",
+          "start": 96.456,
+          "end": 96.731
+        },
+        {
+          "w": "a",
+          "start": 96.731,
+          "end": 96.806
+        },
+        {
+          "w": "flag.",
+          "start": 96.806,
+          "end": 97.218
+        },
+        {
+          "w": "\"This",
+          "start": 97.368,
+          "end": 97.643
+        },
+        {
+          "w": "hour",
+          "start": 97.643,
+          "end": 98.018
+        },
+        {
+          "w": "is",
+          "start": 98.018,
+          "end": 98.181
+        },
+        {
+          "w": "mine.\"",
+          "start": 98.181,
+          "end": 98.768
+        },
+        {
+          "w": "Nobody",
+          "start": 98.893,
+          "end": 99.268
+        },
+        {
+          "w": "may",
+          "start": 99.268,
+          "end": 99.456
+        },
+        {
+          "w": "touch",
+          "start": 99.456,
+          "end": 99.743
+        },
+        {
+          "w": "it.",
+          "start": 99.743,
+          "end": 99.868
+        },
+        {
+          "w": "Not",
+          "start": 99.918,
+          "end": 100.106
+        },
+        {
+          "w": "even",
+          "start": 100.106,
+          "end": 100.381
+        },
+        {
+          "w": "sleep.",
+          "start": 100.381,
+          "end": 100.907
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg04",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg04.wav",
+      "duration": 8.562,
+      "start": 101.127,
+      "end": 109.689,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "fac0861d1c55c174",
+      "text": "Online, people nicknamed this revenge bedtime procrastination. It's an informal internet nickname, not a medical term.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Online,",
+          "start": 101.199,
+          "end": 101.799
+        },
+        {
+          "w": "people",
+          "start": 101.887,
+          "end": 102.287
+        },
+        {
+          "w": "nicknamed",
+          "start": 102.287,
+          "end": 102.974
+        },
+        {
+          "w": "this",
+          "start": 102.974,
+          "end": 103.237
+        },
+        {
+          "w": "revenge",
+          "start": 103.237,
+          "end": 103.874
+        },
+        {
+          "w": "bedtime",
+          "start": 103.874,
+          "end": 104.549
+        },
+        {
+          "w": "procrastination.",
+          "start": 104.549,
+          "end": 105.924
+        },
+        {
+          "w": "It's",
+          "start": 106.024,
+          "end": 106.249
+        },
+        {
+          "w": "an",
+          "start": 106.249,
+          "end": 106.412
+        },
+        {
+          "w": "informal",
+          "start": 106.412,
+          "end": 107.162
+        },
+        {
+          "w": "internet",
+          "start": 107.162,
+          "end": 107.649
+        },
+        {
+          "w": "nickname,",
+          "start": 107.649,
+          "end": 108.249
+        },
+        {
+          "w": "not",
+          "start": 108.324,
+          "end": 108.574
+        },
+        {
+          "w": "a",
+          "start": 108.574,
+          "end": 108.674
+        },
+        {
+          "w": "medical",
+          "start": 108.674,
+          "end": 109.112
+        },
+        {
+          "w": "term.",
+          "start": 109.112,
+          "end": 109.689
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg05",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg05.wav",
+      "duration": 4.416,
+      "start": 109.889,
+      "end": 114.305,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "32db8df934727794",
+      "text": "Also, \"revenge\" is a bit dramatic. Against whom? Your alarm clock?",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Also,",
+          "start": 109.938,
+          "end": 110.338
+        },
+        {
+          "w": "\"revenge\"",
+          "start": 110.438,
+          "end": 110.938
+        },
+        {
+          "w": "is",
+          "start": 110.988,
+          "end": 111.1
+        },
+        {
+          "w": "a",
+          "start": 111.1,
+          "end": 111.163
+        },
+        {
+          "w": "bit",
+          "start": 111.163,
+          "end": 111.363
+        },
+        {
+          "w": "dramatic.",
+          "start": 111.363,
+          "end": 112.063
+        },
+        {
+          "w": "Against",
+          "start": 112.175,
+          "end": 112.563
+        },
+        {
+          "w": "whom?",
+          "start": 112.563,
+          "end": 112.988
+        },
+        {
+          "w": "Your",
+          "start": 113.088,
+          "end": 113.263
+        },
+        {
+          "w": "alarm",
+          "start": 113.263,
+          "end": 113.675
+        },
+        {
+          "w": "clock?",
+          "start": 113.675,
+          "end": 114.305
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg06",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg06.wav",
+      "duration": 5.126,
+      "start": 114.525,
+      "end": 119.65,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "5383289abb0b22c9",
+      "text": "The feeling underneath is real, though. You want some time that isn't owed to anyone.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "The",
+          "start": 114.547,
+          "end": 114.672
+        },
+        {
+          "w": "feeling",
+          "start": 114.672,
+          "end": 115.097
+        },
+        {
+          "w": "underneath",
+          "start": 115.097,
+          "end": 115.785
+        },
+        {
+          "w": "is",
+          "start": 115.785,
+          "end": 115.972
+        },
+        {
+          "w": "real,",
+          "start": 115.972,
+          "end": 116.322
+        },
+        {
+          "w": "though.",
+          "start": 116.372,
+          "end": 116.822
+        },
+        {
+          "w": "You",
+          "start": 116.96,
+          "end": 117.122
+        },
+        {
+          "w": "want",
+          "start": 117.122,
+          "end": 117.41
+        },
+        {
+          "w": "some",
+          "start": 117.41,
+          "end": 117.685
+        },
+        {
+          "w": "time",
+          "start": 117.685,
+          "end": 118.097
+        },
+        {
+          "w": "that",
+          "start": 118.097,
+          "end": 118.247
+        },
+        {
+          "w": "isn't",
+          "start": 118.247,
+          "end": 118.535
+        },
+        {
+          "w": "owed",
+          "start": 118.535,
+          "end": 118.872
+        },
+        {
+          "w": "to",
+          "start": 118.872,
+          "end": 118.997
+        },
+        {
+          "w": "anyone.",
+          "start": 118.997,
+          "end": 119.65
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg07",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg07.wav",
+      "duration": 4.302,
+      "start": 119.87,
+      "end": 124.173,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "754209aa4e081f20",
+      "text": "The catch is the price. You pay with sleep, and tomorrow Bob gets the bill.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "The",
+          "start": 119.931,
+          "end": 120.043
+        },
+        {
+          "w": "catch",
+          "start": 120.043,
+          "end": 120.406
+        },
+        {
+          "w": "is",
+          "start": 120.406,
+          "end": 120.556
+        },
+        {
+          "w": "the",
+          "start": 120.556,
+          "end": 120.693
+        },
+        {
+          "w": "price.",
+          "start": 120.693,
+          "end": 121.256
+        },
+        {
+          "w": "You",
+          "start": 121.356,
+          "end": 121.518
+        },
+        {
+          "w": "pay",
+          "start": 121.518,
+          "end": 121.806
+        },
+        {
+          "w": "with",
+          "start": 121.806,
+          "end": 121.993
+        },
+        {
+          "w": "sleep,",
+          "start": 121.993,
+          "end": 122.381
+        },
+        {
+          "w": "and",
+          "start": 122.431,
+          "end": 122.556
+        },
+        {
+          "w": "tomorrow",
+          "start": 122.556,
+          "end": 123.018
+        },
+        {
+          "w": "Bob",
+          "start": 123.018,
+          "end": 123.356
+        },
+        {
+          "w": "gets",
+          "start": 123.356,
+          "end": 123.606
+        },
+        {
+          "w": "the",
+          "start": 123.606,
+          "end": 123.706
+        },
+        {
+          "w": "bill.",
+          "start": 123.706,
+          "end": 124.173
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg08",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg08.wav",
+      "duration": 2.566,
+      "start": 124.523,
+      "end": 127.089,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "e1c52ece12bb1827",
+      "text": "Interest rate: one extremely grumpy morning.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Interest",
+          "start": 124.55,
+          "end": 124.95
+        },
+        {
+          "w": "rate:",
+          "start": 124.95,
+          "end": 125.275
+        },
+        {
+          "w": "one",
+          "start": 125.35,
+          "end": 125.6
+        },
+        {
+          "w": "extremely",
+          "start": 125.6,
+          "end": 126.2
+        },
+        {
+          "w": "grumpy",
+          "start": 126.2,
+          "end": 126.55
+        },
+        {
+          "w": "morning.",
+          "start": 126.55,
+          "end": 127.089
+        }
+      ]
+    },
+    {
+      "id": "scene03_seg09",
+      "scene": "scene03",
+      "audio": "audio/scene03_seg09.wav",
+      "duration": 3.776,
+      "start": 127.309,
+      "end": 131.085,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "7b758e4e873b0bb9",
+      "text": "But why can't you just stop? That's a brain problem. Let's go there.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "But",
+          "start": 127.341,
+          "end": 127.466
+        },
+        {
+          "w": "why",
+          "start": 127.466,
+          "end": 127.703
+        },
+        {
+          "w": "can't",
+          "start": 127.703,
+          "end": 127.991
+        },
+        {
+          "w": "you",
+          "start": 127.991,
+          "end": 128.091
+        },
+        {
+          "w": "just",
+          "start": 128.091,
+          "end": 128.291
+        },
+        {
+          "w": "stop?",
+          "start": 128.291,
+          "end": 128.816
+        },
+        {
+          "w": "That's",
+          "start": 128.916,
+          "end": 129.153
+        },
+        {
+          "w": "a",
+          "start": 129.153,
+          "end": 129.216
+        },
+        {
+          "w": "brain",
+          "start": 129.216,
+          "end": 129.591
+        },
+        {
+          "w": "problem.",
+          "start": 129.591,
+          "end": 130.066
+        },
+        {
+          "w": "Let's",
+          "start": 130.116,
+          "end": 130.391
+        },
+        {
+          "w": "go",
+          "start": 130.391,
+          "end": 130.566
+        },
+        {
+          "w": "there.",
+          "start": 130.566,
+          "end": 131.085
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg01",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg01.wav",
+      "duration": 8.597,
+      "start": 131.685,
+      "end": 140.282,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "eb05b6147eebf077",
+      "text": "Here's the cruel part. By night, self-control tends to run low. Researchers argue about exactly how that works, but you've felt it.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Here's",
+          "start": 131.767,
+          "end": 132.092
+        },
+        {
+          "w": "the",
+          "start": 132.092,
+          "end": 132.229
+        },
+        {
+          "w": "cruel",
+          "start": 132.229,
+          "end": 132.629
+        },
+        {
+          "w": "part.",
+          "start": 132.629,
+          "end": 133.117
+        },
+        {
+          "w": "By",
+          "start": 133.229,
+          "end": 133.429
+        },
+        {
+          "w": "night,",
+          "start": 133.429,
+          "end": 133.792
+        },
+        {
+          "w": "self-control",
+          "start": 133.879,
+          "end": 134.854
+        },
+        {
+          "w": "tends",
+          "start": 134.854,
+          "end": 135.242
+        },
+        {
+          "w": "to",
+          "start": 135.242,
+          "end": 135.367
+        },
+        {
+          "w": "run",
+          "start": 135.367,
+          "end": 135.629
+        },
+        {
+          "w": "low.",
+          "start": 135.629,
+          "end": 136.192
+        },
+        {
+          "w": "Researchers",
+          "start": 136.329,
+          "end": 137.042
+        },
+        {
+          "w": "argue",
+          "start": 137.042,
+          "end": 137.492
+        },
+        {
+          "w": "about",
+          "start": 137.492,
+          "end": 137.792
+        },
+        {
+          "w": "exactly",
+          "start": 137.792,
+          "end": 138.442
+        },
+        {
+          "w": "how",
+          "start": 138.442,
+          "end": 138.642
+        },
+        {
+          "w": "that",
+          "start": 138.642,
+          "end": 138.917
+        },
+        {
+          "w": "works,",
+          "start": 138.917,
+          "end": 139.242
+        },
+        {
+          "w": "but",
+          "start": 139.279,
+          "end": 139.417
+        },
+        {
+          "w": "you've",
+          "start": 139.417,
+          "end": 139.629
+        },
+        {
+          "w": "felt",
+          "start": 139.629,
+          "end": 139.967
+        },
+        {
+          "w": "it.",
+          "start": 139.967,
+          "end": 140.282
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg02",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg02.wav",
+      "duration": 6.469,
+      "start": 140.502,
+      "end": 146.971,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "834cfd81ba6d32da",
+      "text": "It's like a phone battery. At noon, full. At midnight, it's at one percent, and you're opening a game.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "It's",
+          "start": 140.555,
+          "end": 140.78
+        },
+        {
+          "w": "like",
+          "start": 140.78,
+          "end": 140.98
+        },
+        {
+          "w": "a",
+          "start": 140.98,
+          "end": 141.117
+        },
+        {
+          "w": "phone",
+          "start": 141.117,
+          "end": 141.53
+        },
+        {
+          "w": "battery.",
+          "start": 141.53,
+          "end": 142.105
+        },
+        {
+          "w": "At",
+          "start": 142.18,
+          "end": 142.43
+        },
+        {
+          "w": "noon,",
+          "start": 142.43,
+          "end": 142.93
+        },
+        {
+          "w": "full.",
+          "start": 143.055,
+          "end": 143.605
+        },
+        {
+          "w": "At",
+          "start": 143.705,
+          "end": 143.917
+        },
+        {
+          "w": "midnight,",
+          "start": 143.917,
+          "end": 144.405
+        },
+        {
+          "w": "it's",
+          "start": 144.442,
+          "end": 144.605
+        },
+        {
+          "w": "at",
+          "start": 144.605,
+          "end": 144.755
+        },
+        {
+          "w": "one",
+          "start": 144.755,
+          "end": 144.98
+        },
+        {
+          "w": "percent,",
+          "start": 144.98,
+          "end": 145.48
+        },
+        {
+          "w": "and",
+          "start": 145.517,
+          "end": 145.617
+        },
+        {
+          "w": "you're",
+          "start": 145.617,
+          "end": 145.792
+        },
+        {
+          "w": "opening",
+          "start": 145.792,
+          "end": 146.255
+        },
+        {
+          "w": "a",
+          "start": 146.255,
+          "end": 146.367
+        },
+        {
+          "w": "game.",
+          "start": 146.367,
+          "end": 146.971
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg03",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg03.wav",
+      "duration": 4.508,
+      "start": 147.191,
+      "end": 151.699,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "8451c44abfa421cf",
+      "text": "The same brain that said no to dessert at lunch now says yes to everything.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "The",
+          "start": 147.21,
+          "end": 147.322
+        },
+        {
+          "w": "same",
+          "start": 147.322,
+          "end": 147.672
+        },
+        {
+          "w": "brain",
+          "start": 147.672,
+          "end": 148.085
+        },
+        {
+          "w": "that",
+          "start": 148.085,
+          "end": 148.297
+        },
+        {
+          "w": "said",
+          "start": 148.297,
+          "end": 148.56
+        },
+        {
+          "w": "no",
+          "start": 148.56,
+          "end": 148.922
+        },
+        {
+          "w": "to",
+          "start": 148.922,
+          "end": 149.035
+        },
+        {
+          "w": "dessert",
+          "start": 149.035,
+          "end": 149.435
+        },
+        {
+          "w": "at",
+          "start": 149.435,
+          "end": 149.585
+        },
+        {
+          "w": "lunch",
+          "start": 149.585,
+          "end": 149.935
+        },
+        {
+          "w": "now",
+          "start": 149.935,
+          "end": 150.335
+        },
+        {
+          "w": "says",
+          "start": 150.335,
+          "end": 150.61
+        },
+        {
+          "w": "yes",
+          "start": 150.61,
+          "end": 150.885
+        },
+        {
+          "w": "to",
+          "start": 150.885,
+          "end": 151.022
+        },
+        {
+          "w": "everything.",
+          "start": 151.022,
+          "end": 151.699
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg04",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg04.wav",
+      "duration": 1.204,
+      "start": 151.919,
+      "end": 153.124,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "0934266a0fe7db9c",
+      "text": "And then there's timing.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "And",
+          "start": 151.947,
+          "end": 152.06
+        },
+        {
+          "w": "then",
+          "start": 152.06,
+          "end": 152.185
+        },
+        {
+          "w": "there's",
+          "start": 152.185,
+          "end": 152.41
+        },
+        {
+          "w": "timing.",
+          "start": 152.41,
+          "end": 153.124
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg05",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg05.wav",
+      "duration": 3.416,
+      "start": 153.324,
+      "end": 156.74,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "e879904e44fef507",
+      "text": "Scrolling pays off right now. Sleep pays off tomorrow.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Scrolling",
+          "start": 153.387,
+          "end": 153.837
+        },
+        {
+          "w": "pays",
+          "start": 153.837,
+          "end": 154.187
+        },
+        {
+          "w": "off",
+          "start": 154.187,
+          "end": 154.387
+        },
+        {
+          "w": "right",
+          "start": 154.387,
+          "end": 154.637
+        },
+        {
+          "w": "now.",
+          "start": 154.637,
+          "end": 155.037
+        },
+        {
+          "w": "Sleep",
+          "start": 155.187,
+          "end": 155.512
+        },
+        {
+          "w": "pays",
+          "start": 155.512,
+          "end": 155.837
+        },
+        {
+          "w": "off",
+          "start": 155.837,
+          "end": 156.087
+        },
+        {
+          "w": "tomorrow.",
+          "start": 156.087,
+          "end": 156.74
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg06",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg06.wav",
+      "duration": 6.893,
+      "start": 156.96,
+      "end": 163.853,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "3503e249c33b729e",
+      "text": "People tend to favor rewards that come sooner. It's a very common tendency, and bedtime keeps losing to it.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "People",
+          "start": 156.988,
+          "end": 157.351
+        },
+        {
+          "w": "tend",
+          "start": 157.351,
+          "end": 157.663
+        },
+        {
+          "w": "to",
+          "start": 157.663,
+          "end": 157.813
+        },
+        {
+          "w": "favor",
+          "start": 157.813,
+          "end": 158.263
+        },
+        {
+          "w": "rewards",
+          "start": 158.263,
+          "end": 158.863
+        },
+        {
+          "w": "that",
+          "start": 158.863,
+          "end": 159.038
+        },
+        {
+          "w": "come",
+          "start": 159.038,
+          "end": 159.338
+        },
+        {
+          "w": "sooner.",
+          "start": 159.338,
+          "end": 159.938
+        },
+        {
+          "w": "It's",
+          "start": 160.038,
+          "end": 160.251
+        },
+        {
+          "w": "a",
+          "start": 160.251,
+          "end": 160.351
+        },
+        {
+          "w": "very",
+          "start": 160.351,
+          "end": 160.701
+        },
+        {
+          "w": "common",
+          "start": 160.701,
+          "end": 161.151
+        },
+        {
+          "w": "tendency,",
+          "start": 161.151,
+          "end": 161.788
+        },
+        {
+          "w": "and",
+          "start": 161.863,
+          "end": 162.001
+        },
+        {
+          "w": "bedtime",
+          "start": 162.001,
+          "end": 162.613
+        },
+        {
+          "w": "keeps",
+          "start": 162.613,
+          "end": 162.926
+        },
+        {
+          "w": "losing",
+          "start": 162.926,
+          "end": 163.313
+        },
+        {
+          "w": "to",
+          "start": 163.313,
+          "end": 163.526
+        },
+        {
+          "w": "it.",
+          "start": 163.526,
+          "end": 163.853
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg07",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg07.wav",
+      "duration": 3.563,
+      "start": 164.073,
+      "end": 167.636,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "8162f9f8c0553876",
+      "text": "So the vote is tonight Bob, all of them. Tomorrow Bob, none.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "So",
+          "start": 164.139,
+          "end": 164.264
+        },
+        {
+          "w": "the",
+          "start": 164.264,
+          "end": 164.364
+        },
+        {
+          "w": "vote",
+          "start": 164.364,
+          "end": 164.639
+        },
+        {
+          "w": "is",
+          "start": 164.639,
+          "end": 164.789
+        },
+        {
+          "w": "tonight",
+          "start": 164.789,
+          "end": 165.152
+        },
+        {
+          "w": "Bob,",
+          "start": 165.152,
+          "end": 165.539
+        },
+        {
+          "w": "all",
+          "start": 165.589,
+          "end": 165.777
+        },
+        {
+          "w": "of",
+          "start": 165.777,
+          "end": 165.864
+        },
+        {
+          "w": "them.",
+          "start": 165.864,
+          "end": 166.214
+        },
+        {
+          "w": "Tomorrow",
+          "start": 166.327,
+          "end": 166.814
+        },
+        {
+          "w": "Bob,",
+          "start": 166.814,
+          "end": 167.114
+        },
+        {
+          "w": "none.",
+          "start": 167.164,
+          "end": 167.636
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg08",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg08.wav",
+      "duration": 1.137,
+      "start": 168.086,
+      "end": 169.222,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "e9876756262009a3",
+      "text": "He wasn't invited.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "He",
+          "start": 168.12,
+          "end": 168.245
+        },
+        {
+          "w": "wasn't",
+          "start": 168.245,
+          "end": 168.532
+        },
+        {
+          "w": "invited.",
+          "start": 168.532,
+          "end": 169.222
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg09",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg09.wav",
+      "duration": 4.648,
+      "start": 169.442,
+      "end": 174.09,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "a28fa8b876abdd42",
+      "text": "It's not that you can't do math. It's that tomorrow feels like a stranger.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "It's",
+          "start": 169.468,
+          "end": 169.693
+        },
+        {
+          "w": "not",
+          "start": 169.693,
+          "end": 169.968
+        },
+        {
+          "w": "that",
+          "start": 169.968,
+          "end": 170.168
+        },
+        {
+          "w": "you",
+          "start": 170.168,
+          "end": 170.331
+        },
+        {
+          "w": "can't",
+          "start": 170.331,
+          "end": 170.706
+        },
+        {
+          "w": "do",
+          "start": 170.706,
+          "end": 170.981
+        },
+        {
+          "w": "math.",
+          "start": 170.981,
+          "end": 171.543
+        },
+        {
+          "w": "It's",
+          "start": 171.643,
+          "end": 171.893
+        },
+        {
+          "w": "that",
+          "start": 171.893,
+          "end": 172.118
+        },
+        {
+          "w": "tomorrow",
+          "start": 172.118,
+          "end": 172.668
+        },
+        {
+          "w": "feels",
+          "start": 172.668,
+          "end": 173.093
+        },
+        {
+          "w": "like",
+          "start": 173.093,
+          "end": 173.281
+        },
+        {
+          "w": "a",
+          "start": 173.281,
+          "end": 173.343
+        },
+        {
+          "w": "stranger.",
+          "start": 173.343,
+          "end": 174.09
+        }
+      ]
+    },
+    {
+      "id": "scene04_seg10",
+      "scene": "scene04",
+      "audio": "audio/scene04_seg10.wav",
+      "duration": 3.654,
+      "start": 174.31,
+      "end": 177.964,
+      "emotion": "whisper",
+      "modifier": null,
+      "speed": 0.82,
+      "volume": 0.65,
+      "pitch": 0.0,
+      "cache_key": "3e7e17b2af8c50ad",
+      "text": "And a feed knows exactly what to do with a tired brain.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "And",
+          "start": 174.361,
+          "end": 174.473
+        },
+        {
+          "w": "a",
+          "start": 174.473,
+          "end": 174.586
+        },
+        {
+          "w": "feed",
+          "start": 174.586,
+          "end": 174.961
+        },
+        {
+          "w": "knows",
+          "start": 174.961,
+          "end": 175.286
+        },
+        {
+          "w": "exactly",
+          "start": 175.286,
+          "end": 175.936
+        },
+        {
+          "w": "what",
+          "start": 175.936,
+          "end": 176.136
+        },
+        {
+          "w": "to",
+          "start": 176.136,
+          "end": 176.273
+        },
+        {
+          "w": "do",
+          "start": 176.273,
+          "end": 176.586
+        },
+        {
+          "w": "with",
+          "start": 176.586,
+          "end": 176.723
+        },
+        {
+          "w": "a",
+          "start": 176.723,
+          "end": 176.823
+        },
+        {
+          "w": "tired",
+          "start": 176.823,
+          "end": 177.361
+        },
+        {
+          "w": "brain.",
+          "start": 177.361,
+          "end": 177.964
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg01",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg01.wav",
+      "duration": 7.955,
+      "start": 178.564,
+      "end": 186.519,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "c358934e4a1fdb34",
+      "text": "Now put that tired brain in front of a feed with no bottom. No last page, no credits, no signal that says you're done.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Now",
+          "start": 178.661,
+          "end": 178.923
+        },
+        {
+          "w": "put",
+          "start": 178.923,
+          "end": 179.161
+        },
+        {
+          "w": "that",
+          "start": 179.161,
+          "end": 179.398
+        },
+        {
+          "w": "tired",
+          "start": 179.398,
+          "end": 179.898
+        },
+        {
+          "w": "brain",
+          "start": 179.898,
+          "end": 180.311
+        },
+        {
+          "w": "in",
+          "start": 180.311,
+          "end": 180.473
+        },
+        {
+          "w": "front",
+          "start": 180.473,
+          "end": 180.698
+        },
+        {
+          "w": "of",
+          "start": 180.698,
+          "end": 180.773
+        },
+        {
+          "w": "a",
+          "start": 180.773,
+          "end": 180.898
+        },
+        {
+          "w": "feed",
+          "start": 180.898,
+          "end": 181.311
+        },
+        {
+          "w": "with",
+          "start": 181.311,
+          "end": 181.498
+        },
+        {
+          "w": "no",
+          "start": 181.498,
+          "end": 181.773
+        },
+        {
+          "w": "bottom.",
+          "start": 181.773,
+          "end": 182.461
+        },
+        {
+          "w": "No",
+          "start": 182.611,
+          "end": 182.886
+        },
+        {
+          "w": "last",
+          "start": 182.886,
+          "end": 183.298
+        },
+        {
+          "w": "page,",
+          "start": 183.298,
+          "end": 183.786
+        },
+        {
+          "w": "no",
+          "start": 183.836,
+          "end": 184.048
+        },
+        {
+          "w": "credits,",
+          "start": 184.048,
+          "end": 184.536
+        },
+        {
+          "w": "no",
+          "start": 184.623,
+          "end": 184.923
+        },
+        {
+          "w": "signal",
+          "start": 184.923,
+          "end": 185.386
+        },
+        {
+          "w": "that",
+          "start": 185.386,
+          "end": 185.586
+        },
+        {
+          "w": "says",
+          "start": 185.586,
+          "end": 185.836
+        },
+        {
+          "w": "you're",
+          "start": 185.836,
+          "end": 186.011
+        },
+        {
+          "w": "done.",
+          "start": 186.011,
+          "end": 186.519
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg02",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg02.wav",
+      "duration": 6.786,
+      "start": 186.739,
+      "end": 193.524,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "d72e4e6f2aef026d",
+      "text": "And the rewards are unpredictable, so you keep checking for the good one. \"One more\" is just how it works.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "And",
+          "start": 186.798,
+          "end": 186.936
+        },
+        {
+          "w": "the",
+          "start": 186.936,
+          "end": 187.023
+        },
+        {
+          "w": "rewards",
+          "start": 187.023,
+          "end": 187.661
+        },
+        {
+          "w": "are",
+          "start": 187.661,
+          "end": 187.861
+        },
+        {
+          "w": "unpredictable,",
+          "start": 187.861,
+          "end": 188.798
+        },
+        {
+          "w": "so",
+          "start": 188.848,
+          "end": 189.023
+        },
+        {
+          "w": "you",
+          "start": 189.023,
+          "end": 189.198
+        },
+        {
+          "w": "keep",
+          "start": 189.198,
+          "end": 189.548
+        },
+        {
+          "w": "checking",
+          "start": 189.548,
+          "end": 190.023
+        },
+        {
+          "w": "for",
+          "start": 190.023,
+          "end": 190.148
+        },
+        {
+          "w": "the",
+          "start": 190.148,
+          "end": 190.286
+        },
+        {
+          "w": "good",
+          "start": 190.286,
+          "end": 190.523
+        },
+        {
+          "w": "one.",
+          "start": 190.523,
+          "end": 191.048
+        },
+        {
+          "w": "\"One",
+          "start": 191.248,
+          "end": 191.498
+        },
+        {
+          "w": "more\"",
+          "start": 191.498,
+          "end": 191.923
+        },
+        {
+          "w": "is",
+          "start": 192.048,
+          "end": 192.236
+        },
+        {
+          "w": "just",
+          "start": 192.236,
+          "end": 192.548
+        },
+        {
+          "w": "how",
+          "start": 192.548,
+          "end": 192.773
+        },
+        {
+          "w": "it",
+          "start": 192.773,
+          "end": 192.923
+        },
+        {
+          "w": "works.",
+          "start": 192.923,
+          "end": 193.524
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg03",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg03.wav",
+      "duration": 6.191,
+      "start": 193.744,
+      "end": 199.935,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "20dfd00e408aac47",
+      "text": "Also, screens. Some research suggests evening light from screens can nudge sleep later for some people.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Also,",
+          "start": 193.783,
+          "end": 194.208
+        },
+        {
+          "w": "screens.",
+          "start": 194.295,
+          "end": 194.983
+        },
+        {
+          "w": "Some",
+          "start": 195.095,
+          "end": 195.358
+        },
+        {
+          "w": "research",
+          "start": 195.358,
+          "end": 195.833
+        },
+        {
+          "w": "suggests",
+          "start": 195.833,
+          "end": 196.42
+        },
+        {
+          "w": "evening",
+          "start": 196.42,
+          "end": 196.833
+        },
+        {
+          "w": "light",
+          "start": 196.833,
+          "end": 197.108
+        },
+        {
+          "w": "from",
+          "start": 197.108,
+          "end": 197.32
+        },
+        {
+          "w": "screens",
+          "start": 197.32,
+          "end": 197.883
+        },
+        {
+          "w": "can",
+          "start": 197.883,
+          "end": 198.083
+        },
+        {
+          "w": "nudge",
+          "start": 198.083,
+          "end": 198.345
+        },
+        {
+          "w": "sleep",
+          "start": 198.345,
+          "end": 198.683
+        },
+        {
+          "w": "later",
+          "start": 198.683,
+          "end": 199.058
+        },
+        {
+          "w": "for",
+          "start": 199.058,
+          "end": 199.183
+        },
+        {
+          "w": "some",
+          "start": 199.183,
+          "end": 199.433
+        },
+        {
+          "w": "people.",
+          "start": 199.433,
+          "end": 199.935
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg04",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg04.wav",
+      "duration": 6.088,
+      "start": 200.155,
+      "end": 206.243,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "889475d5cb3d02ae",
+      "text": "The evidence on how big that effect is, is mixed. So I'm not saying the glow is the villain.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "The",
+          "start": 200.215,
+          "end": 200.377
+        },
+        {
+          "w": "evidence",
+          "start": 200.377,
+          "end": 200.89
+        },
+        {
+          "w": "on",
+          "start": 200.89,
+          "end": 201.09
+        },
+        {
+          "w": "how",
+          "start": 201.09,
+          "end": 201.34
+        },
+        {
+          "w": "big",
+          "start": 201.34,
+          "end": 201.615
+        },
+        {
+          "w": "that",
+          "start": 201.615,
+          "end": 201.84
+        },
+        {
+          "w": "effect",
+          "start": 201.84,
+          "end": 202.34
+        },
+        {
+          "w": "is,",
+          "start": 202.34,
+          "end": 202.69
+        },
+        {
+          "w": "is",
+          "start": 202.777,
+          "end": 202.99
+        },
+        {
+          "w": "mixed.",
+          "start": 202.99,
+          "end": 203.615
+        },
+        {
+          "w": "So",
+          "start": 203.752,
+          "end": 203.965
+        },
+        {
+          "w": "I'm",
+          "start": 203.965,
+          "end": 204.14
+        },
+        {
+          "w": "not",
+          "start": 204.14,
+          "end": 204.402
+        },
+        {
+          "w": "saying",
+          "start": 204.402,
+          "end": 204.777
+        },
+        {
+          "w": "the",
+          "start": 204.777,
+          "end": 204.877
+        },
+        {
+          "w": "glow",
+          "start": 204.877,
+          "end": 205.352
+        },
+        {
+          "w": "is",
+          "start": 205.352,
+          "end": 205.515
+        },
+        {
+          "w": "the",
+          "start": 205.515,
+          "end": 205.652
+        },
+        {
+          "w": "villain.",
+          "start": 205.652,
+          "end": 206.243
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg05",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg05.wav",
+      "duration": 1.458,
+      "start": 206.593,
+      "end": 208.052,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "7137d982148a29d8",
+      "text": "I'm saying it's a suspect.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "I'm",
+          "start": 206.624,
+          "end": 206.799
+        },
+        {
+          "w": "saying",
+          "start": 206.799,
+          "end": 207.086
+        },
+        {
+          "w": "it's",
+          "start": 207.086,
+          "end": 207.211
+        },
+        {
+          "w": "a",
+          "start": 207.211,
+          "end": 207.299
+        },
+        {
+          "w": "suspect.",
+          "start": 207.299,
+          "end": 208.052
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg06",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg06.wav",
+      "duration": 5.7,
+      "start": 208.272,
+      "end": 213.972,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "018e3810122cab9c",
+      "text": "So you end up somewhere strange. Exhausted, and wired. Tired, but unable to stop.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "So",
+          "start": 208.358,
+          "end": 208.533
+        },
+        {
+          "w": "you",
+          "start": 208.533,
+          "end": 208.696
+        },
+        {
+          "w": "end",
+          "start": 208.696,
+          "end": 208.921
+        },
+        {
+          "w": "up",
+          "start": 208.921,
+          "end": 209.121
+        },
+        {
+          "w": "somewhere",
+          "start": 209.121,
+          "end": 209.621
+        },
+        {
+          "w": "strange.",
+          "start": 209.621,
+          "end": 210.383
+        },
+        {
+          "w": "Exhausted,",
+          "start": 210.521,
+          "end": 211.283
+        },
+        {
+          "w": "and",
+          "start": 211.333,
+          "end": 211.471
+        },
+        {
+          "w": "wired.",
+          "start": 211.471,
+          "end": 212.008
+        },
+        {
+          "w": "Tired,",
+          "start": 212.096,
+          "end": 212.558
+        },
+        {
+          "w": "but",
+          "start": 212.596,
+          "end": 212.771
+        },
+        {
+          "w": "unable",
+          "start": 212.771,
+          "end": 213.283
+        },
+        {
+          "w": "to",
+          "start": 213.283,
+          "end": 213.421
+        },
+        {
+          "w": "stop.",
+          "start": 213.421,
+          "end": 213.972
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg07",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg07.wav",
+      "duration": 4.191,
+      "start": 214.192,
+      "end": 218.383,
+      "emotion": "fake_excitement",
+      "modifier": null,
+      "speed": 0.98,
+      "volume": 1.05,
+      "pitch": 0.0,
+      "cache_key": "7007efc1bbc54248",
+      "text": "Congratulations, it's one AM, and you have zero regrets. For now.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Congratulations,",
+          "start": 214.205,
+          "end": 215.155
+        },
+        {
+          "w": "it's",
+          "start": 215.205,
+          "end": 215.418
+        },
+        {
+          "w": "one",
+          "start": 215.418,
+          "end": 215.693
+        },
+        {
+          "w": "AM,",
+          "start": 215.693,
+          "end": 216.205
+        },
+        {
+          "w": "and",
+          "start": 216.255,
+          "end": 216.368
+        },
+        {
+          "w": "you",
+          "start": 216.368,
+          "end": 216.455
+        },
+        {
+          "w": "have",
+          "start": 216.455,
+          "end": 216.668
+        },
+        {
+          "w": "zero",
+          "start": 216.668,
+          "end": 217.005
+        },
+        {
+          "w": "regrets.",
+          "start": 217.005,
+          "end": 217.68
+        },
+        {
+          "w": "For",
+          "start": 217.78,
+          "end": 217.93
+        },
+        {
+          "w": "now.",
+          "start": 217.93,
+          "end": 218.383
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg08",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg08.wav",
+      "duration": 1.722,
+      "start": 218.603,
+      "end": 220.325,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "3c3282f5ec9a8abf",
+      "text": "Tomorrow Bob will have all of them.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Tomorrow",
+          "start": 218.633,
+          "end": 219.033
+        },
+        {
+          "w": "Bob",
+          "start": 219.033,
+          "end": 219.295
+        },
+        {
+          "w": "will",
+          "start": 219.295,
+          "end": 219.408
+        },
+        {
+          "w": "have",
+          "start": 219.408,
+          "end": 219.645
+        },
+        {
+          "w": "all",
+          "start": 219.645,
+          "end": 219.87
+        },
+        {
+          "w": "of",
+          "start": 219.87,
+          "end": 219.945
+        },
+        {
+          "w": "them.",
+          "start": 219.945,
+          "end": 220.325
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg09",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg09.wav",
+      "duration": 0.803,
+      "start": 220.775,
+      "end": 221.578,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "a19cd3582511c595",
+      "text": "In bulk.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "In",
+          "start": 220.819,
+          "end": 220.944
+        },
+        {
+          "w": "bulk.",
+          "start": 220.944,
+          "end": 221.578
+        }
+      ]
+    },
+    {
+      "id": "scene05_seg10",
+      "scene": "scene05",
+      "audio": "audio/scene05_seg10.wav",
+      "duration": 6.648,
+      "start": 221.798,
+      "end": 228.445,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "8dc43d24709cce1c",
+      "text": "Okay, enough roasting. Fixes. One for the clock, one for the \"me time,\" and one for the finish line.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Okay,",
+          "start": 221.836,
+          "end": 222.336
+        },
+        {
+          "w": "enough",
+          "start": 222.386,
+          "end": 222.711
+        },
+        {
+          "w": "roasting.",
+          "start": 222.711,
+          "end": 223.411
+        },
+        {
+          "w": "Fixes.",
+          "start": 223.536,
+          "end": 224.386
+        },
+        {
+          "w": "One",
+          "start": 224.499,
+          "end": 224.761
+        },
+        {
+          "w": "for",
+          "start": 224.761,
+          "end": 224.886
+        },
+        {
+          "w": "the",
+          "start": 224.886,
+          "end": 225.024
+        },
+        {
+          "w": "clock,",
+          "start": 225.024,
+          "end": 225.461
+        },
+        {
+          "w": "one",
+          "start": 225.511,
+          "end": 225.736
+        },
+        {
+          "w": "for",
+          "start": 225.736,
+          "end": 225.861
+        },
+        {
+          "w": "the",
+          "start": 225.861,
+          "end": 225.986
+        },
+        {
+          "w": "\"me",
+          "start": 226.061,
+          "end": 226.249
+        },
+        {
+          "w": "time,\"",
+          "start": 226.249,
+          "end": 226.736
+        },
+        {
+          "w": "and",
+          "start": 226.811,
+          "end": 226.961
+        },
+        {
+          "w": "one",
+          "start": 226.961,
+          "end": 227.236
+        },
+        {
+          "w": "for",
+          "start": 227.236,
+          "end": 227.349
+        },
+        {
+          "w": "the",
+          "start": 227.349,
+          "end": 227.474
+        },
+        {
+          "w": "finish",
+          "start": 227.474,
+          "end": 227.886
+        },
+        {
+          "w": "line.",
+          "start": 227.886,
+          "end": 228.445
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg01",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg01.wav",
+      "duration": 6.221,
+      "start": 229.045,
+      "end": 235.267,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "a98982f0be57f69b",
+      "text": "Fix one. Set an alarm for going to bed, not waking up. Thirty minutes before you want to be asleep.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Fix",
+          "start": 229.133,
+          "end": 229.47
+        },
+        {
+          "w": "one.",
+          "start": 229.47,
+          "end": 229.858
+        },
+        {
+          "w": "Set",
+          "start": 229.958,
+          "end": 230.195
+        },
+        {
+          "w": "an",
+          "start": 230.195,
+          "end": 230.283
+        },
+        {
+          "w": "alarm",
+          "start": 230.283,
+          "end": 230.783
+        },
+        {
+          "w": "for",
+          "start": 230.783,
+          "end": 230.908
+        },
+        {
+          "w": "going",
+          "start": 230.908,
+          "end": 231.208
+        },
+        {
+          "w": "to",
+          "start": 231.208,
+          "end": 231.345
+        },
+        {
+          "w": "bed,",
+          "start": 231.345,
+          "end": 231.683
+        },
+        {
+          "w": "not",
+          "start": 231.733,
+          "end": 231.983
+        },
+        {
+          "w": "waking",
+          "start": 231.983,
+          "end": 232.358
+        },
+        {
+          "w": "up.",
+          "start": 232.358,
+          "end": 232.758
+        },
+        {
+          "w": "Thirty",
+          "start": 232.908,
+          "end": 233.258
+        },
+        {
+          "w": "minutes",
+          "start": 233.258,
+          "end": 233.608
+        },
+        {
+          "w": "before",
+          "start": 233.608,
+          "end": 234.008
+        },
+        {
+          "w": "you",
+          "start": 234.008,
+          "end": 234.158
+        },
+        {
+          "w": "want",
+          "start": 234.158,
+          "end": 234.345
+        },
+        {
+          "w": "to",
+          "start": 234.345,
+          "end": 234.42
+        },
+        {
+          "w": "be",
+          "start": 234.42,
+          "end": 234.558
+        },
+        {
+          "w": "asleep.",
+          "start": 234.558,
+          "end": 235.267
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg02",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg02.wav",
+      "duration": 5.719,
+      "start": 235.487,
+      "end": 241.206,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "82e9900d5bab7ea8",
+      "text": "It's a wind-down reminder. A homemade stopping cue, since the feed won't make one for you.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "It's",
+          "start": 235.504,
+          "end": 235.704
+        },
+        {
+          "w": "a",
+          "start": 235.704,
+          "end": 235.841
+        },
+        {
+          "w": "wind-down",
+          "start": 235.841,
+          "end": 236.529
+        },
+        {
+          "w": "reminder.",
+          "start": 236.529,
+          "end": 237.304
+        },
+        {
+          "w": "A",
+          "start": 237.416,
+          "end": 237.541
+        },
+        {
+          "w": "homemade",
+          "start": 237.541,
+          "end": 238.254
+        },
+        {
+          "w": "stopping",
+          "start": 238.254,
+          "end": 238.754
+        },
+        {
+          "w": "cue,",
+          "start": 238.754,
+          "end": 239.154
+        },
+        {
+          "w": "since",
+          "start": 239.229,
+          "end": 239.454
+        },
+        {
+          "w": "the",
+          "start": 239.454,
+          "end": 239.604
+        },
+        {
+          "w": "feed",
+          "start": 239.604,
+          "end": 239.954
+        },
+        {
+          "w": "won't",
+          "start": 239.954,
+          "end": 240.154
+        },
+        {
+          "w": "make",
+          "start": 240.154,
+          "end": 240.379
+        },
+        {
+          "w": "one",
+          "start": 240.379,
+          "end": 240.604
+        },
+        {
+          "w": "for",
+          "start": 240.604,
+          "end": 240.791
+        },
+        {
+          "w": "you.",
+          "start": 240.791,
+          "end": 241.206
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg03",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg03.wav",
+      "duration": 2.282,
+      "start": 241.426,
+      "end": 243.708,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "3575e9e2fc30ab40",
+      "text": "And yes, you'll swipe it away the first time.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "And",
+          "start": 241.43,
+          "end": 241.58
+        },
+        {
+          "w": "yes,",
+          "start": 241.58,
+          "end": 241.905
+        },
+        {
+          "w": "you'll",
+          "start": 241.955,
+          "end": 242.168
+        },
+        {
+          "w": "swipe",
+          "start": 242.168,
+          "end": 242.443
+        },
+        {
+          "w": "it",
+          "start": 242.443,
+          "end": 242.518
+        },
+        {
+          "w": "away",
+          "start": 242.518,
+          "end": 242.743
+        },
+        {
+          "w": "the",
+          "start": 242.743,
+          "end": 242.843
+        },
+        {
+          "w": "first",
+          "start": 242.843,
+          "end": 243.18
+        },
+        {
+          "w": "time.",
+          "start": 243.18,
+          "end": 243.708
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg04",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg04.wav",
+      "duration": 1.424,
+      "start": 243.908,
+      "end": 245.332,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "e12803be3f27b401",
+      "text": "That's fine. You noticed.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "That's",
+          "start": 243.942,
+          "end": 244.242
+        },
+        {
+          "w": "fine.",
+          "start": 244.242,
+          "end": 244.517
+        },
+        {
+          "w": "You",
+          "start": 244.567,
+          "end": 244.692
+        },
+        {
+          "w": "noticed.",
+          "start": 244.692,
+          "end": 245.332
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg05",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg05.wav",
+      "duration": 6.273,
+      "start": 245.682,
+      "end": 251.955,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "9d52fed3ec73b30d",
+      "text": "Fix two. Move some of your \"me time\" earlier. Even ten minutes of something just for you before dinner.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Fix",
+          "start": 245.763,
+          "end": 246.101
+        },
+        {
+          "w": "two.",
+          "start": 246.101,
+          "end": 246.413
+        },
+        {
+          "w": "Move",
+          "start": 246.501,
+          "end": 246.826
+        },
+        {
+          "w": "some",
+          "start": 246.826,
+          "end": 247.051
+        },
+        {
+          "w": "of",
+          "start": 247.051,
+          "end": 247.138
+        },
+        {
+          "w": "your",
+          "start": 247.138,
+          "end": 247.338
+        },
+        {
+          "w": "\"me",
+          "start": 247.413,
+          "end": 247.601
+        },
+        {
+          "w": "time\"",
+          "start": 247.601,
+          "end": 248.088
+        },
+        {
+          "w": "earlier.",
+          "start": 248.163,
+          "end": 248.838
+        },
+        {
+          "w": "Even",
+          "start": 248.951,
+          "end": 249.276
+        },
+        {
+          "w": "ten",
+          "start": 249.276,
+          "end": 249.538
+        },
+        {
+          "w": "minutes",
+          "start": 249.538,
+          "end": 249.826
+        },
+        {
+          "w": "of",
+          "start": 249.826,
+          "end": 249.938
+        },
+        {
+          "w": "something",
+          "start": 249.938,
+          "end": 250.413
+        },
+        {
+          "w": "just",
+          "start": 250.413,
+          "end": 250.738
+        },
+        {
+          "w": "for",
+          "start": 250.738,
+          "end": 250.913
+        },
+        {
+          "w": "you",
+          "start": 250.913,
+          "end": 251.063
+        },
+        {
+          "w": "before",
+          "start": 251.063,
+          "end": 251.463
+        },
+        {
+          "w": "dinner.",
+          "start": 251.463,
+          "end": 251.955
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg06",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg06.wav",
+      "duration": 5.567,
+      "start": 252.175,
+      "end": 257.742,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "0d999ace38fbfd70",
+      "text": "The idea is that if some of the day is already yours, the night has less to make up for.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "The",
+          "start": 252.225,
+          "end": 252.388
+        },
+        {
+          "w": "idea",
+          "start": 252.388,
+          "end": 252.888
+        },
+        {
+          "w": "is",
+          "start": 252.888,
+          "end": 253.075
+        },
+        {
+          "w": "that",
+          "start": 253.075,
+          "end": 253.3
+        },
+        {
+          "w": "if",
+          "start": 253.3,
+          "end": 253.475
+        },
+        {
+          "w": "some",
+          "start": 253.475,
+          "end": 253.738
+        },
+        {
+          "w": "of",
+          "start": 253.738,
+          "end": 253.813
+        },
+        {
+          "w": "the",
+          "start": 253.813,
+          "end": 253.938
+        },
+        {
+          "w": "day",
+          "start": 253.938,
+          "end": 254.3
+        },
+        {
+          "w": "is",
+          "start": 254.3,
+          "end": 254.463
+        },
+        {
+          "w": "already",
+          "start": 254.463,
+          "end": 255.025
+        },
+        {
+          "w": "yours,",
+          "start": 255.025,
+          "end": 255.675
+        },
+        {
+          "w": "the",
+          "start": 255.775,
+          "end": 255.913
+        },
+        {
+          "w": "night",
+          "start": 255.913,
+          "end": 256.25
+        },
+        {
+          "w": "has",
+          "start": 256.25,
+          "end": 256.463
+        },
+        {
+          "w": "less",
+          "start": 256.463,
+          "end": 256.75
+        },
+        {
+          "w": "to",
+          "start": 256.75,
+          "end": 256.875
+        },
+        {
+          "w": "make",
+          "start": 256.875,
+          "end": 257.113
+        },
+        {
+          "w": "up",
+          "start": 257.113,
+          "end": 257.3
+        },
+        {
+          "w": "for.",
+          "start": 257.3,
+          "end": 257.742
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg07",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg07.wav",
+      "duration": 4.214,
+      "start": 257.962,
+      "end": 262.177,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "c30c6ec85d7f9789",
+      "text": "Think of it as a deposit. A small one, before the late-night withdrawal.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Think",
+          "start": 257.985,
+          "end": 258.147
+        },
+        {
+          "w": "of",
+          "start": 258.147,
+          "end": 258.26
+        },
+        {
+          "w": "it",
+          "start": 258.26,
+          "end": 258.435
+        },
+        {
+          "w": "as",
+          "start": 258.435,
+          "end": 258.622
+        },
+        {
+          "w": "a",
+          "start": 258.622,
+          "end": 258.685
+        },
+        {
+          "w": "deposit.",
+          "start": 258.685,
+          "end": 259.51
+        },
+        {
+          "w": "A",
+          "start": 259.622,
+          "end": 259.76
+        },
+        {
+          "w": "small",
+          "start": 259.76,
+          "end": 260.16
+        },
+        {
+          "w": "one,",
+          "start": 260.16,
+          "end": 260.36
+        },
+        {
+          "w": "before",
+          "start": 260.397,
+          "end": 260.785
+        },
+        {
+          "w": "the",
+          "start": 260.785,
+          "end": 260.91
+        },
+        {
+          "w": "late-night",
+          "start": 260.91,
+          "end": 261.41
+        },
+        {
+          "w": "withdrawal.",
+          "start": 261.41,
+          "end": 262.177
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg08",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg08.wav",
+      "duration": 4.627,
+      "start": 262.397,
+      "end": 267.023,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "b35df54f2a4b6ee4",
+      "text": "Does it work for everyone? No promises. It's something to try, not a cure.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Does",
+          "start": 262.454,
+          "end": 262.604
+        },
+        {
+          "w": "it",
+          "start": 262.604,
+          "end": 262.729
+        },
+        {
+          "w": "work",
+          "start": 262.729,
+          "end": 263.004
+        },
+        {
+          "w": "for",
+          "start": 263.004,
+          "end": 263.192
+        },
+        {
+          "w": "everyone?",
+          "start": 263.192,
+          "end": 263.904
+        },
+        {
+          "w": "No",
+          "start": 264.017,
+          "end": 264.267
+        },
+        {
+          "w": "promises.",
+          "start": 264.267,
+          "end": 265.029
+        },
+        {
+          "w": "It's",
+          "start": 265.067,
+          "end": 265.204
+        },
+        {
+          "w": "something",
+          "start": 265.204,
+          "end": 265.554
+        },
+        {
+          "w": "to",
+          "start": 265.554,
+          "end": 265.692
+        },
+        {
+          "w": "try,",
+          "start": 265.692,
+          "end": 266.054
+        },
+        {
+          "w": "not",
+          "start": 266.104,
+          "end": 266.292
+        },
+        {
+          "w": "a",
+          "start": 266.292,
+          "end": 266.404
+        },
+        {
+          "w": "cure.",
+          "start": 266.404,
+          "end": 267.023
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg09",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg09.wav",
+      "duration": 4.301,
+      "start": 267.243,
+      "end": 271.545,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "36e949d33c513b95",
+      "text": "Both are free, which is the correct price for a person who can't be bothered.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Both",
+          "start": 267.302,
+          "end": 267.652
+        },
+        {
+          "w": "are",
+          "start": 267.652,
+          "end": 267.84
+        },
+        {
+          "w": "free,",
+          "start": 267.84,
+          "end": 268.327
+        },
+        {
+          "w": "which",
+          "start": 268.402,
+          "end": 268.627
+        },
+        {
+          "w": "is",
+          "start": 268.627,
+          "end": 268.777
+        },
+        {
+          "w": "the",
+          "start": 268.777,
+          "end": 268.902
+        },
+        {
+          "w": "correct",
+          "start": 268.902,
+          "end": 269.327
+        },
+        {
+          "w": "price",
+          "start": 269.327,
+          "end": 269.702
+        },
+        {
+          "w": "for",
+          "start": 269.702,
+          "end": 269.815
+        },
+        {
+          "w": "a",
+          "start": 269.815,
+          "end": 269.877
+        },
+        {
+          "w": "person",
+          "start": 269.877,
+          "end": 270.327
+        },
+        {
+          "w": "who",
+          "start": 270.327,
+          "end": 270.49
+        },
+        {
+          "w": "can't",
+          "start": 270.49,
+          "end": 270.777
+        },
+        {
+          "w": "be",
+          "start": 270.777,
+          "end": 270.94
+        },
+        {
+          "w": "bothered.",
+          "start": 270.94,
+          "end": 271.545
+        }
+      ]
+    },
+    {
+      "id": "scene06_seg10",
+      "scene": "scene06",
+      "audio": "audio/scene06_seg10.wav",
+      "duration": 3.871,
+      "start": 271.765,
+      "end": 275.636,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "392ad755aac6cd3a",
+      "text": "And the third is my favorite, because it takes barely any discipline.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "And",
+          "start": 271.795,
+          "end": 271.933
+        },
+        {
+          "w": "the",
+          "start": 271.933,
+          "end": 272.083
+        },
+        {
+          "w": "third",
+          "start": 272.083,
+          "end": 272.495
+        },
+        {
+          "w": "is",
+          "start": 272.495,
+          "end": 272.645
+        },
+        {
+          "w": "my",
+          "start": 272.645,
+          "end": 272.908
+        },
+        {
+          "w": "favorite,",
+          "start": 272.908,
+          "end": 273.47
+        },
+        {
+          "w": "because",
+          "start": 273.545,
+          "end": 273.845
+        },
+        {
+          "w": "it",
+          "start": 273.845,
+          "end": 273.945
+        },
+        {
+          "w": "takes",
+          "start": 273.945,
+          "end": 274.283
+        },
+        {
+          "w": "barely",
+          "start": 274.283,
+          "end": 274.733
+        },
+        {
+          "w": "any",
+          "start": 274.733,
+          "end": 274.995
+        },
+        {
+          "w": "discipline.",
+          "start": 274.995,
+          "end": 275.636
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg01",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg01.wav",
+      "duration": 6.859,
+      "start": 276.236,
+      "end": 283.095,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "63bb1b8415eddb14",
+      "text": "Fix three. Decide the last thing of the night before you start it. One episode. One chapter. One crossword.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Fix",
+          "start": 276.317,
+          "end": 276.629
+        },
+        {
+          "w": "three.",
+          "start": 276.629,
+          "end": 276.967
+        },
+        {
+          "w": "Decide",
+          "start": 277.042,
+          "end": 277.504
+        },
+        {
+          "w": "the",
+          "start": 277.504,
+          "end": 277.629
+        },
+        {
+          "w": "last",
+          "start": 277.629,
+          "end": 278.017
+        },
+        {
+          "w": "thing",
+          "start": 278.017,
+          "end": 278.229
+        },
+        {
+          "w": "of",
+          "start": 278.229,
+          "end": 278.304
+        },
+        {
+          "w": "the",
+          "start": 278.304,
+          "end": 278.392
+        },
+        {
+          "w": "night",
+          "start": 278.392,
+          "end": 278.692
+        },
+        {
+          "w": "before",
+          "start": 278.692,
+          "end": 279.092
+        },
+        {
+          "w": "you",
+          "start": 279.092,
+          "end": 279.254
+        },
+        {
+          "w": "start",
+          "start": 279.254,
+          "end": 279.592
+        },
+        {
+          "w": "it.",
+          "start": 279.592,
+          "end": 279.842
+        },
+        {
+          "w": "One",
+          "start": 279.954,
+          "end": 280.217
+        },
+        {
+          "w": "episode.",
+          "start": 280.217,
+          "end": 280.942
+        },
+        {
+          "w": "One",
+          "start": 281.029,
+          "end": 281.329
+        },
+        {
+          "w": "chapter.",
+          "start": 281.329,
+          "end": 281.917
+        },
+        {
+          "w": "One",
+          "start": 282.029,
+          "end": 282.304
+        },
+        {
+          "w": "crossword.",
+          "start": 282.304,
+          "end": 283.095
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg02",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg02.wav",
+      "duration": 8.1,
+      "start": 283.315,
+      "end": 291.415,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "0a2f80a6d885d9b7",
+      "text": "The point is deciding in advance. Not \"one more,\" in the moment, with a tired brain. The number gets set while you're awake.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "The",
+          "start": 283.372,
+          "end": 283.484
+        },
+        {
+          "w": "point",
+          "start": 283.484,
+          "end": 283.909
+        },
+        {
+          "w": "is",
+          "start": 283.909,
+          "end": 284.072
+        },
+        {
+          "w": "deciding",
+          "start": 284.072,
+          "end": 284.797
+        },
+        {
+          "w": "in",
+          "start": 284.797,
+          "end": 284.922
+        },
+        {
+          "w": "advance.",
+          "start": 284.922,
+          "end": 285.772
+        },
+        {
+          "w": "Not",
+          "start": 285.909,
+          "end": 286.222
+        },
+        {
+          "w": "\"one",
+          "start": 286.297,
+          "end": 286.534
+        },
+        {
+          "w": "more,\"",
+          "start": 286.534,
+          "end": 286.972
+        },
+        {
+          "w": "in",
+          "start": 287.072,
+          "end": 287.184
+        },
+        {
+          "w": "the",
+          "start": 287.184,
+          "end": 287.272
+        },
+        {
+          "w": "moment,",
+          "start": 287.272,
+          "end": 287.697
+        },
+        {
+          "w": "with",
+          "start": 287.747,
+          "end": 287.884
+        },
+        {
+          "w": "a",
+          "start": 287.884,
+          "end": 287.997
+        },
+        {
+          "w": "tired",
+          "start": 287.997,
+          "end": 288.559
+        },
+        {
+          "w": "brain.",
+          "start": 288.559,
+          "end": 289.222
+        },
+        {
+          "w": "The",
+          "start": 289.347,
+          "end": 289.447
+        },
+        {
+          "w": "number",
+          "start": 289.447,
+          "end": 289.822
+        },
+        {
+          "w": "gets",
+          "start": 289.822,
+          "end": 290.072
+        },
+        {
+          "w": "set",
+          "start": 290.072,
+          "end": 290.372
+        },
+        {
+          "w": "while",
+          "start": 290.372,
+          "end": 290.597
+        },
+        {
+          "w": "you're",
+          "start": 290.597,
+          "end": 290.772
+        },
+        {
+          "w": "awake.",
+          "start": 290.772,
+          "end": 291.415
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg03",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg03.wav",
+      "duration": 5.486,
+      "start": 291.635,
+      "end": 297.121,
+      "emotion": "smug",
+      "modifier": null,
+      "speed": 0.92,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "2d0c86e68789a36d",
+      "text": "Then the thing ends, the credits roll, and you get a real stopping cue. It feels illegal.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Then",
+          "start": 291.669,
+          "end": 291.831
+        },
+        {
+          "w": "the",
+          "start": 291.831,
+          "end": 291.956
+        },
+        {
+          "w": "thing",
+          "start": 291.956,
+          "end": 292.256
+        },
+        {
+          "w": "ends,",
+          "start": 292.256,
+          "end": 292.644
+        },
+        {
+          "w": "the",
+          "start": 292.681,
+          "end": 292.769
+        },
+        {
+          "w": "credits",
+          "start": 292.769,
+          "end": 293.206
+        },
+        {
+          "w": "roll,",
+          "start": 293.206,
+          "end": 293.669
+        },
+        {
+          "w": "and",
+          "start": 293.719,
+          "end": 293.844
+        },
+        {
+          "w": "you",
+          "start": 293.844,
+          "end": 293.994
+        },
+        {
+          "w": "get",
+          "start": 293.994,
+          "end": 294.144
+        },
+        {
+          "w": "a",
+          "start": 294.144,
+          "end": 294.256
+        },
+        {
+          "w": "real",
+          "start": 294.256,
+          "end": 294.581
+        },
+        {
+          "w": "stopping",
+          "start": 294.581,
+          "end": 295.081
+        },
+        {
+          "w": "cue.",
+          "start": 295.081,
+          "end": 295.619
+        },
+        {
+          "w": "It",
+          "start": 295.744,
+          "end": 295.956
+        },
+        {
+          "w": "feels",
+          "start": 295.956,
+          "end": 296.369
+        },
+        {
+          "w": "illegal.",
+          "start": 296.369,
+          "end": 297.121
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg04",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg04.wav",
+      "duration": 1.248,
+      "start": 297.341,
+      "end": 298.589,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "3e63f1effadb04fc",
+      "text": "Pair it with one rule.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Pair",
+          "start": 297.361,
+          "end": 297.549
+        },
+        {
+          "w": "it",
+          "start": 297.549,
+          "end": 297.624
+        },
+        {
+          "w": "with",
+          "start": 297.624,
+          "end": 297.786
+        },
+        {
+          "w": "one",
+          "start": 297.786,
+          "end": 298.036
+        },
+        {
+          "w": "rule.",
+          "start": 298.036,
+          "end": 298.589
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg05",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg05.wav",
+      "duration": 4.123,
+      "start": 298.789,
+      "end": 302.912,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "302a7ba80512bac3",
+      "text": "When the last thing finishes, the lights go out. No bonus episode.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "When",
+          "start": 298.82,
+          "end": 298.933
+        },
+        {
+          "w": "the",
+          "start": 298.933,
+          "end": 299.02
+        },
+        {
+          "w": "last",
+          "start": 299.02,
+          "end": 299.37
+        },
+        {
+          "w": "thing",
+          "start": 299.37,
+          "end": 299.608
+        },
+        {
+          "w": "finishes,",
+          "start": 299.608,
+          "end": 300.145
+        },
+        {
+          "w": "the",
+          "start": 300.195,
+          "end": 300.32
+        },
+        {
+          "w": "lights",
+          "start": 300.32,
+          "end": 300.67
+        },
+        {
+          "w": "go",
+          "start": 300.67,
+          "end": 300.845
+        },
+        {
+          "w": "out.",
+          "start": 300.845,
+          "end": 301.27
+        },
+        {
+          "w": "No",
+          "start": 301.383,
+          "end": 301.658
+        },
+        {
+          "w": "bonus",
+          "start": 301.658,
+          "end": 302.07
+        },
+        {
+          "w": "episode.",
+          "start": 302.07,
+          "end": 302.912
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg06",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg06.wav",
+      "duration": 7.099,
+      "start": 303.132,
+      "end": 310.232,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "c404f80a2a1ec7c7",
+      "text": "A small honest note. If your sleep stays bad even when you do go to bed, that's worth raising with a professional.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "A",
+          "start": 303.204,
+          "end": 303.304
+        },
+        {
+          "w": "small",
+          "start": 303.304,
+          "end": 303.829
+        },
+        {
+          "w": "honest",
+          "start": 303.829,
+          "end": 304.304
+        },
+        {
+          "w": "note.",
+          "start": 304.304,
+          "end": 304.854
+        },
+        {
+          "w": "If",
+          "start": 304.954,
+          "end": 305.129
+        },
+        {
+          "w": "your",
+          "start": 305.129,
+          "end": 305.329
+        },
+        {
+          "w": "sleep",
+          "start": 305.329,
+          "end": 305.679
+        },
+        {
+          "w": "stays",
+          "start": 305.679,
+          "end": 306.092
+        },
+        {
+          "w": "bad",
+          "start": 306.092,
+          "end": 306.517
+        },
+        {
+          "w": "even",
+          "start": 306.517,
+          "end": 306.829
+        },
+        {
+          "w": "when",
+          "start": 306.829,
+          "end": 306.979
+        },
+        {
+          "w": "you",
+          "start": 306.979,
+          "end": 307.129
+        },
+        {
+          "w": "do",
+          "start": 307.129,
+          "end": 307.304
+        },
+        {
+          "w": "go",
+          "start": 307.304,
+          "end": 307.479
+        },
+        {
+          "w": "to",
+          "start": 307.479,
+          "end": 307.604
+        },
+        {
+          "w": "bed,",
+          "start": 307.604,
+          "end": 307.979
+        },
+        {
+          "w": "that's",
+          "start": 308.054,
+          "end": 308.379
+        },
+        {
+          "w": "worth",
+          "start": 308.379,
+          "end": 308.717
+        },
+        {
+          "w": "raising",
+          "start": 308.717,
+          "end": 309.204
+        },
+        {
+          "w": "with",
+          "start": 309.204,
+          "end": 309.342
+        },
+        {
+          "w": "a",
+          "start": 309.342,
+          "end": 309.404
+        },
+        {
+          "w": "professional.",
+          "start": 309.404,
+          "end": 310.232
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg07",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg07.wav",
+      "duration": 6.311,
+      "start": 310.452,
+      "end": 316.762,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "0af6c3304281f7a7",
+      "text": "That's it. Alarm, deposit, finish line. Three small things I can barely be bothered to say.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "That's",
+          "start": 310.509,
+          "end": 310.847
+        },
+        {
+          "w": "it.",
+          "start": 310.847,
+          "end": 311.034
+        },
+        {
+          "w": "Alarm,",
+          "start": 311.122,
+          "end": 311.709
+        },
+        {
+          "w": "deposit,",
+          "start": 311.784,
+          "end": 312.509
+        },
+        {
+          "w": "finish",
+          "start": 312.597,
+          "end": 313.009
+        },
+        {
+          "w": "line.",
+          "start": 313.009,
+          "end": 313.534
+        },
+        {
+          "w": "Three",
+          "start": 313.659,
+          "end": 313.984
+        },
+        {
+          "w": "small",
+          "start": 313.984,
+          "end": 314.397
+        },
+        {
+          "w": "things",
+          "start": 314.397,
+          "end": 314.784
+        },
+        {
+          "w": "I",
+          "start": 314.784,
+          "end": 314.934
+        },
+        {
+          "w": "can",
+          "start": 314.934,
+          "end": 315.147
+        },
+        {
+          "w": "barely",
+          "start": 315.147,
+          "end": 315.534
+        },
+        {
+          "w": "be",
+          "start": 315.534,
+          "end": 315.697
+        },
+        {
+          "w": "bothered",
+          "start": 315.697,
+          "end": 316.109
+        },
+        {
+          "w": "to",
+          "start": 316.109,
+          "end": 316.247
+        },
+        {
+          "w": "say.",
+          "start": 316.247,
+          "end": 316.762
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg08",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg08.wav",
+      "duration": 5.78,
+      "start": 317.112,
+      "end": 322.893,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "95acfe51aaa2a5ce",
+      "text": "Remember tomorrow Bob? The one who wasn't invited, wasn't consulted, and always gets the bill?",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Remember",
+          "start": 317.163,
+          "end": 317.676
+        },
+        {
+          "w": "tomorrow",
+          "start": 317.676,
+          "end": 318.238
+        },
+        {
+          "w": "Bob?",
+          "start": 318.238,
+          "end": 318.788
+        },
+        {
+          "w": "The",
+          "start": 318.888,
+          "end": 319.013
+        },
+        {
+          "w": "one",
+          "start": 319.013,
+          "end": 319.213
+        },
+        {
+          "w": "who",
+          "start": 319.213,
+          "end": 319.363
+        },
+        {
+          "w": "wasn't",
+          "start": 319.363,
+          "end": 319.663
+        },
+        {
+          "w": "invited,",
+          "start": 319.663,
+          "end": 320.263
+        },
+        {
+          "w": "wasn't",
+          "start": 320.338,
+          "end": 320.663
+        },
+        {
+          "w": "consulted,",
+          "start": 320.663,
+          "end": 321.338
+        },
+        {
+          "w": "and",
+          "start": 321.388,
+          "end": 321.551
+        },
+        {
+          "w": "always",
+          "start": 321.551,
+          "end": 322.038
+        },
+        {
+          "w": "gets",
+          "start": 322.038,
+          "end": 322.288
+        },
+        {
+          "w": "the",
+          "start": 322.288,
+          "end": 322.401
+        },
+        {
+          "w": "bill?",
+          "start": 322.401,
+          "end": 322.892
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg09",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg09.wav",
+      "duration": 1.454,
+      "start": 323.113,
+      "end": 324.567,
+      "emotion": "flat",
+      "modifier": null,
+      "speed": 0.86,
+      "volume": 0.95,
+      "pitch": 0.0,
+      "cache_key": "d005880453c92676",
+      "text": "Tonight, you could invite him.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "Tonight,",
+          "start": 323.161,
+          "end": 323.511
+        },
+        {
+          "w": "you",
+          "start": 323.561,
+          "end": 323.686
+        },
+        {
+          "w": "could",
+          "start": 323.686,
+          "end": 323.799
+        },
+        {
+          "w": "invite",
+          "start": 323.799,
+          "end": 324.149
+        },
+        {
+          "w": "him.",
+          "start": 324.149,
+          "end": 324.567
+        }
+      ]
+    },
+    {
+      "id": "scene07_seg10",
+      "scene": "scene07",
+      "audio": "audio/scene07_seg10.wav",
+      "duration": 2.997,
+      "start": 325.367,
+      "end": 328.364,
+      "emotion": "deadpan",
+      "modifier": null,
+      "speed": 0.88,
+      "volume": 1.0,
+      "pitch": 0.0,
+      "cache_key": "675d23f8d17e038f",
+      "text": "He'll say thanks. Nobody's ever given him the chance.",
+      "timing": "tokens",
+      "words": [
+        {
+          "w": "He'll",
+          "start": 325.392,
+          "end": 325.58
+        },
+        {
+          "w": "say",
+          "start": 325.58,
+          "end": 325.855
+        },
+        {
+          "w": "thanks.",
+          "start": 325.855,
+          "end": 326.267
+        },
+        {
+          "w": "Nobody's",
+          "start": 326.355,
+          "end": 326.93
+        },
+        {
+          "w": "ever",
+          "start": 326.93,
+          "end": 327.242
+        },
+        {
+          "w": "given",
+          "start": 327.242,
+          "end": 327.48
+        },
+        {
+          "w": "him",
+          "start": 327.48,
+          "end": 327.63
+        },
+        {
+          "w": "the",
+          "start": 327.63,
+          "end": 327.73
+        },
+        {
+          "w": "chance.",
+          "start": 327.73,
+          "end": 328.364
+        }
+      ]
+    }
+  ],
+  "captions": "captions/subtitles.ass",
+  "captions_srt": "captions/subtitles.srt"
+}
