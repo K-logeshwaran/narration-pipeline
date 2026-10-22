@@ -1,6 +1,5 @@
 venv/
 __pycache__/
-*/__pycache__/
 *.pyc
 *.pyo
 *.egg-info/
@@ -8,3 +7,7 @@ __pycache__/
 .coverage
 dist/
 build/
+
+# project folders
+projects/
+script/
