@@ -68,12 +68,10 @@ class KokoroBackend:
     """
 
     sample_rate = 24000
-
-    def __init__(self, voice: str, lang: str, split_pattern: str = r"\n+"):
+    def __init__(self, voice: str = "default", device: Optional[str] = None):
         self.voice = voice
-        self.lang = lang
-        self.split_pattern = split_pattern
-        self._pipeline = None
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self._model = None
 
     @property
     def id(self) -> str:
@@ -192,7 +190,8 @@ def get_backend(name: str, cfg: Dict[str, Any]) -> TTSBackend:
     if name == "kokoro":
         backend = KokoroBackend(tts["voice"], tts["lang"], tts.get("split_pattern", r"\n+"))
     elif name in ("chatterbox_turbo", "chatterbox.tts_turbo"):
-        backend = ChatterboxTurboBackend(voice=tts.get("voice", "default"))
+       # backend = ChatterboxTurboBackend(voice=tts.get("voice", "default"))
+        backend = ChatterboxTurboBackend(voice=tts.get("voice", "default"), device=tts.get("device"))
     elif name == "fake":
         from .fake import FakeBackend
         backend = FakeBackend(sample_rate=int(tts["sample_rate"]))
