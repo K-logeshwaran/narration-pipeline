@@ -47,7 +47,10 @@
     "panicked":        { "speed": 1.12, "pitch": 1,  "volume": 1.08 },
     "dramatic":        { "speed": 0.83, "pitch": -1, "volume": 1.10 },
     "whisper":         { "speed": 0.84, "pitch": -1, "volume": 0.62 },
-    "fake_fancy":      { "speed": 0.89, "pitch": 0,  "volume": 1.04 }
+    "fake_fancy":      { "speed": 0.89, "pitch": 0,  "volume": 1.04 },
+    "calm":    { "speed": 0.95, "pitch": 0,  "volume": 1.00 },
+    "warm":    { "speed": 0.98, "pitch": 0,  "volume": 1.03 },
+    "serious": { "speed": 0.89, "pitch": -1, "volume": 1.00 }
   },
 
   "reaction_images": [
