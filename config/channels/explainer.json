@@ -1,8 +1,8 @@
 {
-  "_note": "List-style Explainer channel profile (EXPLAINER_SCRIPT_SPEC_v2). Calm narrator, search terms per scene, configurable scene-count lint warning.",
+  "_note": "Better Mind style conversational whiteboard channel profile. Uses explainer parser rules with title_gap_s disabled for natural essay flow.",
   "engine": "kokoro",
   "channel": "explainer",
-  "channel_aliases": ["explainer", "list_explainer"],
+  "channel_aliases": ["explainer", "list_explainer", "bettermind", "better_mind"],
   "character": "",
   "default_character": "",
   "require_character": false,
@@ -17,20 +17,20 @@
   "render": { "fps": 30, "resolution": [1920, 1080] },
   "words_per_minute": 140,
 
-  "pauses": { "short": 0.25, "default": 0.40, "beat": 0.50, "long": 0.80 },
-  "line_gap_s": 0.22,
-  "title_gap_s": 0.45,
-    "tts": {
+  "pauses": { "short": 0.22, "default": 0.35, "beat": 0.48, "long": 0.75 },
+  "line_gap_s": 0.18,
+  "title_gap_s": null,
+  "tts": {
     "backend": "kokoro",
-    "voice": "am_michael",
+    "voice": "bm_fable",
     "lang": "a",
-    "base_speed": 0.90
+    "base_speed": 0.95
   },
 
   "emotions": {
-    "calm":    { "speed": 0.90, "pitch": 0,  "volume": 1.00 },
-    "warm":    { "speed": 0.92, "pitch": 0,  "volume": 1.02 },
-    "serious": { "speed": 0.86, "pitch": -1, "volume": 1.00 }
+    "calm":    { "speed": 0.95, "pitch": 0,  "volume": 1.00 },
+    "warm":    { "speed": 0.98, "pitch": 0,  "volume": 1.03 },
+    "serious": { "speed": 0.89, "pitch": -1, "volume": 1.00 }
   },
 
   "reaction_images": [],
@@ -79,19 +79,19 @@
   },
 
   "timeline": {
-    "scene_gap_s": 0.6
+    "scene_gap_s": 0.45
   },
 
   "captions": {
     "enabled": true,
     "karaoke": true,
     "font": "Arial",
-    "size": 64,
+    "size": 60,
     "bold": true,
-    "max_words_per_line": 8,
-    "tail_pad_s": 0.10,
+    "max_words_per_line": 7,
+    "tail_pad_s": 0.08,
     "primary_colour": "&H00FFFFFF",
-    "secondary_colour": "&H0000D7FF",
+    "secondary_colour": "&H0080D8FF",
     "outline_colour": "&H00000000",
     "back_colour": "&H64000000",
     "outline": 3,
@@ -99,12 +99,12 @@
     "alignment": 2,
     "margin_l": 40,
     "margin_r": 40,
-    "margin_v": 60
+    "margin_v": 65
   },
 
   "mix": {
     "point_gain": 1.0,
-    "bed_gain": 0.35,
+    "bed_gain": 0.30,
     "bed_fade_s": 0.25,
     "out_name": "full_mix.wav"
   },

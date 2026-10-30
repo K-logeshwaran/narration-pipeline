@@ -1,0 +1,44 @@
+{
+  "_note": "Kokoro-82M local TTS engine config. Memory is returned to the OS when the subprocess exits.",
+  "engine": "kokoro",
+  "license": {
+    "name": "Apache-2.0",
+    "commercial_allowed": true,
+    "source": "https://huggingface.co/hexgrad/Kokoro-82M",
+    "verified": true
+  },
+  "tts": {
+    "backend": "kokoro",
+    "voice": "am_fenrir",
+    "lang": "a",
+    "sample_rate": 24000,
+    "base_speed": 0.91,
+    "speed_scale": 1.0,
+    "speed_jitter_pct": 0.0,
+    "modifier_weight": 0.3,
+    "apply_pitch": false,
+    "split_pattern": "\\n+",
+    "retry_strategy": {
+      "type": "deterministic",
+      "speed_nudges": [-0.03, 0.03],
+      "normalize_clause_punct": true
+    }
+  },
+  "audio": {
+    "trim_threshold": 0.003,
+    "trim_keep_s": 0.06,
+    "fade_s": 0.012,
+    "fade_curve": "linear",
+    "noise_floor_amp": 0.0,
+    "polish": true,
+    "ffmpeg_filter": "highpass=f=60,acompressor=threshold=-18dB:ratio=2.5:attack=10:release=180:makeup=1.5",
+    "peak_limit": 0.98,
+    "final_loudnorm": { "enabled": true, "I": -16, "TP": -1.5, "LRA": 11 }
+  },
+  "word_timing": {
+    "rel_threshold": 0.2,
+    "abs_threshold": 0.01,
+    "min_island_s": 0.03,
+    "merge_gap_s": 0.05
+  }
+}

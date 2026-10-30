@@ -1,0 +1,139 @@
+{
+  "_note": "CBBob deadpan comedy channel profile. Inherits engine defaults from config/engines/kokoro.json.",
+  "engine": "kokoro",
+  "channel": "cbbob",
+  "channel_aliases": ["main", "cbbob", "CBBob", "deadpan_doug", "bob"],
+  "character": "CBBob",
+  "default_character": "CBBob",
+  "require_character": false,
+  "require_image": true,
+  "require_prompt": true,
+  "require_search": false,
+  "default_emotion": null,
+  "require_explicit_first_emotion": true,
+  "character_aliases": {
+    "deadpan_doug": "CBBob",
+    "bob": "CBBob",
+    "cbbob": "CBBob",
+    "atlas_bulb": "atlas"
+  },
+  "layouts": ["full_scene", "bob_pip", "bob_full"],
+  "default_layout": "bob_pip",
+  "render": { "fps": 30, "resolution": [1920, 1080] },
+  "words_per_minute": 140,
+
+  "pauses": { "short": 0.18, "default": 0.32, "beat": 0.50, "long": 0.85 },
+  "line_gap_s": 0.16,
+  "title_gap_s": null,
+  "tts": {
+    "backend": "kokoro",
+    "voice": "am_fenrir",
+    "lang": "a",
+    "base_speed": 0.96
+  },
+
+  "emotions": {
+    "deadpan":         { "speed": 0.94, "pitch": 0,  "volume": 1.00 },
+    "flat":            { "speed": 0.84, "pitch": -1, "volume": 0.82 },
+    "fake_excitement": { "speed": 1.06, "pitch": 1,  "volume": 1.08 },
+    "smug":            { "speed": 0.98, "pitch": -1, "volume": 1.03 },
+    "panicked":        { "speed": 1.12, "pitch": 1,  "volume": 1.08 },
+    "dramatic":        { "speed": 0.83, "pitch": -1, "volume": 1.10 },
+    "whisper":         { "speed": 0.84, "pitch": -1, "volume": 0.62 },
+    "fake_fancy":      { "speed": 0.89, "pitch": 0,  "volume": 1.04 }
+  },
+
+  "reaction_images": [
+    "done_with_everything", "sarcastic_wow", "goofy_overreaction",
+    "smug_genius", "fourth_wall", "playful_wink"
+  ],
+
+  "sfx": {
+    "point": [
+      "record_scratch", "party_horn", "pop", "whoosh", "pizzicato_sting", "bonk",
+      "ding", "sad_trombone", "phone_ring", "ka_ching", "triumphant_sting",
+      "power_down", "door_slam", "angelic_chime", "ta_da", "theremin", "pfft",
+      "fanfare", "brick_crack", "drum_roll", "cricket_chirp", "slap", "paper_slap",
+      "aww_chime", "crumple", "evil_laugh_sting", "outro_jingle"
+    ],
+    "bed": ["ticking_clock", "lab_bubbling", "typing_clicks"],
+    "generic": ["ding", "whoosh", "pop"]
+  },
+
+  "text_styles": ["slam", "pop", "jitter", "shrink", "fade"],
+
+  "camera": {
+    "base": {
+      "zoom_in":   { "duration_s": 6.0, "scale": 1.10 },
+      "zoom_out":  { "duration_s": 6.0, "scale": 1.10 },
+      "pan_left":  { "duration_s": 6.0, "distance": 0.06 },
+      "pan_right": { "duration_s": 6.0, "distance": 0.06 },
+      "hold":      { "duration_s": 6.0 }
+    },
+    "transient": {
+      "punch_in": { "duration_s": 0.35, "scale": 1.12 },
+      "shake":    { "duration_s": 1.0,  "amplitude_px": 8 }
+    },
+    "instant": { "cut": {} }
+  },
+
+  "limits": {
+    "max_line_words": 30,
+    "max_overlay_words": 3,
+    "max_img_per_scene": 2
+  },
+
+  "lint": {
+    "expected_scenes": null,
+    "target_tolerance": 0.15,
+    "words_per_pause": [30, 75],
+    "require_all_pause_names": true,
+    "words_per_sfx_min": 15,
+    "generic_per_scene_max": 3,
+    "same_sfx_per_scene_max": 2,
+    "same_sfx_per_video_max": 6,
+    "visual_gap_words": 999,
+    "base_cam_min_gap_words": 10,
+    "same_opener_max_scenes": 3,
+    "ending_repeat_fraction": 0.5,
+    "max_scene_words": 160
+  },
+
+  "timeline": {
+    "scene_gap_s": 0.45
+  },
+
+  "captions": {
+    "enabled": true,
+    "karaoke": true,
+    "font": "Arial",
+    "size": 64,
+    "bold": true,
+    "max_words_per_line": 8,
+    "tail_pad_s": 0.10,
+    "primary_colour": "&H00FFFFFF",
+    "secondary_colour": "&H0000D7FF",
+    "outline_colour": "&H00000000",
+    "back_colour": "&H64000000",
+    "outline": 3,
+    "shadow": 1,
+    "alignment": 2,
+    "margin_l": 40,
+    "margin_r": 40,
+    "margin_v": 60
+  },
+
+  "mix": {
+    "point_gain": 1.0,
+    "bed_gain": 0.35,
+    "bed_fade_s": 0.25,
+    "out_name": "full_mix.wav"
+  },
+
+  "assets": {
+    "sfx": "sfx",
+    "reaction_images": "characters",
+    "character_kits": "characters",
+    "scene_images": "scenes"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "_note": "Channel constants (PART A of the script spec). Edit per channel. The parser only uses names and limits; emotion profile values are for the narration stage.",
+  "channel": "main",
+  "character": "CBBob",
+  "default_character": "CBBob",
+  "require_character": false,
+  "character_aliases": {
+    "deadpan_doug": "CBBob",
+    "bob": "CBBob",
+    "cbbob": "CBBob",
+    "atlas_bulb": "atlas"
+  },
+  "layouts": ["full_scene", "bob_pip", "bob_full"],
+  "default_layout": "bob_pip",
+  "render": { "fps": 30, "resolution": [1920, 1080] },
+  "words_per_minute": 140,
+
+  "pauses": { "short": 0.20, "default": 0.35, "beat": 0.45, "long": 0.80 },
+  "line_gap_s": 0.22,
+
+  "emotions": {
+    "deadpan":         { "speed": 0.88, "pitch": 0,  "volume": 1.00 },
+    "flat":            { "speed": 0.86, "pitch": -1, "volume": 0.95 },
+    "fake_excitement": { "speed": 0.98, "pitch": 1,  "volume": 1.05 },
+    "smug":            { "speed": 0.92, "pitch": -1, "volume": 1.00 },
+    "panicked":        { "speed": 1.05, "pitch": 1,  "volume": 1.05 },
+    "dramatic":        { "speed": 0.88, "pitch": -1, "volume": 1.00 },
+    "whisper":         { "speed": 0.82, "pitch": -1, "volume": 0.65 },
+    "fake_fancy":      { "speed": 0.90, "pitch": 0,  "volume": 1.00 }
+  },
+
+  "reaction_images": [
+    "done_with_everything", "sarcastic_wow", "goofy_overreaction",
+    "smug_genius", "fourth_wall", "playful_wink"
+  ],
+
+  "sfx": {
+    "point": [
+      "record_scratch", "party_horn", "pop", "whoosh", "pizzicato_sting", "bonk",
+      "ding", "sad_trombone", "phone_ring", "ka_ching", "triumphant_sting",
+      "power_down", "door_slam", "angelic_chime", "ta_da", "theremin", "pfft",
+      "fanfare", "brick_crack", "drum_roll", "cricket_chirp", "slap", "paper_slap",
+      "aww_chime", "crumple", "evil_laugh_sting", "outro_jingle"
+    ],
+    "bed": ["ticking_clock", "lab_bubbling", "typing_clicks"],
+    "generic": ["ding", "whoosh", "pop"]
+  },
+
+  "text_styles": ["slam", "pop", "jitter", "shrink", "fade"],
+
+  "camera": {
+    "base": {
+      "zoom_in":   { "duration_s": 6.0, "scale": 1.10 },
+      "zoom_out":  { "duration_s": 6.0, "scale": 1.10 },
+      "pan_left":  { "duration_s": 6.0, "distance": 0.06 },
+      "pan_right": { "duration_s": 6.0, "distance": 0.06 },
+      "hold":      { "duration_s": 6.0 }
+    },
+    "transient": {
+      "punch_in": { "duration_s": 0.35, "scale": 1.12 },
+      "shake":    { "duration_s": 1.0,  "amplitude_px": 8 }
+    },
+    "instant": { "cut": {} }
+  },
+
+  "limits": {
+    "max_line_words": 30,
+    "max_overlay_words": 3,
+    "max_img_per_scene": 2
+  },
+
+  "lint": {
+    "_note": "Thresholds for warnings. words_per_pause is the spec's 40-60 with tolerance. max_scene_words is an addition beyond spec v1.1 (set to null to disable).",
+    "target_tolerance": 0.15,
+    "words_per_pause": [30, 75],
+    "words_per_sfx_min": 15,
+    "generic_per_scene_max": 3,
+    "same_sfx_per_scene_max": 2,
+    "same_sfx_per_video_max": 6,
+    "visual_gap_words": 12,
+    "base_cam_min_gap_words": 10,
+    "same_opener_max_scenes": 3,
+    "ending_repeat_fraction": 0.5,
+    "max_scene_words": 160
+  },
+
+  "tts": {
+    "_note": "Emotion profile 'speed' values are absolute Kokoro speeds. speed_scale shifts all of them at once. base_speed is only the fallback. Pitch is OFF by default (apply_pitch) until the natural voice has been judged.",
+    "backend": "kokoro",
+    "voice": "am_fenrir",
+    "lang": "a",
+    "sample_rate": 24000,
+    "base_speed": 0.91,
+    "speed_scale": 1.0,
+    "speed_jitter_pct": 0.0,
+    "modifier_weight": 0.3,
+    "apply_pitch": false,
+    "split_pattern": "\\n+"
+  },
+
+  "rhubarb": {
+    "_note": "Lip-sync stage (main.py lipsync). Uses known segment text (-d) with pocketSphinx for English and falls back to phonetic if pocketSphinx fails.",
+    "bin": "~/.local/opt/rhubarb/rhubarb",
+    "recognizer": "pocketSphinx",
+    "fallback_recognizer": "phonetic",
+    "max_workers": 3,
+    "timeout_s": 60,
+    "blink": {
+      "enabled": true,
+      "min_gap_s": 2.5,
+      "max_gap_s": 5.0,
+      "duration_s": 0.14,
+      "seed": 7
+    }
+  },
+
+  "audio": {
+    "_note": "Values from the tested narrate.py. noise_floor_amp stays 0 (room tone made the polished output hiss). loudnorm is NOT run per segment; it runs once on the full narration export.",
+    "trim_threshold": 0.003,
+    "trim_keep_s": 0.06,
+    "fade_s": 0.012,
+    "fade_curve": "linear",
+    "noise_floor_amp": 0.0,
+    "polish": true,
+    "ffmpeg_filter": "highpass=f=60,acompressor=threshold=-18dB:ratio=2.5:attack=10:release=180:makeup=1.5",
+    "peak_limit": 0.98,
+    "final_loudnorm": { "enabled": true, "I": -16, "TP": -1.5, "LRA": 11 }
+  },
+
+  "timeline": {
+    "_note": "scene_gap_s is a placeholder. Silence between scenes = max(scene_gap_s - next scene's leading pause, previous scene's trailing explicit pause), so explicit pauses never stack with it.",
+    "scene_gap_s": 0.6
+  },
+
+  "word_timing": {
+    "_note": "Energy-island alignment fallback for word-level timing (used when the TTS backend gives no token timestamps). An island is a run of frames above max(abs_threshold, rel_threshold * peak RMS). Islands closer than merge_gap_s merge; shorter than min_island_s are dropped. Word timing only counts as 'aligned' when islands == words.",
+    "rel_threshold": 0.2,
+    "abs_threshold": 0.01,
+    "min_island_s": 0.03,
+    "merge_gap_s": 0.05
+  },
+
+  "captions": {
+    "_note": "ASS subtitles (captions/subtitles.ass), built from display text. karaoke = per-word highlight (\\k tags); secondary_colour is the pre-highlight fill. Colours are ASS &HAABBGGRR. alignment 2 = bottom center.",
+    "enabled": true,
+    "karaoke": true,
+    "font": "Arial",
+    "size": 64,
+    "bold": true,
+    "max_words_per_line": 8,
+    "tail_pad_s": 0.10,
+    "primary_colour": "&H00FFFFFF",
+    "secondary_colour": "&H0000D7FF",
+    "outline_colour": "&H00000000",
+    "back_colour": "&H64000000",
+    "outline": 3,
+    "shadow": 1,
+    "alignment": 2,
+    "margin_l": 40,
+    "margin_r": 40,
+    "margin_v": 60
+  },
+
+  "mix": {
+    "_note": "SFX mix over full_narration.wav (main.py mix). Beds loop and fade in/out. Music and ducking belong to the later final-mix stage. The mix is peak-limited, NOT loudnormed again.",
+    "point_gain": 1.0,
+    "bed_gain": 0.35,
+    "bed_fade_s": 0.25,
+    "out_name": "full_mix.wav"
+  },
+
+  "assets": {
+    "sfx": "sfx",
+    "reaction_images": "characters",
+    "character_kits": "characters",
+    "scene_images": "scenes"
+  }
+}
