@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Protocol, Tuple
 
 import numpy as np
+import torch
 
 SPACY_MODEL_NAME = "en_core_web_sm"
 
@@ -88,6 +89,8 @@ class KokoroBackend:
                                    "(it is installed on your machine; use --backend fake to dry-run "
                                    "elsewhere).") from e
             self._pipeline = KPipeline(lang_code=self.lang)
+            if torch.cuda.is_available() and hasattr(self._pipeline, "model"):
+                self._pipeline.model = self._pipeline.model.to("cuda")
         return self._pipeline
 
     def close(self) -> None:
