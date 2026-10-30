@@ -25,11 +25,18 @@
   "pauses": { "short": 0.18, "default": 0.32, "beat": 0.50, "long": 0.85 },
   "line_gap_s": 0.16,
   "title_gap_s": null,
-  "tts": {
-    "backend": "kokoro",
-    "voice": "am_fenrir",
-    "lang": "a",
-    "base_speed": 0.96
+ "tts": {
+    "_note": "Emotion profile 'speed' values are absolute Kokoro speeds. speed_scale shifts all of them at once. base_speed is only the fallback. Pitch is OFF by default (apply_pitch) until the natural voice has been judged.",
+    "backend": "chatterbox_turbo",
+    "voice": "/content/narration-pipeline/my_voice.wav",
+    "lang": "en",
+    "sample_rate": 24000,
+    "base_speed": 1,
+    "speed_scale": 1.0,
+    "speed_jitter_pct": 0.015,
+    "modifier_weight": 0.3,
+    "apply_pitch": false,
+    "split_pattern": "\\n+"
   },
 
   "emotions": {
