@@ -16,6 +16,7 @@ Keeping this behind a tiny interface means swapping the engine later (another
 local model, a cloud voice) is one new class, not a rewrite.
 """
 from __future__ import annotations
+import time
 
 import gc
 import importlib.util
@@ -28,6 +29,15 @@ import torch
 
 SPACY_MODEL_NAME = "en_core_web_sm"
 
+
+def _resolve_device(requested: Optional[str]) -> str:
+    """None/"auto" -> cuda if available else cpu. An explicit cuda without a GPU falls back to cpu."""
+    want = (requested or "auto").lower()
+    if want == "auto":
+        want = "cuda" if torch.cuda.is_available() else "cpu"
+    if want.startswith("cuda") and not torch.cuda.is_available():
+        want = "cpu"
+    return want
 
 class TTSBackend(Protocol):
     id: str
@@ -142,15 +152,17 @@ class ChatterboxTurboBackend:
 
     sample_rate = 24000
 
-    def __init__(self, voice: str = "default", device: str = "cpu"):
+    def __init__(self, voice: str = "default", device: Optional[str] = None):
         self.voice = voice
-        self.device = device
+        self.device = _resolve_device(device)      # None/"auto" -> cuda if available, else cpu
         self._model = None
+        self.load_s = 0.0
 
     @property
     def id(self) -> str:
         return f"chatterbox_turbo:{self.voice}"
 
+    
     def _get_model(self):
         if self._model is None:
             try:
@@ -160,11 +172,37 @@ class ChatterboxTurboBackend:
                     "The 'chatterbox-tts' package is not installed. "
                     "Install it via: pip install chatterbox-tts"
                 ) from e
+            t0 = time.perf_counter()
             self._model = ChatterboxTurboTTS.from_pretrained(device=self.device)
+            self._align_devices(self._model)
+            self.load_s = time.perf_counter() - t0
             sr = getattr(self._model, "sr", None)
             if sr:
                 self.sample_rate = int(sr)
+            self._log_device(self._model)
         return self._model
+
+    def _align_devices(self, model) -> None:
+        """Put every sub-module and the built-in voice conditionals on self.device."""
+        dev = torch.device(self.device)
+        for name in ("ve", "t3", "s3gen"):
+            mod = getattr(model, name, None)
+            if isinstance(mod, torch.nn.Module):
+                mod.to(dev)
+        conds = getattr(model, "conds", None)
+        if conds is not None and hasattr(conds, "to"):
+            model.conds = conds.to(dev)
+
+    def _log_device(self, model) -> None:
+        per = {}
+        for name in ("ve", "t3", "s3gen"):
+            mod = getattr(model, name, None)
+            if isinstance(mod, torch.nn.Module):
+                per[name] = sorted({p.device.type for p in mod.parameters()}
+                                   | {b.device.type for b in mod.buffers()})
+        alloc = torch.cuda.memory_allocated() / 2**20 if self.device.startswith("cuda") else 0.0
+        print(f"[chatterbox_turbo] device={self.device} lib_device={getattr(model, 'device', None)} "
+              f"modules={per} cuda_allocated={alloc:.0f}MiB load={self.load_s:.1f}s", flush=True)
 
     def close(self) -> None:
         if self._model is not None:

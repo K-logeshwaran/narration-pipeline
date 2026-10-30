@@ -19,12 +19,14 @@ audio/<segment id>.wav is the working copy the later stages read.
 """
 from __future__ import annotations
 
+import functools
 import hashlib
 import json
 import os
 import shutil
 import tempfile
 import time
+import traceback
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -49,6 +51,26 @@ FULL_EXPORT_NAME = "full_narration.wav"
 CAPTIONS_PATH = Path("captions") / "subtitles.ass"
 CAPTIONS_SRT_PATH = Path("captions") / "subtitles.srt"
 WORD_TIMING_NAME = "word_timing.json"
+
+
+STAGE_S: Dict[str, float] = {}
+
+
+def _add_stage(name: str, dt: float) -> None:
+    STAGE_S[name] = STAGE_S.get(name, 0.0) + dt
+
+
+def _timed(name: str):
+    def deco(fn):
+        @functools.wraps(fn)
+        def wrapper(*a, **k):
+            t = time.perf_counter()
+            try:
+                return fn(*a, **k)
+            finally:
+                _add_stage(name, time.perf_counter() - t)
+        return wrapper
+    return deco
 
 # ---------------------------------------------------------------------------
 # helpers
@@ -119,7 +141,7 @@ def _preflight(project: Dict[str, Any], cfg: Dict[str, Any], only: Optional[Set[
 # ---------------------------------------------------------------------------
 # one segment
 # ---------------------------------------------------------------------------
-
+@_timed("process")        # above def _process_audio(...)   trim/fade/ffmpeg polish
 def _process_audio(raw: np.ndarray, sr: int, acfg: Dict[str, Any], chain: str,
                    volume: float) -> Tuple[np.ndarray, float]:
     """Returns (processed audio, trim offset in seconds). The offset is how much
@@ -161,7 +183,7 @@ def _write_tokens(raw_path: Path, tokens: Optional[List[Tuple[str, float, float]
     elif side.exists():
         side.unlink()
 
-
+@_timed("align")
 def _word_info(seg: Dict[str, Any], proc_path: Path, raw_path: Path, cfg: Dict[str, Any],
                tokens: Optional[List[Tuple[str, float, float]]],
                trim_offset: Optional[float], force: bool,
@@ -231,6 +253,7 @@ def _segment(sc: Dict[str, Any], seg: Dict[str, Any], cfg: Dict[str, Any], backe
             tokens = _load_tokens(raw_path)
             status = "reprocessed"
         else:
+            t_tts = time.perf_counter()
             try:
                 if hasattr(backend, "synth_timed"):
                     raw, tokens = backend.synth_timed(seg["tts_text"], speed)
@@ -239,9 +262,11 @@ def _segment(sc: Dict[str, Any], seg: Dict[str, Any], cfg: Dict[str, Any], backe
                 raw = np.asarray(raw, dtype=np.float32)
             except (KeyboardInterrupt, SystemExit):
                 raise
-            except Exception as e:                          # wrap with segment context
+            except Exception as e:        
+                traceback.print_exc()                  # wrap with segment context
                 raise NarrationError([Problem(f"TTS backend failed: {e}", **where,
-                                              detail=f'Text: "{seg["tts_text"]}"')]) from e
+                                                        detail=f'Text: "{seg["tts_text"]}"')]) from e
+            _add_stage("tts", time.perf_counter() - t_tts)
             if A.is_silent(raw):
                 raise NarrationError([Problem("TTS returned empty or silent audio", **where,
                                               detail=f'Text: "{seg["tts_text"]}"')])
@@ -265,7 +290,7 @@ def _segment(sc: Dict[str, Any], seg: Dict[str, Any], cfg: Dict[str, Any], backe
 # ---------------------------------------------------------------------------
 # full narration export
 # ---------------------------------------------------------------------------
-
+@_timed("stitch")         # above def _export_full(...)     mix + loudnorm
 def _export_full(spans: Dict[str, Tuple[float, float]], audio_dir: Path, total_s: float,
                  cfg: Dict[str, Any], log: Callable[[str], None], warnings: List[str]) -> Path:
     sr = int(cfg["tts"]["sample_rate"])
@@ -438,5 +463,6 @@ def narrate_project(project: Dict[str, Any], project_dir: Path, cfg: Dict[str, A
     log(f"Done in {time.time() - t0:.1f}s: {stats['synthesized']} synthesized, "
         f"{stats['reprocessed']} reprocessed, {stats['cache']} from cache. "
         f"Narration length {int(mins)}:{secs:04.1f}")
+    log("Stage times: " + ", ".join(f"{k} {v:.1f}s" for k, v in STAGE_S.items()))
     return NarrationResult(narration, timeline, dict(stats), export_path, orphans, warnings,
                            captions_path, srt_path=srt_path, word_timing_path=word_timing_path)
