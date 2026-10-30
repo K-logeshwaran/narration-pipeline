@@ -20,6 +20,7 @@ from __future__ import annotations
 import gc
 import importlib.util
 import sys
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Protocol, Tuple
 
 import numpy as np
@@ -133,16 +134,69 @@ class KokoroBackend:
             return np.zeros(0, dtype=np.float32), None
         return np.concatenate(parts), tokens
 
+class ChatterboxTurboBackend:
+    """Chatterbox Turbo (chatterbox.tts_turbo.ChatterboxTurboTTS) local CPU backend.
+    Loads lazily on first uncached synthesis and frees PyTorch references on close().
+    """
+
+    sample_rate = 24000
+
+    def __init__(self, voice: str = "default", device: str = "cpu"):
+        self.voice = voice
+        self.device = device
+        self._model = None
+
+    @property
+    def id(self) -> str:
+        return f"chatterbox_turbo:{self.voice}"
+
+    def _get_model(self):
+        if self._model is None:
+            try:
+                from chatterbox.tts_turbo import ChatterboxTurboTTS
+            except ImportError as e:               # pragma: no cover - needs chatterbox-tts
+                raise RuntimeError(
+                    "The 'chatterbox-tts' package is not installed. "
+                    "Install it via: pip install chatterbox-tts"
+                ) from e
+            self._model = ChatterboxTurboTTS.from_pretrained(device=self.device)
+            sr = getattr(self._model, "sr", None)
+            if sr:
+                self.sample_rate = int(sr)
+        return self._model
+
+    def close(self) -> None:
+        if self._model is not None:
+            self._model = None
+            gc.collect()
+            torch_mod = sys.modules.get("torch")
+            if torch_mod is not None and hasattr(torch_mod, "cuda") and torch_mod.cuda.is_available():
+                torch_mod.cuda.empty_cache()
+
+    def synth(self, text: str, speed: float) -> np.ndarray:
+        model = self._get_model()
+        kwargs: Dict[str, Any] = {}
+        if self.voice and self.voice != "default" and Path(self.voice).is_file():
+            kwargs["audio_prompt_path"] = self.voice
+        wav = model.generate(text, **kwargs)
+        if hasattr(wav, "detach"):
+            wav = wav.detach().cpu().numpy()
+        return np.asarray(wav, dtype=np.float32).squeeze()
+
 
 def get_backend(name: str, cfg: Dict[str, Any]) -> TTSBackend:
     tts = cfg["tts"]
     if name == "kokoro":
         backend = KokoroBackend(tts["voice"], tts["lang"], tts.get("split_pattern", r"\n+"))
+    elif name in ("chatterbox_turbo", "chatterbox.tts_turbo"):
+        backend = ChatterboxTurboBackend(voice=tts.get("voice", "default"))
     elif name == "fake":
         from .fake import FakeBackend
         backend = FakeBackend(sample_rate=int(tts["sample_rate"]))
     else:
-        raise ValueError(f'Unknown TTS backend "{name}". Available: kokoro, fake')
+        raise ValueError(
+            f'Unknown TTS backend "{name}". Available: kokoro, chatterbox_turbo, fake'
+        )
     if int(tts["sample_rate"]) != backend.sample_rate:
         raise ValueError(f'tts.sample_rate is {tts["sample_rate"]} but backend "{name}" produces '
                          f"{backend.sample_rate} Hz")

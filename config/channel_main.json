@@ -86,11 +86,11 @@
 
   "tts": {
     "_note": "Emotion profile 'speed' values are absolute Kokoro speeds. speed_scale shifts all of them at once. base_speed is only the fallback. Pitch is OFF by default (apply_pitch) until the natural voice has been judged.",
-    "backend": "kokoro",
-    "voice": "am_fenrir",
-    "lang": "a",
+    "backend": "chatterbox_turbo",
+    "voice": "/home/logeshwarank/AI-models/chatter-box/my_voice.wav",
+    "lang": "en",
     "sample_rate": 24000,
-    "base_speed": 0.96,
+    "base_speed": 1,
     "speed_scale": 1.0,
     "speed_jitter_pct": 0.015,
     "modifier_weight": 0.3,

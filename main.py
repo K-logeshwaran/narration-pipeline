@@ -238,9 +238,9 @@ def cmd_build(args) -> int:
         return code
 
     assets_dir = Path(assets_arg) if assets_arg else Path("assets")
-    # When running with real Kokoro TTS, isolate heavy stages in subprocesses so memory is
+    # When running with real neural TTS, isolate heavy stages in subprocesses so memory is
     # returned to the OS when the subprocess exits before Rhubarb and FFmpeg run.
-    if tts_backend == "kokoro":
+    if tts_backend in ("kokoro", "chatterbox_turbo", "chatterbox.tts_turbo"):
         py = sys.executable
         main_py = str(Path(__file__).resolve())
         common = ["-o", str(project_dir), "--assets", str(assets_dir)]
@@ -343,7 +343,8 @@ def main(argv=None) -> int:
         sp.add_argument("--assets", help="assets folder to check referenced files against")
         sp.add_argument("--strict", action="store_true", help="treat warnings as failures (validate)")
         sp.add_argument("--force", action="store_true", help="parse: write despite errors; narrate/lipsync/render: ignore caches")
-        sp.add_argument("--backend", choices=["kokoro", "fake"], help="TTS backend (default from config)")
+        sp.add_argument("--backend", choices=["kokoro", "chatterbox_turbo", "chatterbox.tts_turbo", "fake"],
+                        help="TTS backend (default from config)")
         sp.add_argument("--rhubarb", choices=["rhubarb", "fake"], help="Rhubarb backend (default: rhubarb)")
         sp.add_argument("--character", help="override character kit id (e.g. atlas or CBBob)")
         sp.add_argument("--scenes", help="render only selected scenes, e.g. 1 or 1,3-4")
