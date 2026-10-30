@@ -1,8 +1,8 @@
 {
-  "_note": "Better Mind style conversational whiteboard channel profile. Uses explainer parser rules with title_gap_s disabled for natural essay flow.",
-  "engine": "kokoro",
+  "_note": "Quiet Shift / Better Mind conversational whiteboard profile for Chatterbox Turbo.",
+  "engine": "chatterbox_turbo",
   "channel": "explainer",
-  "channel_aliases": ["explainer", "list_explainer", "bettermind", "better_mind"],
+  "channel_aliases": ["explainer", "list_explainer", "bettermind", "better_mind", "quietshift", "quiet_shift"],
   "character": "",
   "default_character": "",
   "require_character": false,
@@ -17,28 +17,51 @@
   "render": { "fps": 30, "resolution": [1920, 1080] },
   "words_per_minute": 140,
 
-  "pauses": { "short": 0.22, "default": 0.35, "beat": 0.48, "long": 0.75 },
-  "line_gap_s": 0.18,
+  "pauses": { "short": 0.25, "default": 0.40, "beat": 0.55, "long": 0.85 },
+  "line_gap_s": 0.24,
   "title_gap_s": null,
- "tts": {
-    "_note": "Emotion profile 'speed' values are absolute Kokoro speeds. speed_scale shifts all of them at once. base_speed is only the fallback. Pitch is OFF by default (apply_pitch) until the natural voice has been judged.",
+
+  "tts": {
+    "_note": "Speeds tuned down for Chatterbox Turbo's naturally fast cadence. Volumes kept <= 0.95 to prevent pre-loudnorm clipping.",
     "backend": "chatterbox_turbo",
     "voice": "/content/narration-pipeline/my_voice.wav",
     "lang": "en",
     "sample_rate": 24000,
-    "base_speed": 1,
+    "base_speed": 0.90,
     "speed_scale": 1.0,
-    "speed_jitter_pct": 0.015,
+    "speed_jitter_pct": 0.01,
     "modifier_weight": 0.3,
     "apply_pitch": false,
     "split_pattern": "\\n+"
   },
 
-
   "emotions": {
-    "calm":    { "speed": 0.95, "pitch": 0,  "volume": 1.00 },
-    "warm":    { "speed": 0.98, "pitch": 0,  "volume": 1.03 },
-    "serious": { "speed": 0.89, "pitch": -1, "volume": 1.00 }
+    "calm":       { "speed": 0.90, "pitch": 0,  "volume": 0.90 },
+    "warm":       { "speed": 0.92, "pitch": 0,  "volume": 0.93 },
+    "serious":    { "speed": 0.85, "pitch": -1, "volume": 0.90 },
+    "reflective": { "speed": 0.84, "pitch": -1, "volume": 0.85 },
+    "intimate":   { "speed": 0.86, "pitch": -1, "volume": 0.80 },
+    "emphatic":   { "speed": 0.94, "pitch": 0,  "volume": 0.95 },
+    "whisper":    { "speed": 0.82, "pitch": -1, "volume": 0.68 }
+  },
+
+  "audio": {
+    "trim_threshold": 0.004,
+    "trim_keep_s": 0.045,
+    "fade_s": 0.015,
+    "fade_curve": "linear",
+    "noise_floor_amp": 0.0,
+    "polish": true,
+    "ffmpeg_filter": "highpass=f=75,acompressor=threshold=-14dB:ratio=1.8:attack=15:release=220:makeup=1.0",
+    "peak_limit": 0.89,
+    "final_loudnorm": { "enabled": true, "I": -16, "TP": -2.0, "LRA": 9 }
+  },
+
+  "word_timing": {
+    "rel_threshold": 0.2,
+    "abs_threshold": 0.01,
+    "min_island_s": 0.03,
+    "merge_gap_s": 0.042
   },
 
   "reaction_images": [],
@@ -87,7 +110,7 @@
   },
 
   "timeline": {
-    "scene_gap_s": 0.45
+    "scene_gap_s": 0.55
   },
 
   "captions": {
