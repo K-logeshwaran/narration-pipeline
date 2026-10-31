@@ -24,7 +24,7 @@
   "tts": {
     "_note": "Speeds tuned down for Chatterbox Turbo's naturally fast cadence. Volumes kept <= 0.95 to prevent pre-loudnorm clipping.",
     "backend": "chatterbox_turbo",
-    "voice": "/kaggle/working/my_voice_enc.wav",
+    "voice": "/kaggle/working/vm-uploads/my_voice_enc.wav",
     "lang": "en",
     "sample_rate": 24000,
     "base_speed": 0.90,
